@@ -1,0 +1,38 @@
+/*
+    Creando Tablas de nivel I CSS
+*/
+
+h1{
+    text-align: center;
+    text-shadow: 1px 1px 1px black;
+    color: brown;
+}
+
+table{
+    margin-top: 20px;
+    caption-side: bottom;
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    background-image: linear-gradient(to left,#f6cf36,white);
+    box-shadow: 5px 5px 5px gray;
+}
+
+th{
+    background-color: black;
+    color: white;
+}
+
+caption{
+    padding-top: 20px;
+    font-style: italic;
+    color: brown;
+}
+
+td{
+    border: 2px solid black;
+    padding-left: 14px;
+    padding-right: 14px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
