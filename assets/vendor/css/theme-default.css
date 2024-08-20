@@ -109,7 +109,7 @@
 }
 
 .text-primary {
-  color: #696cff !important;
+  color: #696cff;
 }
 
 .text-body[href]:hover,
@@ -811,8 +811,10 @@ a:hover {
 html:not(.layout-menu-collapsed) .bg-menu-theme .menu-inner .menu-item.open > .menu-link, .layout-menu-hover.layout-menu-collapsed .bg-menu-theme .menu-inner .menu-item.open > .menu-link,
 html:not(.layout-menu-collapsed) .bg-menu-theme .menu-inner .menu-item .menu-link:not(.active):hover,
 .layout-menu-hover.layout-menu-collapsed .bg-menu-theme .menu-inner .menu-item .menu-link:not(.active):hover {
-  background-color: rgba(34, 48, 62, 0.06);
+  background-color: rgb(198 253 177);
+  color: #000000;
 }
+
 .bg-menu-theme .menu-inner .menu-sub > .menu-item.active > .menu-link.menu-toggle {
   background-color: rgba(34, 48, 62, 0.08) !important;
 }
@@ -827,7 +829,7 @@ html:not(.layout-menu-collapsed) .bg-menu-theme .menu-inner .menu-item .menu-lin
   background: #696cff;
 }
 .bg-menu-theme .menu-sub > .menu-item > .menu-link:before {
-  background-color: #a7acb2 !important;
+  background-color: #696cff !important
 }
 .bg-menu-theme .menu-sub > .menu-item.active > .menu-link:not(.menu-toggle):before {
   background-color: #696cff !important;

@@ -1,18 +1,17 @@
 <?php
 require('../admin/conexion.php');
+include('../layouts/header.php');
 
 $usuario = $_POST['usuario'];
 $pass    = $_POST['clave'];
 
-//echo $usuario.' - '.$pass; exit();
-
 if(empty($usuario) || empty($pass)){
-	header("Location: index.html"); exit(); 
+	//header("Location: index.html"); exit(); 
+	echo "AQUIII";
 }
 
 // $sql=("SELECT * from loginn WHERE usuario='$usuario' ");
 $sql=("SELECT * from loginn WHERE correo='".strtolower($usuario)."'");
-
 
 $conexion1=$mysqli->query($sql);
 $datos=$conexion1->fetch_array();
@@ -40,28 +39,56 @@ if($datos['correo'] == $usuario & $datos['clave'] == $pass){
 		$permisos=$datos['privilegios'];
 
 		if($permisos == 1){ 
-			echo '<script language="javascript">window.location.href="../admin/index.php?usr=1";</script>';
+			echo '<script language="javascript">window.location.href="../html/index2.php?usr=1";</script>';
         }
 			
 		elseif($permisos != 1 ){ 
-
 			if($datos['clave']=='123'){
 				echo '<script language="javascript">window.location.href="../admin/cambio_clave.php";</script>';
 			}else{
 				if ( $permisos == 7) {// Es Asistente
 					require('selemedico.php');
 				}
-				echo '<script language="javascript">window.location.href="../admin/index.php?usr=1";</script>';}
+				echo '<script language="javascript">window.location.href="../html/index2.php?usr=1";</script>';}
 
-	} elseif($datos['estatus'] == 'I'){
-			echo '<script language="javascript">alert("USUARIO INACTIVO");window.location.href="../index.html";</script>'; 
-			exit();
+		} elseif($datos['estatus'] == 'I'){
+			echo '<script>
+				Swal.fire({
+					icon: "error",
+					title: "Error de Conexión",
+					text:"El Usuario se Encuentra Inactivo",
+					confirmButtonText: "Volver",
+					confirmButtonColor: "#005e43",
+					}).then(function() {
+						window.location.href = "../index.html";
+					});
+				</script>';
 
-  } else{
-	  	echo '<script language="javascript">alert("USUARIO ó CLAVE INCORRECTO, VERIFIQUE SUS DATOS");window.location.href="../index.html";</script>'; 
-	  	exit(); }
-	}else{
-		echo '<script language="javascript">alert("USUARIO/CLAVE NO EXISTE");window.location.href="../index.html";</script>'; 
+  		} else{
+			echo '<script>
+				Swal.fire({
+					icon: "error",
+					title: "Error de Conexión",
+					text:"Error en la Contraseña o Usuario no Existe, por favor Verifique",
+					confirmButtonText: "Volver",
+					confirmButtonColor: "#005e43",
+					}).then(function() {
+						window.location.href = "../index.html";
+					});
+				</script>';
+		}
+	}else{	 
+		echo '<script>
+		  Swal.fire({
+		  	icon: "error",
+		   	title: "Error de Conexión",
+			text:"Error en la Contraseña o Usuario no Existe, por favor Verifique",
+		   	confirmButtonText: "Volver",
+		   	confirmButtonColor: "#005e43",
+		   	}).then(function() {
+				window.location.href = "../index.html";
+			});
+		  </script>';
 	}
 
 ?>

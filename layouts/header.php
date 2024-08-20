@@ -13,15 +13,10 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
-
     <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
-
     <meta name="description" content="" />
-
     <!-- Favicon -->
-
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
-
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -29,10 +24,11 @@
       href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
       rel="stylesheet"
     />
-
     <!-- Icons. Uncomment required icon fonts -->
     <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
-
+    
+    <!-- JQUERY 3.7.0 -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <!-- Core CSS -->
     <link rel="stylesheet" href="../assets/vendor/css/core.css" class="template-customizer-core-css" />
     <link rel="stylesheet" href="../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
@@ -40,42 +36,21 @@
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-
     <link rel="stylesheet" href="../assets/vendor/libs/apex-charts/apex-charts.css" />
 
-    <!-- Page CSS -->
+    <!-- Dark Mode  -->
+    <link rel="stylesheet" href="../assets/vendor/css/darkmode.css" />
 
+    <!-- SweetAlert2 -->
+    <script src="../libs/sweetalert/sweetalert.js"></script>
+
+    <!-- DataTables -->
+    <link href="../libs/DataTables/datatables.min.css" rel="stylesheet">
+    <script src="../libs/DataTables/datatables.min.js"></script>
+    
     <!-- Helpers -->
     <script src="../assets/vendor/js/helpers.js"></script>
-
-    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="../assets/js/config.js"></script>
-    <style>
-    .dark-mode {
-      --bs-light: #f8f9fa;
-      --bs-dark: #242333;
-      --bs-dark-card:#2b2c40;
-      --bs-body-color: #fff;
-      --bs-body-bg: #242333;
-      --bs-body-nav:#2b2c40;
-
-      .card {
-        background-color: var(--bs-dark-card);
-        color: var(--bs-light);
-      }
-      .card-title {  
-        color: var(--bs-primary);
-      }
-      .bg-menu-theme {
-        background-color: var(--bs-dark-card);
-        color: var(--bs-light);
-      }
-      .bg-navbar-theme{
-        background-color: var(--bs-dark-nav);
-        color: var(--bs-light);
-      }
-    }
-    </style>
+ 
   </head>
   <body>

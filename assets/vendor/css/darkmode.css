@@ -1,0 +1,38 @@
+.dark-mode {
+    --bs-light: #f8f9fa;
+    --bs-dark: #242333;
+    --bs-dark-card:#2b2c40;
+    --bs-body-color: #fff;
+    --bs-body-bg: #242333;
+    --bs-body-nav:#2b2c40;
+    --bs-dark-menu:#252242;
+
+    .card {
+      background-color: var(--bs-dark-card);
+      color: var(--bs-light);
+    }
+    .card-title {  
+      color: var(--bs-light);
+    }
+    .bg-menu-theme {
+      background-color: var(--bs-dark-card);
+      color: var(--bs-light);
+    }
+    .bg-navbar-theme{
+      background-color: var(--bs-dark-card);
+      color: var(--bs-light);
+    }
+    .text-primary {
+        color: var(--bs-light);
+    }
+    .fw-bold{
+        color: var(--bs-light);
+    }
+    .menu-header-text{
+        color: var(--bs-light);
+    }
+    .menu-link{
+        color: var(--bs-light);
+    }
+   
+  }

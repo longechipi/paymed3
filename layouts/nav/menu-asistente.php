@@ -9,9 +9,9 @@ $host = basename($_SERVER['PHP_SELF']);
     <!-- INICIO -->
     <li class="menu-item 
         <?php if ($host === "index.php") { echo 'active'; } ?>">
-            <a href="../admin/index.php?usr=1" class="menu-link">
+            <a href="../html/index2.php?usr=1" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-clinic"></i>
-                <div data-i18n="Analytics">Inicio</div>
+                <div data-i18n="Analytics">INICIO</div>
             </a>
     </li>
 
@@ -72,4 +72,13 @@ $host = basename($_SERVER['PHP_SELF']);
         </ul>
     </li>
     <!-- FIN TERCER NIVEL -->
+
+    <li class="menu-item 
+        <?php if ($host === "index.php") { echo 'active'; } ?>">
+            <a href="../auth/salir.php" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-clinic"></i>
+                <div data-i18n="Analytics">SALIR</div>
+            </a>
+    </li>
+    
 </ul>

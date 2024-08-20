@@ -14,12 +14,6 @@ require('conexion.php');
                           <?php include('resumen2.php')?>
 
                 
-                            
-
-
-
-
-
 
                             <div class="col-6">
                                 asd

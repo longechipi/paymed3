@@ -9975,7 +9975,7 @@ button.list-group-item-gray.active {
 /* rtl:end:remove */
 .text-primary {
   --bs-text-opacity: 1;
-  color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity)) !important;
+  color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity));
 }
 
 .text-secondary {
@@ -15677,8 +15677,8 @@ html:not(.layout-footer-fixed) .content-wrapper {
 }
 
 .menu-vertical .app-brand {
-  padding-right: 2rem;
-  padding-left: 2rem;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
 }
 
 .menu-horizontal .app-brand,
