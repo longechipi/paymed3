@@ -1,4 +1,6 @@
 @charset "UTF-8";
+
+
 :root {
   --bs-blue: #007bff;
   --bs-indigo: #6610f2;
@@ -63,10 +65,14 @@
     scroll-behavior: smooth;
   }
 }
+@font-face {
+  font-family: 'Qartella';
+  src: url("../fonts/Qartella/TTF/Qartella-Regular.ttf") format('truetype');
+}
 
 body {
   margin: 0;
-  font-family: var(--bs-body-font-family);
+  font-family: 'Qartella';
   font-size: var(--bs-body-font-size);
   font-weight: var(--bs-body-font-weight);
   line-height: var(--bs-body-line-height);
@@ -2626,7 +2632,7 @@ textarea.form-control-lg {
   height: 100%;
   padding: 1rem 0.875rem;
   pointer-events: none;
-  border: 1px solid transparent;
+  /* border: 1px solid transparent; */
   transform-origin: 0 0;
   transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
 }

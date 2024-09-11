@@ -225,18 +225,27 @@ button.list-group-item-primary.active {
 .table-primary .btn {
   color: #22303e;
 }
+a.btn-link {
+  color : #222a55;
+  cursor: pointer;
+}
+
+a.btn-link:hover {
+  color : #222a55;
+  cursor: pointer;
+}
 
 .btn-primary {
   color: #fff;
-  background-color: #696cff;
-  border-color: #696cff;
+  background-color: #007dba;
+  border-color: #007dba;
   -webkit-box-shadow: 0 0.125rem 0.25rem 0 rgba(105, 108, 255, 0.4);
           box-shadow: 0 0.125rem 0.25rem 0 rgba(105, 108, 255, 0.4);
 }
 .btn-primary:hover {
   color: #fff !important;
-  background-color: #5f61e6 !important;
-  border-color: #5f61e6 !important;
+  background-color: #03699b !important;
+  border-color: #03699b !important;
 }
 .btn-check:focus + .btn-primary, .btn-primary:focus, .btn-primary.focus {
   color: #fff;
@@ -366,29 +375,29 @@ button.list-group-item-primary.active {
 
 .form-control:focus,
 .form-select:focus {
-  border-color: #696cff !important;
+  border-color: #007dba !important;
 }
 
 .input-group:focus-within .form-control,
 .input-group:focus-within .input-group-text {
-  border-color: #696cff !important;
+  border-color: #007dba !important;
 }
 
 .form-check-input:checked {
-  background-color: #696cff;
-  border-color: #696cff;
+  background-color: #007dba;
+  border-color: #007dba;
   -webkit-box-shadow: 0 0.125rem 0.25rem 0 rgba(105, 108, 255, 0.4);
           box-shadow: 0 0.125rem 0.25rem 0 rgba(105, 108, 255, 0.4);
 }
 .form-check-input[type=checkbox]:indeterminate {
-  background-color: #696cff;
-  border-color: #696cff;
+  background-color: #007dba;
+  border-color: #007dba;
   -webkit-box-shadow: 0 0.125rem 0.25rem 0 rgba(105, 108, 255, 0.4);
           box-shadow: 0 0.125rem 0.25rem 0 rgba(105, 108, 255, 0.4);
 }
 
 .custom-option.checked {
-  border: 1px solid #696cff;
+  border: 1px solid #007dba;
 }
 
 .form-switch .form-check-input:focus {
@@ -399,7 +408,7 @@ button.list-group-item-primary.active {
 }
 
 .form-control:focus ~ .form-label {
-  border-color: #696cff;
+  border-color: #007dba;
 }
 .form-control:focus ~ .form-label::after {
   border-color: inherit;
@@ -599,22 +608,22 @@ button.list-group-item-primary.active {
 }
 
 .form-floating > .form-control:focus:not(:-moz-placeholder-shown) ~ label, .form-floating > .form-select:focus:not(:-moz-placeholder-shown) ~ label {
-  color: #696cff;
+  color: #007dba;
 }
 
 .form-floating > .form-control:focus:not(:-ms-input-placeholder) ~ label, .form-floating > .form-select:focus:not(:-ms-input-placeholder) ~ label {
-  color: #696cff;
+  color: #007dba;
 }
 
 .form-floating > .form-control:focus ~ label,
 .form-floating > .form-control:focus:not(:placeholder-shown) ~ label,
 .form-floating > .form-select:focus ~ label,
 .form-floating > .form-select:focus:not(:placeholder-shown) ~ label {
-  color: #696cff;
+  color: #007dba;
 }
 
 .svg-illustration svg {
-  fill: #696cff;
+  fill: #007dba;
 }
 
 html:not([dir=rtl]) .border-primary,
@@ -870,4 +879,9 @@ html:not(.layout-menu-collapsed) .bg-menu-theme .menu-inner .menu-item .menu-lin
 }
 .bg-footer-theme hr {
   border-color: rgba(105, 108, 255, 0.075);
+}
+
+div#medico {
+  border-right: 1px solid #007dba38;
+  background: linear-gradient(to right, transparent, #007dba38);
 }
