@@ -146,8 +146,8 @@ a.bg-primary:hover, a.bg-primary:focus {
 .pagination li.active > a:not(.page-link),
 .pagination li.active > a:not(.page-link):hover,
 .pagination li.active > a:not(.page-link):focus {
-  border-color: #696cff;
-  background-color: #696cff;
+  border-color: #007dba;
+  background-color: #007dba;
   color: #fff;
   -webkit-box-shadow: 0 0.125rem 0.25rem rgba(105, 108, 255, 0.4);
           box-shadow: 0 0.125rem 0.25rem rgba(105, 108, 255, 0.4);
@@ -233,6 +233,7 @@ a.btn-link {
 a.btn-link:hover {
   color : #222a55;
   cursor: pointer;
+  text-decoration: underline;
 }
 
 .btn-primary {
@@ -885,3 +886,4 @@ div#medico {
   border-right: 1px solid #007dba38;
   background: linear-gradient(to right, transparent, #007dba38);
 }
+

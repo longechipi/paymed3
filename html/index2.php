@@ -13,14 +13,6 @@ require('../admin/conexion.php');
                         <div class="row">
                           <?php include('resumen.php');?>
                         </div>
-
-
-
-
-
-
-
-
                     </div>
                     <?php include('../layouts/footer.php')?>
                     <div class="content-backdrop fade"></div>
