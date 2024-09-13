@@ -1,6 +1,7 @@
 <?php
 	require('../../conf/conexion.php');
-	$query = $mysqli -> query("select idestado, estado from estado where idpais=$_GET[idpais] AND idestatus='1';");
+	$pais = $_GET['idpais'];
+	$query = $mysqli -> query("SELECT idestado, estado FROM estado WHERE idpais= $pais AND idestatus='1';");
 	$states = array();
 	while($r=$query->fetch_object()){ $states[]=$r; }
 		if(count($states)>0){
