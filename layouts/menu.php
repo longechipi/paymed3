@@ -12,7 +12,7 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <!-- LOGO E INF DEL USUARIO -->
     <div class="app-brand demo">
-            <img class="img-fluid" src="../assets/img/logos/logoDark.webp" alt="LOGO" srcset="" >
+            <img class="img-fluid" src="../assets/img/logos/logoP.svg" alt="LOGO" srcset="" >
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
             <i class="bx bx-chevron-left bx-sm align-middle"></i>
         </a>

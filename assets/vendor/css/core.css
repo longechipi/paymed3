@@ -15911,8 +15911,9 @@ html:not(.layout-footer-fixed) .content-wrapper {
 .divider .divider-text {
   position: relative;
   display: inline-block;
-  font-size: 0.8rem;
+  font-size: 1.5rem;
   padding: 0rem 1rem;
+  color : #222a55;
 }
 .divider .divider-text i {
   font-size: 1rem;
@@ -15922,7 +15923,7 @@ html:not(.layout-footer-fixed) .content-wrapper {
   position: absolute;
   top: 50%;
   width: 100vw;
-  border-top: 1px solid rgba(67, 89, 113, 0.2);
+  border-top: 1px solid #007dba;
 }
 .divider .divider-text:before {
   right: 100%;
