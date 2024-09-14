@@ -16,14 +16,14 @@ require('../admin/conexion.php');
         <div class="d-flex align-items-end row">
             <div class="col-12">
                 <div class="card-body">
-                    <h5 class="card-title text-primary">Listado de Clínicas</h5>
+                    <h5 class="card-title text-primary">Listado Médicos</h5>
                     <div class="row">
                         <div class="text-center">
-                            <a class="btn btn-primary mb-4" href="regcli.php" role="button"><i class="fi fi-ts-hospital"></i> AÑADIR CLINICA</a>
+                            <a class="btn btn-primary mb-4" href="regcli.php" role="button"><i class="fi fi-ts-hospital"></i> AÑADIR MEDICO</a>
                         </div>
                     </div>
                     <?php 
-                     $sql = ("SELECT a.idclinica, a.rif, a.razsocial, a.nombrecentrosalud, a.idestatus, b.estado FROM clinicas a, estado b WHERE a.idestado=b.idestado ORDER BY a.razsocial ASC");
+                     $sql = ("SELECT * FROM medicos WHERE  idestatus!='99' ORDER BY nombre1 ASC");
                     $result=$mysqli->query($sql);	
   
                     ?>
@@ -31,34 +31,55 @@ require('../admin/conexion.php');
                         <table class="table table-hover" id="user" cellspacing="0" style="width: 100%;">
                             <thead>
                                 <tr>
-                                    <th>#</th>   
-                                    <th>Rif</th>
-                                    <th>Razón Social</th>
-                                    <th>Nombre del Centro</th>
-                                    <th>Estado</th>
+                                    <th>N.Doc:</th>
+                                    <th>Nombre:</th>
+                                    <th>Móvil:</th>
+                                    <th>Correo:</th>
                                     <th>Accion</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php 
-                                $ln = 0;
-                                while($row = mysqli_fetch_array($result)) {
-                            $ln++; ?>
+                                while($row = mysqli_fetch_array($result)) { ?>
                             <tr>
-                                <td><?php echo $ln; ?></td>
-                                <td><a><?php echo $row['rif']; ?></a></td>
-                                <td><?php echo substr($row['razsocial'],0,25);?>...</td>
-                                <td><?php echo $row['nombrecentrosalud']; ?></td>
-                                <td><?php echo $row['estado']; ?></td>
+                                
+                                <td><?php echo $row['nrodoc']; ?></td>
+                                <td><?php echo $row['nombre1'].' '.$row['apellido1']; ?></td>
+                                <td><?php echo $row['movil']; ?></td>
+                                <td><?php echo $row['correo']; ?></td>
                     <td>
                         <div class="btn-group">
                           <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bx bx-dots-vertical-rounded"></i>
                           </button>
                           <ul class="dropdown-menu dropdown-menu-end" style="">
-                            <li><a class="dropdown-item" href="updcli.php?id=<?php echo $row['idclinica'];?>"><i class="fi fi-rr-edit"></i> Editar Clínica</a></li>
-                            <li><a class="dropdown-item" href="updclicontacto.php?id=<?php echo $row['idclinica'];?>"><i class="fi fi-rr-phone-call"></i> Agregar Contacto</a></li>
-                            <li><a class="dropdown-item" href="src_del_clin.php?id=<?php echo $row['idclinica'];?>"><i class="fi fi-rr-trash"></i> Eliminar Contacto</a></li>
+                            <li>
+                                <a class="dropdown-item" href="updmed.php?id=<?php echo $row['idlogin'];?>">
+                                    <i class="fi fi-rr-edit"></i> Editar Medico</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="medctas.php?id=<?php echo $row['idmed'];?>">
+                                <i class="fi fi-rr-file-invoice-dollar"></i> Cuentas Bancarias</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="medctas.php?id=<?php echo $row['idmed'];?>">
+                                <i class="fi fi-rs-category"></i> Especialidades</a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item" href="adddoc.php?id=<?php echo $row['idmed'];?>">
+                                <i class="fi fi-rs-document-signed"></i> Documentos</a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item" href="adddoc.php?id=<?php echo $row['idmed'];?>">
+                                <i class="fi fi-rs-membership"></i></i> Afiliacion</a>
+                            </li>
+
+                            <li>
+                                <a class="dropdown-item" href="src_del_med.php?id=<?php echo $row['idmed'];?>">
+                                    <i class="fi fi-rr-trash"></i> Eliminar Medico</a>
+                            </li>
                             
                           </ul>
                         </div>

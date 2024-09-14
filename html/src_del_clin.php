@@ -31,9 +31,10 @@ Swal.fire({
   text: "Está Acción no podrá Revertirse",
   icon: "warning",
   showCancelButton: true,
-  confirmButtonColor: "#3085d6",
+  confirmButtonColor: "#007ebc",
   cancelButtonColor: "#d33",
-  confirmButtonText: "Eliminar"
+  confirmButtonText: "Eliminar",
+  cancelButtonText: "Cancelar"
 }).then((result) => {
   if (result.isConfirmed) {
     window.location.href = "../model/reg_clinica/delete_clinica.php?id=<?php echo $_GET['id']; ?>";

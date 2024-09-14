@@ -125,12 +125,13 @@ $idestatus  =$rowcli['idestatus'];
                     </div><!--FIN ROW 1 -->
                     <div class="row">
                         <div class="text-center">
-                           <button class="btn btn-primary" type="submit">AGREGAR</button>
-                           <a href="rpt_clin.php" class="btn btn-outline-warning" rel="noopener noreferrer">VOLVER </a>
+                           <button class="btn btn-primary" type="submit"><i class="fi fi-rs-disk"></i> AGREGAR</button>
+                           <a href="rpt_clin.php" class="btn btn-outline-warning" rel="noopener noreferrer"><i class="fi fi-rr-undo"></i> VOLVER </a>
                         </div>
-                    </div>
+                    </div>                
+                </form>
 
-                    <div class="table-responsive"> <!-- INICIO Tabla Presupuesto -->
+                <div class="table-responsive"> <!-- INICIO Tabla Presupuesto -->
                         <table class="table table-hover" id="user" cellspacing="0" style="width: 100%;">
                             <thead>
                                 <tr>
@@ -165,8 +166,6 @@ $idestatus  =$rowcli['idestatus'];
                             </tbody>
                         </table>
                     </div>
-                
-                </form>
             </div>
         </div>
     </div>
@@ -225,10 +224,11 @@ $('#upd_cont').submit(function(e){
                     title: 'Agrego con Exito!',
                     text: 'Se Agrego correctamente el Contacto',
                     icon: 'success',
+                    confirmButtonColor: "#007ebc",
                     confirmButtonText: 'Aceptar'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = "updclicontacto.php?id=22";
+                        window.location.href = "updclicontacto.php?id=<?php echo $idclinica; ?>";
                     }
                 });
             }else{

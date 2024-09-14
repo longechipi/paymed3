@@ -190,8 +190,8 @@ require('../admin/conexion.php');
                         </div>
 
                         <div class="text-center mt-4">
-                            <button type="submit" id="btn_register_clinica" class="btn btn-primary">REGISTRAR</button>
-                            <a href="rpt_clin.php" class="btn btn-outline-warning" rel="noopener noreferrer">VOLVER </a>
+                            <button type="submit" id="btn_register_clinica" class="btn btn-primary"><i class="fi fi-rs-disk"></i> REGISTRAR</button>
+                            <a href="rpt_clin.php" class="btn btn-outline-warning" rel="noopener noreferrer"><i class="fi fi-rr-undo"></i> VOLVER </a>
                         </div>
 
                    </div>  <!-- FIN ROW 4 -->
@@ -226,6 +226,7 @@ $(document).ready(function(){
                     title: 'Registro Exitoso!',
                     text: 'Se ha registrado correctamente la Clinica',
                     icon: 'success',
+                    confirmButtonColor: "#007ebc",
                     confirmButtonText: 'Aceptar'
                 }).then((result) => {
                     if (result.isConfirmed) {

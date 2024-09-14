@@ -11,7 +11,7 @@ $host = basename($_SERVER['PHP_SELF']);
     <li class="menu-item 
         <?php if ($host === "index.php") { echo 'active'; } ?>">
             <a href="../html/index2.php?usr=1" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-clinic"></i>
+                <i class="menu-icon tf-icons fi fi-rr-house-chimney"></i>
                 <div data-i18n="Analytics">INICIO</div>
             </a>
     </li>
@@ -23,7 +23,7 @@ $host = basename($_SERVER['PHP_SELF']);
         } ?>">
         
     <a href="javascript:void(0)" class="menu-link menu-toggle">
-        <i class="menu-icon tf-icons bx bx-wrench"></i>
+        <i class="menu-icon tf-icons fi fi-rr-user-pen"></i>
         <div id="menu-hono" data-i18n="User interface">ACCESOS</div>
     </a>
         <ul class="menu-sub">
@@ -72,11 +72,11 @@ $host = basename($_SERVER['PHP_SELF']);
     <!-- SEGUNDO NIVEL -->
     <li class="menu-item 
         <?php
-        if (($host === "rpt_clin.php")) {
+        if (($host === "rpt_clin.php") || ($host === "rpt_prov.php")|| ($host === "rpt_seg.php") || ($host === "rpt_med.php") || ($host === "rpt_presupuestos.php")) {
             echo 'active' . ' ' . 'open';
         } ?>">
         <a href="javascript:void(0)" class="menu-link menu-toggle">
-            <i class="menu-icon tf-icons bx bx-wrench"></i>
+            <i class="menu-icon tf-icons fi fi-rr-module"></i>
             <div id="menu-hono" data-i18n="User interface">MODULOS</div>
         </a>
         <ul class="menu-sub">
@@ -90,26 +90,38 @@ $host = basename($_SERVER['PHP_SELF']);
                 </a>
             </li>
             <!-- Proveedores -->
-            <li class="menu-item">
-                <a href="pages/forms/rpt_prov.php" id="sidebar-hono" class="menu-link empty">
+            <li class="menu-item 
+                <?php if ($host === "rpt_prov.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_prov.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Proveedores</div>
                 </a>
             </li>
             <!-- Aseguradoras -->
-            <li class="menu-item">
-                <a href="pages/forms/rpt_seg.php" id="sidebar-hono" class="menu-link empty">
+            <li class="menu-item 
+                <?php if ($host === "rpt_seg.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_seg.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Aseguradoras</div>
                 </a>
             </li>
             <!-- Medicos -->
-            <li class="menu-item">
-                <a href="pages/forms/rpt_med.php" id="sidebar-hono" class="menu-link empty">
-                    <div data-i18n="Accordion">Medicos</div>
+            <li class="menu-item 
+                <?php if ($host === "rpt_med.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_med.php" id="sidebar-hono" class="menu-link empty">
+                    <div data-i18n="Accordion">Médicos</div>
                 </a>
             </li>
             <!-- Presupuestos -->
-            <li class="menu-item">
-                <a href="pages/forms/rpt_presupuestos.php" id="sidebar-hono" class="menu-link empty">
+            <li class="menu-item 
+                <?php if ($host === "rpt_presupuestos.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_presupuestos.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Presupuestos</div>
                 </a>
             </li>
@@ -120,7 +132,7 @@ $host = basename($_SERVER['PHP_SELF']);
     <!-- TERCER NIVEL -->
     <li class="menu-item">
         <a href="javascript:void(0)" class="menu-link menu-toggle">
-            <i class="menu-icon tf-icons bx bx-wrench"></i>
+            <i class="menu-icon tf-icons  fi fi-rr-user-md"></i>
             <div id="menu-hono" data-i18n="User interface">CITAS MEDICAS</div>
         </a>
         <ul class="menu-sub">
@@ -137,7 +149,7 @@ $host = basename($_SERVER['PHP_SELF']);
     <!-- CUARTO NIVEL -->
     <li class="menu-item">
         <a href="javascript:void(0)" class="menu-link menu-toggle">
-            <i class="menu-icon tf-icons bx bx-wrench"></i>
+            <i class="menu-icon tf-icons fi fi-rr-file-invoice-dollar"></i>
             <div id="menu-hono" data-i18n="User interface">OPERATIVO</div>
         </a>
         <ul class="menu-sub">
@@ -190,7 +202,7 @@ $host = basename($_SERVER['PHP_SELF']);
     <!-- QUINTO NIVEL -->
     <li class="menu-item">
         <a href="javascript:void(0)" class="menu-link menu-toggle">
-            <i class="menu-icon tf-icons bx bx-wrench"></i>
+            <i class="menu-icon tf-icons fi fi-rs-process"></i>
             <div id="menu-hono" data-i18n="User interface">CONFIGURACION</div>
         </a>
         <ul class="menu-sub">
@@ -285,7 +297,7 @@ $host = basename($_SERVER['PHP_SELF']);
     <!-- SEXTO NIVEL -->
     <li class="menu-item">
         <a href="javascript:void(0)" class="menu-link menu-toggle">
-            <i class="menu-icon tf-icons bx bx-wrench"></i>
+            <i class="menu-icon tf-icons fi fi-rr-notebook-alt"></i>
             <div id="menu-hono" data-i18n="User interface">AGENDA</div>
         </a>
         <ul class="menu-sub">
@@ -302,7 +314,7 @@ $host = basename($_SERVER['PHP_SELF']);
     <li class="menu-item 
         <?php if ($host === "index.php") { echo 'active'; } ?>">
             <a href="../auth/salir.php" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-clinic"></i>
+                <i class="menu-icon tf-icons fi fi-rs-leave"></i>
                 <div data-i18n="Analytics">SALIR</div>
             </a>
     </li>
