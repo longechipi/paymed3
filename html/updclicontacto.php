@@ -38,7 +38,7 @@ $idestatus  =$rowcli['idestatus'];
     <div class="d-flex align-items-end row">
         <div class="col-12">
             <div class="card-body">
-                <h5 class="card-title text-primary">Datos de Contacto en la Clinica:  <?php echo $idclinica;?></h5>
+                <h5 class="card-title text-primary">Datos de Contacto en la Clinica:  <?php echo $razsocial;?></h5>
                 <form id="upd_cont">
                 <input type="hidden" name="nocli" value="<?php echo $idclinica; ?>">
                     <div class="row"> <!-- ROW BASE INTERNA -->
