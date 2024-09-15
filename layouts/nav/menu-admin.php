@@ -130,15 +130,22 @@ $host = basename($_SERVER['PHP_SELF']);
     <!-- FIN SEGUNDO NIVEL -->
 
     <!-- TERCER NIVEL -->
-    <li class="menu-item">
+    <li class="menu-item 
+        <?php
+            if (($host === "rpt_citas.php")) {
+                echo 'active' . ' ' . 'open';
+            } ?>">
         <a href="javascript:void(0)" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons  fi fi-rr-user-md"></i>
             <div id="menu-hono" data-i18n="User interface">CITAS MEDICAS</div>
         </a>
         <ul class="menu-sub">
             <!-- CITAS -->
-            <li class="menu-item">
-                <a href="pages/forms/rpt_citas.php" id="sidebar-hono" class="menu-link empty">
+            <li class="menu-item 
+                <?php if ($host === "rpt_citas.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_citas.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Ver Citas</div>
                 </a>
             </li>
@@ -147,45 +154,58 @@ $host = basename($_SERVER['PHP_SELF']);
     <!-- FIN TERCER NIVEL -->
 
     <!-- CUARTO NIVEL -->
-    <li class="menu-item">
+    <li class="menu-item 
+        <?php
+            if (($host === "rpt_admegr.php") || ($host === "rpt_regpago.php") || ($host === "baremo_paymed.php") || ($host === "rpt_apromed.php") || ($host === "rpt_asixmed.php")) {
+                echo 'active' . ' ' . 'open';
+            } ?>">
         <a href="javascript:void(0)" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons fi fi-rr-file-invoice-dollar"></i>
             <div id="menu-hono" data-i18n="User interface">OPERATIVO</div>
         </a>
         <ul class="menu-sub">
-            <!-- Presupuesto -->
-            <li class="menu-item">
-                <a href="pages/forms/rpt_pres.php" id="sidebar-hono" class="menu-link empty">
-                    <div data-i18n="Accordion">Presupuesto</div>
-                </a>
-            </li>
             <!-- Adminsión/Egreso -->
-            <li class="menu-item">
-                <a href="pages/forms/rpt_pres.php" id="sidebar-hono" class="menu-link empty">
-                    <div data-i18n="Accordion">Adminsión/Egreso</div>
+            <li class="menu-item 
+                <?php if ($host === "rpt_admegr.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_admegr.php" id="sidebar-hono" class="menu-link empty">
+                    <div data-i18n="Accordion">Admisión/Egreso</div>
                 </a>
             </li>
             <!-- Pagos -->
-            <li class="menu-item">
-                <a href="pages/forms/rpt_regpago.php" id="sidebar-hono" class="menu-link empty">
+            <li class="menu-item 
+                <?php if ($host === "rpt_regpago.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_regpago.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Pagos</div>
                 </a>
             </li>
             <!-- Baremo Paymed -->
-            <li class="menu-item">
-                <a href="pages/forms/baremo_paymed.php" id="sidebar-hono" class="menu-link empty">
+            <li class="menu-item 
+                <?php if ($host === "baremo_paymed.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/baremo_paymed.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Baremo Paymed</div>
                 </a>
             </li>
             <!-- Junta Medica -->
-            <li class="menu-item">
-                <a href="pages/forms/rpt_apromed.php" id="sidebar-hono" class="menu-link empty">
+            <li class="menu-item 
+                <?php if ($host === "rpt_apromed.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_apromed.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Junta Medica</div>
                 </a>
             </li>
             <!-- Asistentes Por Médico -->
-            <li class="menu-item">
-                <a href="pages/forms/rpt_asixmed.php" id="sidebar-hono" class="menu-link empty">
+            <li class="menu-item 
+                <?php if ($host === "rpt_asixmed.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_asixmed.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Asistentes Por Médico</div>
                 </a>
             </li>

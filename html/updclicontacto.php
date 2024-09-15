@@ -20,9 +20,6 @@ $nbdcm      =$rowcli['nombrecentrosalud'];
 $fecmod     =$rowcli['fechahora_sist'];
 $fecreg     =$rowcli['fecharegistro']; 
 $idestatus  =$rowcli['idestatus'];
-
-
-
 ?>
 
 <div class="layout-wrapper layout-content-navbar">
@@ -67,7 +64,7 @@ $idestatus  =$rowcli['idestatus'];
 
                      <div class="row"> <!--INICIO ROW 1 -->
                      
-                        <div class="col-md-2">
+                        <div class="col-md-4">
                             <div class="form-group">
                             <label for="descripcion">Cargo:</label>
                                 <select id="cargo1" class="form-select" name="cargo1" required>
@@ -80,35 +77,14 @@ $idestatus  =$rowcli['idestatus'];
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-2 mb-3">
+                        <div class="col-md-4 mb-3">
                             <div class="form-group">
                                 <label for="contacto1">Persona Contacto:</label>
-                                <input type="text" name="contacto1" id="contacto1" style="text-transform:uppercase;" onKeypress="if (event.keyCode < 65 || event.keyCode > 90 && event.keyCode < 97 || event.keyCode > 122) event.returnValue = false;" class="form-control" required>
+                                <input type="text" name="contacto1" id="contacto1" style="text-transform:uppercase;" class="form-control" required>
 					        </div>
                         </div>
 
-                        <div class="col-md-1">
-                            <div class="form-group">
-                                <label for="movil">Cod. Area:</label>
-                                <input type="text" name="coda" id="coda" maxlength="4" minlength="4" class="form-control" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" required>
-                            </div>
-                        </div>
-
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label for="telefono">Teléfono:</label>
-                                <input type="text" name="telefono" id="telefono" minlength="7" maxlength="7" class="form-control" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;">
-                            </div> 
-                        </div>
-
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label for="correo1">Correo:</label>
-                                <input type="text" name="correo1" id="correo1" class="form-control" required>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="descripcion">Departamento:</label>
 						        <select id="dpto1" class="form-select" name="dpto1" required>
@@ -121,6 +97,30 @@ $idestatus  =$rowcli['idestatus'];
                                 </select>
                             </div>
                         </div>
+
+
+                        <div class="col-md-2 mb-3">
+                            <div class="form-group">
+                                <label for="movil">Cod. Area:</label>
+                                <input type="text" name="coda" id="coda" maxlength="4" minlength="4" class="form-control" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="telefono">Teléfono:</label>
+                                <input type="text" name="telefono" id="telefono" minlength="7" maxlength="7" class="form-control" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;">
+                            </div> 
+                        </div>
+
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="correo1">Correo:</label>
+                                <input type="text" name="correo1" id="correo1" class="form-control" required>
+                            </div>
+                        </div>
+
+                        
 
                     </div><!--FIN ROW 1 -->
                     <div class="row">
