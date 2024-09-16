@@ -31,9 +31,14 @@ $resultpago = $mysqli->query($sqlpago);
                         <div class="text-center">
                             <h3 class="card-title">Pagos por Aprobar</h3>
                         </div>
+<<<<<<< HEAD
 
 
                         <div class="table-responsive">
+=======
+                </div>
+                <div class="table-responsive">
+>>>>>>> 8a925a0a77a03344333e6cbe10a42012b14e3039
                 <table class="table table-hover" id="user" cellspacing="0" style="width: 100%;">
                             <thead>
                                 <tr>
@@ -75,11 +80,14 @@ $resultpago = $mysqli->query($sqlpago);
                             </tbody>
                         </table>
                 </div>
+<<<<<<< HEAD
 
 
                 
                 </div>
                 
+=======
+>>>>>>> 8a925a0a77a03344333e6cbe10a42012b14e3039
                 
             </div>
         </div>
