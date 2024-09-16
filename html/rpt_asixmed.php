@@ -1,25 +1,7 @@
 <?php 
 include('../layouts/header.php');
 require('../admin/conexion.php');
-<<<<<<< HEAD
 $fechahoy=date('Y-m-d');
-
-
-=======
-session_start();
-date_default_timezone_set('America/Caracas');
-$usuario = $_SESSION['usuario'];
-$idlogin = $_SESSION['idlogin'];
-$fechahoy=date('Y-m-d');
-
-$sql="SELECT a.idlogin, b.idlogin as idloginAsist, b.idasist, b.apellidos, b.nombres, b.nrodoc, b.correo,  b.movil, b.cargo, b.tpasist, concat(a.apellido1,' ',a.nombre1) as nombremedico
-        FROM medicos a, asistentes b, medicosxasist c 
-        WHERE a.idmed=c.idmed 
-        and b.idasist=c.idasist
-        ORDER by 1;";
-
-$result = $mysqli->query($sql);
->>>>>>> 8a925a0a77a03344333e6cbe10a42012b14e3039
 ?>
 
 <div class="layout-wrapper layout-content-navbar">
@@ -52,7 +34,6 @@ $result = $mysqli->query($sql);
                     </thead>
                    
                     <tbody>
-<<<<<<< HEAD
                         <?php  
                         $sql="SELECT a.idlogin, b.idlogin as idloginAsist, b.idasist, b.apellidos, b.nombres, b.nrodoc, b.correo,  b.movil, b.cargo, b.tpasist, concat(a.apellido1,' ',a.nombre1) as nombremedico
                         FROM medicos a, asistentes b, medicosxasist c 
@@ -61,9 +42,6 @@ $result = $mysqli->query($sql);
                         ORDER by 1;";
                         $result = $mysqli->query($sql);
                          $hoy = strtotime(date('Y-m-d'));
-=======
-                        <?php  $hoy = strtotime(date('Y-m-d'));
->>>>>>> 8a925a0a77a03344333e6cbe10a42012b14e3039
                             while ($row = mysqli_fetch_array($result)) {
                         ?>
                             <tr>
@@ -73,7 +51,6 @@ $result = $mysqli->query($sql);
                                 <td><?php echo $row['movil']; ?></td>
                                 <td><?php echo $row['cargo']; ?></td>
                                 <td><strong><?php echo $row['nombremedico']; ?></strong></td>
-<<<<<<< HEAD
                                 <td>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
@@ -88,13 +65,6 @@ $result = $mysqli->query($sql);
 
 
                                    
-=======
-                                
-                                <td class="project-actions text-right">
-                                    <a class="btn btn-primary btn-sm" href="updasist.php?gp1=< ?php echo $row['idasist']; ?>">
-                                    <i class="fa fa-edit"></i></a>
-                                    <a class="btn btn-danger btn-sm" href="src_del_asist.php?xy=< ?php echo $row['idasist']; ?>"><i class="fas fa-trash"></i> </a>
->>>>>>> 8a925a0a77a03344333e6cbe10a42012b14e3039
                                 </td>
                                
                             </tr>
