@@ -156,11 +156,7 @@ $host = basename($_SERVER['PHP_SELF']);
     <!-- CUARTO NIVEL -->
     <li class="menu-item 
         <?php
-<<<<<<< HEAD
             if (($host === "rpt_admegr.php") || ($host === "rpt_regpago.php") || ($host === "baremo_paymed.php") || ($host === "rpt_apromed.php") || ($host === "rpt_asixmed.php") || ($host === "updatmed.php")) {
-=======
-            if (($host === "rpt_admegr.php") || ($host === "rpt_regpago.php") || ($host === "baremo_paymed.php") || ($host === "rpt_apromed.php") || ($host === "rpt_asixmed.php")) {
->>>>>>> 8a925a0a77a03344333e6cbe10a42012b14e3039
                 echo 'active' . ' ' . 'open';
             } ?>">
         <a href="javascript:void(0)" class="menu-link menu-toggle">
