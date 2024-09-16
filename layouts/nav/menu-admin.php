@@ -223,93 +223,133 @@ $host = basename($_SERVER['PHP_SELF']);
     <!-- FIN CUARTO NIVEL -->
 
     <!-- QUINTO NIVEL -->
-    <li class="menu-item">
+    <li class="menu-item 
+        <?php
+            if (($host === "rpt_tipoempresa.php") || ($host === "rpt_tipocuenta.php") || ($host === "rpt_tipocontacto.php")|| ($host === "rpt_tpprov.php")|| ($host === "rpt_sexo.php") || ($host === "rpt_servafafiliados.php") || ($host === "rpt_servimg.php") || ($host === "rpt_frecuencia.php")|| ($host === "rpt_estadocivil.php")|| ($host === "rpt_espmed.php") || ($host === "rpt_bancos.php") || ($host === "rpt_planes.php")) {
+                echo 'active' . ' ' . 'open';
+            } ?>">
         <a href="javascript:void(0)" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons fi fi-rs-process"></i>
             <div id="menu-hono" data-i18n="User interface">CONFIGURACION</div>
         </a>
         <ul class="menu-sub">
             <!-- Tipo de Empresa -->
-            <li class="menu-item">
-                <a href="pages/forms/rpt_tipoempresa.php" id="sidebar-hono" class="menu-link empty">
+            <li class="menu-item 
+                <?php if ($host === "rpt_tipoempresa.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_tipoempresa.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Tipo de Empresa </div>
                 </a>
             </li>
             <!-- Tipo de Cuenta -->
-            <li class="menu-item">
-                <a href="pages/forms/rpt_tipocuenta.php" id="sidebar-hono" class="menu-link empty">
+            <li class="menu-item 
+                <?php if ($host === "rpt_tipocuenta.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_tipocuenta.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Tipo de Cuenta</div>
                 </a>
             </li>
             <!-- Tipo de Contacto -->
-            <li class="menu-item">
-                <a href="pages/forms/rpt_tipocontacto.php" id="sidebar-hono" class="menu-link empty">
+            <li class="menu-item 
+                <?php if ($host === "rpt_tipocontacto.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_tipocontacto.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Tipo de Contacto</div>
                 </a>
             </li>
             <!-- Tipo de Proveedor -->
-            <li class="menu-item">
-                <a href="pages/forms/rpt_tpprov.php" id="sidebar-hono" class="menu-link empty">
+            <li class="menu-item 
+                <?php if ($host === "rpt_tpprov.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_tpprov.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Tipo de Proveedor</div>
                 </a>
             </li>
             <!-- Sexo -->
-            <li class="menu-item">
-                <a href="pages/forms/rpt_sexo.php" id="sidebar-hono" class="menu-link empty">
+            <li class="menu-item 
+                <?php if ($host === "rpt_sexo.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_sexo.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Sexo</div>
                 </a>
             </li>
             <!-- Servicios Afiliados -->
-            <li class="menu-item">
-                <a href="pages/forms/rpt_servafafiliados.php" id="sidebar-hono" class="menu-link empty">
+            <li class="menu-item 
+                <?php if ($host === "rpt_servafafiliados.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_servafafiliados.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Servicios Afiliados</div>
                 </a>
             </li>
             <!-- Imagenología -->
-            <li class="menu-item">
-                <a href="pages/forms/rpt_servimg.php" id="sidebar-hono" class="menu-link empty">
+            <li class="menu-item 
+                <?php if ($host === "rpt_servimg.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_servimg.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Imagenología</div>
                 </a>
             </li>
              <!-- Frecuencia de Pagos -->
-             <li class="menu-item">
-                <a href="pages/forms/rpt_frecuencia.php" id="sidebar-hono" class="menu-link empty">
+             <li class="menu-item 
+                <?php if ($host === "rpt_frecuencia.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_frecuencia.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Frecuencia de Pagos</div>
                 </a>
             </li>
              <!-- Estado Civil -->
-             <li class="menu-item">
-                <a href="pages/forms/rpt_estadocivil.php" id="sidebar-hono" class="menu-link empty">
+             <li class="menu-item 
+                <?php if ($host === "rpt_estadocivil.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_estadocivil.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Estado Civil</div>
                 </a>
             </li>
              <!-- Especialiades Medicas -->
-             <li class="menu-item">
-                <a href="pages/forms/rpt_espmed.php" id="sidebar-hono" class="menu-link empty">
+             <li class="menu-item 
+                <?php if ($host === "rpt_espmed.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_espmed.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Especialiades Medicas</div>
                 </a>
             </li>
              <!-- Registro de Bancos -->
-             <li class="menu-item">
-                <a href="pages/forms/rpt_bancos.php" id="sidebar-hono" class="menu-link empty">
+             <li class="menu-item 
+                <?php if ($host === "rpt_bancos.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_bancos.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Registro de Bancos</div>
                 </a>
             </li>
              <!-- Registro de Planes -->
-             <li class="menu-item">
-                <a href="pages/forms/rpt_planes.php" id="sidebar-hono" class="menu-link empty">
+             <li class="menu-item 
+                <?php if ($host === "rpt_planes.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_planes.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Registro de Planes</div>
                 </a>
             </li>
              <!-- Terminos y Condiciones -->
              <li class="menu-item">
-                <a href="pages/forms/upd_terms.php" id="sidebar-hono" class="menu-link empty">
+                <a href="../html/upd_terms.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Terminos y Condiciones</div>
                 </a>
             </li>
             <!-- Paises -->
             <li class="menu-item">
-                <a href="pages/forms/rpt_paises.php" id="sidebar-hono" class="menu-link empty">
+                <a href="../html/rpt_paises.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Paises</div>
                 </a>
             </li>
