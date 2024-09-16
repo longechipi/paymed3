@@ -20,9 +20,6 @@ $nbdcm      =$rowcli['nombrecentrosalud'];
 $fecmod     =$rowcli['fechahora_sist'];
 $fecreg     =$rowcli['fecharegistro']; 
 $idestatus  =$rowcli['idestatus'];
-
-
-
 ?>
 
 <div class="layout-wrapper layout-content-navbar">
@@ -38,7 +35,7 @@ $idestatus  =$rowcli['idestatus'];
     <div class="d-flex align-items-end row">
         <div class="col-12">
             <div class="card-body">
-                <h5 class="card-title text-primary">Datos de Contacto en la Clinica:  <?php echo $idclinica;?></h5>
+                <h5 class="card-title text-primary">Datos de Contacto en la Clinica:  <?php echo $razsocial;?></h5>
                 <form id="upd_cont">
                 <input type="hidden" name="nocli" value="<?php echo $idclinica; ?>">
                     <div class="row"> <!-- ROW BASE INTERNA -->
@@ -67,7 +64,7 @@ $idestatus  =$rowcli['idestatus'];
 
                      <div class="row"> <!--INICIO ROW 1 -->
                      
-                        <div class="col-md-2">
+                        <div class="col-md-4">
                             <div class="form-group">
                             <label for="descripcion">Cargo:</label>
                                 <select id="cargo1" class="form-select" name="cargo1" required>
@@ -80,35 +77,14 @@ $idestatus  =$rowcli['idestatus'];
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-2 mb-3">
+                        <div class="col-md-4 mb-3">
                             <div class="form-group">
                                 <label for="contacto1">Persona Contacto:</label>
-                                <input type="text" name="contacto1" id="contacto1" style="text-transform:uppercase;" onKeypress="if (event.keyCode < 65 || event.keyCode > 90 && event.keyCode < 97 || event.keyCode > 122) event.returnValue = false;" class="form-control" required>
+                                <input type="text" name="contacto1" id="contacto1" style="text-transform:uppercase;" class="form-control" required>
 					        </div>
                         </div>
 
-                        <div class="col-md-1">
-                            <div class="form-group">
-                                <label for="movil">Cod. Area:</label>
-                                <input type="text" name="coda" id="coda" maxlength="4" minlength="4" class="form-control" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" required>
-                            </div>
-                        </div>
-
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label for="telefono">Teléfono:</label>
-                                <input type="text" name="telefono" id="telefono" minlength="7" maxlength="7" class="form-control" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;">
-                            </div> 
-                        </div>
-
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label for="correo1">Correo:</label>
-                                <input type="text" name="correo1" id="correo1" class="form-control" required>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="descripcion">Departamento:</label>
 						        <select id="dpto1" class="form-select" name="dpto1" required>
@@ -122,15 +98,40 @@ $idestatus  =$rowcli['idestatus'];
                             </div>
                         </div>
 
+
+                        <div class="col-md-2 mb-3">
+                            <div class="form-group">
+                                <label for="movil">Cod. Area:</label>
+                                <input type="text" name="coda" id="coda" maxlength="4" minlength="4" class="form-control" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="telefono">Teléfono:</label>
+                                <input type="text" name="telefono" id="telefono" minlength="7" maxlength="7" class="form-control" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;">
+                            </div> 
+                        </div>
+
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="correo1">Correo:</label>
+                                <input type="text" name="correo1" id="correo1" class="form-control" required>
+                            </div>
+                        </div>
+
+                        
+
                     </div><!--FIN ROW 1 -->
                     <div class="row">
                         <div class="text-center">
-                           <button class="btn btn-primary" type="submit">AGREGAR</button>
-                           <a href="rpt_clin.php" class="btn btn-outline-warning" rel="noopener noreferrer">VOLVER </a>
+                           <button class="btn btn-primary" type="submit"><i class="fi fi-rs-disk"></i> AGREGAR</button>
+                           <a href="rpt_clin.php" class="btn btn-outline-warning" rel="noopener noreferrer"><i class="fi fi-rr-undo"></i> VOLVER </a>
                         </div>
-                    </div>
+                    </div>                
+                </form>
 
-                    <div class="table-responsive"> <!-- INICIO Tabla Presupuesto -->
+                <div class="table-responsive"> <!-- INICIO Tabla Presupuesto -->
                         <table class="table table-hover" id="user" cellspacing="0" style="width: 100%;">
                             <thead>
                                 <tr>
@@ -165,8 +166,6 @@ $idestatus  =$rowcli['idestatus'];
                             </tbody>
                         </table>
                     </div>
-                
-                </form>
             </div>
         </div>
     </div>
@@ -225,10 +224,11 @@ $('#upd_cont').submit(function(e){
                     title: 'Agrego con Exito!',
                     text: 'Se Agrego correctamente el Contacto',
                     icon: 'success',
+                    confirmButtonColor: "#007ebc",
                     confirmButtonText: 'Aceptar'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = "updclicontacto.php?id=22";
+                        window.location.href = "updclicontacto.php?id=<?php echo $idclinica; ?>";
                     }
                 });
             }else{

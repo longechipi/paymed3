@@ -11,7 +11,7 @@ $host = basename($_SERVER['PHP_SELF']);
     <li class="menu-item 
         <?php if ($host === "index.php") { echo 'active'; } ?>">
             <a href="../html/index2.php?usr=1" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-clinic"></i>
+                <i class="menu-icon tf-icons fi fi-rr-house-chimney"></i>
                 <div data-i18n="Analytics">INICIO</div>
             </a>
     </li>
@@ -23,7 +23,7 @@ $host = basename($_SERVER['PHP_SELF']);
         } ?>">
         
     <a href="javascript:void(0)" class="menu-link menu-toggle">
-        <i class="menu-icon tf-icons bx bx-wrench"></i>
+        <i class="menu-icon tf-icons fi fi-rr-user-pen"></i>
         <div id="menu-hono" data-i18n="User interface">ACCESOS</div>
     </a>
         <ul class="menu-sub">
@@ -72,11 +72,11 @@ $host = basename($_SERVER['PHP_SELF']);
     <!-- SEGUNDO NIVEL -->
     <li class="menu-item 
         <?php
-        if (($host === "rpt_clin.php")) {
+        if (($host === "rpt_clin.php") || ($host === "rpt_prov.php")|| ($host === "rpt_seg.php") || ($host === "rpt_med.php") || ($host === "rpt_presupuestos.php")) {
             echo 'active' . ' ' . 'open';
         } ?>">
         <a href="javascript:void(0)" class="menu-link menu-toggle">
-            <i class="menu-icon tf-icons bx bx-wrench"></i>
+            <i class="menu-icon tf-icons fi fi-rr-module"></i>
             <div id="menu-hono" data-i18n="User interface">MODULOS</div>
         </a>
         <ul class="menu-sub">
@@ -90,26 +90,38 @@ $host = basename($_SERVER['PHP_SELF']);
                 </a>
             </li>
             <!-- Proveedores -->
-            <li class="menu-item">
-                <a href="pages/forms/rpt_prov.php" id="sidebar-hono" class="menu-link empty">
+            <li class="menu-item 
+                <?php if ($host === "rpt_prov.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_prov.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Proveedores</div>
                 </a>
             </li>
             <!-- Aseguradoras -->
-            <li class="menu-item">
-                <a href="pages/forms/rpt_seg.php" id="sidebar-hono" class="menu-link empty">
+            <li class="menu-item 
+                <?php if ($host === "rpt_seg.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_seg.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Aseguradoras</div>
                 </a>
             </li>
             <!-- Medicos -->
-            <li class="menu-item">
-                <a href="pages/forms/rpt_med.php" id="sidebar-hono" class="menu-link empty">
-                    <div data-i18n="Accordion">Medicos</div>
+            <li class="menu-item 
+                <?php if ($host === "rpt_med.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_med.php" id="sidebar-hono" class="menu-link empty">
+                    <div data-i18n="Accordion">Médicos</div>
                 </a>
             </li>
             <!-- Presupuestos -->
-            <li class="menu-item">
-                <a href="pages/forms/rpt_presupuestos.php" id="sidebar-hono" class="menu-link empty">
+            <li class="menu-item 
+                <?php if ($host === "rpt_presupuestos.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_presupuestos.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Presupuestos</div>
                 </a>
             </li>
@@ -118,15 +130,22 @@ $host = basename($_SERVER['PHP_SELF']);
     <!-- FIN SEGUNDO NIVEL -->
 
     <!-- TERCER NIVEL -->
-    <li class="menu-item">
+    <li class="menu-item 
+        <?php
+            if (($host === "rpt_citas.php")) {
+                echo 'active' . ' ' . 'open';
+            } ?>">
         <a href="javascript:void(0)" class="menu-link menu-toggle">
-            <i class="menu-icon tf-icons bx bx-wrench"></i>
+            <i class="menu-icon tf-icons  fi fi-rr-user-md"></i>
             <div id="menu-hono" data-i18n="User interface">CITAS MEDICAS</div>
         </a>
         <ul class="menu-sub">
             <!-- CITAS -->
-            <li class="menu-item">
-                <a href="pages/forms/rpt_citas.php" id="sidebar-hono" class="menu-link empty">
+            <li class="menu-item 
+                <?php if ($host === "rpt_citas.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_citas.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Ver Citas</div>
                 </a>
             </li>
@@ -135,51 +154,67 @@ $host = basename($_SERVER['PHP_SELF']);
     <!-- FIN TERCER NIVEL -->
 
     <!-- CUARTO NIVEL -->
-    <li class="menu-item">
+    <li class="menu-item 
+        <?php
+            if (($host === "rpt_admegr.php") || ($host === "rpt_regpago.php") || ($host === "baremo_paymed.php") || ($host === "rpt_apromed.php") || ($host === "rpt_asixmed.php") || ($host === "updatmed.php")) {
+                echo 'active' . ' ' . 'open';
+            } ?>">
         <a href="javascript:void(0)" class="menu-link menu-toggle">
-            <i class="menu-icon tf-icons bx bx-wrench"></i>
+            <i class="menu-icon tf-icons fi fi-rr-file-invoice-dollar"></i>
             <div id="menu-hono" data-i18n="User interface">OPERATIVO</div>
         </a>
         <ul class="menu-sub">
-            <!-- Presupuesto -->
-            <li class="menu-item">
-                <a href="pages/forms/rpt_pres.php" id="sidebar-hono" class="menu-link empty">
-                    <div data-i18n="Accordion">Presupuesto</div>
-                </a>
-            </li>
             <!-- Adminsión/Egreso -->
-            <li class="menu-item">
-                <a href="pages/forms/rpt_pres.php" id="sidebar-hono" class="menu-link empty">
-                    <div data-i18n="Accordion">Adminsión/Egreso</div>
+            <li class="menu-item 
+                <?php if ($host === "rpt_admegr.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_admegr.php" id="sidebar-hono" class="menu-link empty">
+                    <div data-i18n="Accordion">Admisión/Egreso</div>
                 </a>
             </li>
             <!-- Pagos -->
-            <li class="menu-item">
-                <a href="pages/forms/rpt_regpago.php" id="sidebar-hono" class="menu-link empty">
+            <li class="menu-item 
+                <?php if ($host === "rpt_regpago.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_regpago.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Pagos</div>
                 </a>
             </li>
             <!-- Baremo Paymed -->
-            <li class="menu-item">
-                <a href="pages/forms/baremo_paymed.php" id="sidebar-hono" class="menu-link empty">
+            <li class="menu-item 
+                <?php if ($host === "baremo_paymed.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/baremo_paymed.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Baremo Paymed</div>
                 </a>
             </li>
             <!-- Junta Medica -->
-            <li class="menu-item">
-                <a href="pages/forms/rpt_apromed.php" id="sidebar-hono" class="menu-link empty">
+            <li class="menu-item 
+                <?php if ($host === "rpt_apromed.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_apromed.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Junta Medica</div>
                 </a>
             </li>
             <!-- Asistentes Por Médico -->
-            <li class="menu-item">
-                <a href="pages/forms/rpt_asixmed.php" id="sidebar-hono" class="menu-link empty">
+            <li class="menu-item 
+                <?php if ($host === "rpt_asixmed.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_asixmed.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Asistentes Por Médico</div>
                 </a>
             </li>
             <!-- Carga Medicos(Excel) -->
-            <li class="menu-item">
-                <a href="pages/forms/updatmed.php" id="sidebar-hono" class="menu-link empty">
+            <li class="menu-item 
+                <?php if ($host === "updatmed.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/updatmed.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Carga Medicos(Excel)</div>
                 </a>
             </li>
@@ -190,7 +225,7 @@ $host = basename($_SERVER['PHP_SELF']);
     <!-- QUINTO NIVEL -->
     <li class="menu-item">
         <a href="javascript:void(0)" class="menu-link menu-toggle">
-            <i class="menu-icon tf-icons bx bx-wrench"></i>
+            <i class="menu-icon tf-icons fi fi-rs-process"></i>
             <div id="menu-hono" data-i18n="User interface">CONFIGURACION</div>
         </a>
         <ul class="menu-sub">
@@ -285,7 +320,7 @@ $host = basename($_SERVER['PHP_SELF']);
     <!-- SEXTO NIVEL -->
     <li class="menu-item">
         <a href="javascript:void(0)" class="menu-link menu-toggle">
-            <i class="menu-icon tf-icons bx bx-wrench"></i>
+            <i class="menu-icon tf-icons fi fi-rr-notebook-alt"></i>
             <div id="menu-hono" data-i18n="User interface">AGENDA</div>
         </a>
         <ul class="menu-sub">
@@ -302,7 +337,7 @@ $host = basename($_SERVER['PHP_SELF']);
     <li class="menu-item 
         <?php if ($host === "index.php") { echo 'active'; } ?>">
             <a href="../auth/salir.php" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-clinic"></i>
+                <i class="menu-icon tf-icons fi fi-rs-leave"></i>
                 <div data-i18n="Analytics">SALIR</div>
             </a>
     </li>

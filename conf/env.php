@@ -13,3 +13,4 @@ define('REPLY_TO_EMAIL', 'no-reply@noreply.com');
 define('REPLY_TO_NAME', 'Informacion');
 define('CC_EMAIL', 'castilloacostajean@gmail.com');
 //-----------------FIN VARIABLES DE ENVIO DE CORREO -----------------//
+

@@ -22,9 +22,9 @@ $oficina      =$_POST['oficina'];
 $codpostal    =$_POST['codpostal'];
 
 
-$str="INSERT INTO loginn (idlogin, correo, cargo, cedula, clave, privilegios) 
-VALUES (NULL, '".$correoppal."', 'Clinica', '".$rif."','".$rif."','5' );";
-$conexion=$mysqli->query($str);
+// $str="INSERT INTO loginn (idlogin, nombres, apellidos, fullname, correo, usuario, cargo, cedula, clave, privilegios) 
+// VALUES (NULL, '".$razsocial."', '".$razsocial."', '".$razsocial."', '".$correoppal."', '".$correoppal."', 'Clinica', '".$rif."','".$rif."','5' );";
+// $conexion=$mysqli->query($str);
 
 $sqllast = ("SELECT max(idlogin) from loginn;");
 $objlast=$mysqli->query($sqllast); $arrlast=$objlast->fetch_array();

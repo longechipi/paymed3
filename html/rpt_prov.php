@@ -16,16 +16,15 @@ require('../admin/conexion.php');
         <div class="d-flex align-items-end row">
             <div class="col-12">
                 <div class="card-body">
-                    <h5 class="card-title text-primary">Listado de Clínicas</h5>
+                    <h5 class="card-title text-primary">Listado de Proveedores</h5>
                     <div class="row">
                         <div class="text-center">
                             <a class="btn btn-primary mb-4" href="regcli.php" role="button">
-                            <i class="fi fi-rr-hospital"></i> AÑADIR CLINICA</a>
-                            
+                                <i class="fi fi-rs-supplier-alt"></i> AÑADIR PROVEEDOR</a>
                         </div>
                     </div>
                     <?php 
-                     $sql = ("SELECT a.idclinica, a.rif, a.razsocial, a.nombrecentrosalud, a.idestatus, b.estado FROM clinicas a, estado b WHERE a.idestado=b.idestado ORDER BY a.razsocial ASC");
+                     $sql = ("SELECT a.idprov, a.idlogin, a.rif, a.razsocial, a.dencomercial, a.idestatus, b.estado FROM proveedores a, estado b WHERE a.idestado=b.idestado ORDER BY a.razsocial ASC");
                     $result=$mysqli->query($sql);	
   
                     ?>
@@ -36,7 +35,7 @@ require('../admin/conexion.php');
                                     <th>#</th>   
                                     <th>Rif</th>
                                     <th>Razón Social</th>
-                                    <th>Nombre del Centro</th>
+                                    <th>D. Comercial</th>
                                     <th>Estado</th>
                                     <th>Accion</th>
                                 </tr>
@@ -50,21 +49,48 @@ require('../admin/conexion.php');
                                 <td><?php echo $ln; ?></td>
                                 <td><a><?php echo $row['rif']; ?></a></td>
                                 <td><?php echo substr($row['razsocial'],0,25);?>...</td>
-                                <td><?php echo $row['nombrecentrosalud']; ?></td>
+                                <td><?php echo $row['dencomercial']; ?></td>
                                 <td><?php echo $row['estado']; ?></td>
-                    <td>
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bx bx-dots-vertical-rounded"></i>
-                          </button>
-                          <ul class="dropdown-menu dropdown-menu-end" style="">
-                            <li><a class="dropdown-item" href="updcli.php?id=<?php echo $row['idclinica'];?>"><i class="fi fi-rr-edit"></i> Editar Clínica</a></li>
-                            <li><a class="dropdown-item" href="updclicontacto.php?id=<?php echo $row['idclinica'];?>"><i class="fi fi-rr-phone-call"></i> Agregar Contacto</a></li>
-                            <li><a class="dropdown-item" href="src_del_clin.php?id=<?php echo $row['idclinica'];?>"><i class="fi fi-rr-trash"></i> Eliminar Contacto</a></li>
-                            
-                          </ul>
-                        </div>
-                    </td>
+<td>
+<div class="btn-group">
+    <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="bx bx-dots-vertical-rounded"></i> </button>
+    <ul class="dropdown-menu dropdown-menu-end" style="">
+        <?php if ($privilegios=='1' ) { //Admin ?>
+            <?php if ($row['idestatus']=='3'){ ?>
+        <li>
+            <a class="dropdown-item" href="#">
+                <i class="fi fi-rs-memo-circle-check"></i> Aprobar Proveedor</a>
+                
+        </li>
+        <?php }else if ($row['idestatus']=='1' ){ ?>
+            <a class="dropdown-item" href="#">
+                <i class="fi fi-rs-memo-circle-check"></i> Aprobar Proveedor</a>
+        <?php } ?>
+
+        <li>
+
+            <a class="dropdown-item" href="updprov.php?id=<?php echo $row['idprov'];?>">
+            <i class="fi fi-rr-edit"></i> Editar Proveedor</a>
+
+            <a class="dropdown-item" href="src_del_prov.php?id=<?php echo $row['idprov'];?>">
+            <i class="fi fi-rr-trash"></i> Eliminar Proveedor</a>
+
+        </li>
+        <?php } else if ($privilegios=='2' ) { // Dr?>
+            <?php if ($row['idestatus']=='3'){ ?>
+        <li>
+        <button type="button" id="btnaprobar<?php echo $row['idprov'];?>" class="btn btn-warning" title="Por Aprobar"><i class="fa fa-exclamation"></i></button>
+            <a class="dropdown-item" href="src_del_clin.php?id=<?php echo $row['idclinica'];?>">
+            <i class="fi fi-rr-trash"></i> Eliminar Contacto</a>
+        </li>
+        <?php }else if ($row['idestatus']=='1' ){ ?>
+            <button type="button" id="btnaprobar<?php echo $row['idprov'];?>" class="btn btn-success" title="Aprobado"><i class="fi fi-rs-check-circle"></i></button>
+        <?php } ?> <?php } ?>  
+
+    </ul>
+</div>
+</td>
                             </tr>
                                 <?php } ?>
                             </tbody>

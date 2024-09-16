@@ -1,5 +1,5 @@
 <?php
-require('../admin/conexion.php');
+require('../conf/conexion.php');
 include('../layouts/header.php');
 
 $usuario = $_POST['usuario'];

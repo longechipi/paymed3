@@ -1,6 +1,7 @@
 <?php 
 include('../layouts/header.php');
 require('../admin/conexion.php');
+
 ?>
 
 <div class="layout-wrapper layout-content-navbar">
@@ -16,55 +17,49 @@ require('../admin/conexion.php');
         <div class="d-flex align-items-end row">
             <div class="col-12">
                 <div class="card-body">
-                    <h5 class="card-title text-primary">Listado de Clínicas</h5>
+                    <h5 class="card-title text-primary">Listado de Presupuestos</h5>
                     <div class="row">
                         <div class="text-center">
-                            <a class="btn btn-primary mb-4" href="regcli.php" role="button">
-                            <i class="fi fi-rr-hospital"></i> AÑADIR CLINICA</a>
-                            
+                            <a class="btn btn-primary mb-4" href="regcli.php" role="button"><i class="fi fi-ts-hospital"></i> AÑADIR PRESUPUESTO</a>
                         </div>
                     </div>
-                    <?php 
-                     $sql = ("SELECT a.idclinica, a.rif, a.razsocial, a.nombrecentrosalud, a.idestatus, b.estado FROM clinicas a, estado b WHERE a.idestado=b.idestado ORDER BY a.razsocial ASC");
-                    $result=$mysqli->query($sql);	
-  
-                    ?>
+                    
                     <div class="table-responsive"> <!-- INICIO Tabla Presupuesto -->
                         <table class="table table-hover" id="user" cellspacing="0" style="width: 100%;">
                             <thead>
                                 <tr>
-                                    <th>#</th>   
-                                    <th>Rif</th>
-                                    <th>Razón Social</th>
-                                    <th>Nombre del Centro</th>
-                                    <th>Estado</th>
-                                    <th>Accion</th>
+                                    <th>COD Presupuesto</th>
+                                    <th>Nro Doc</th>
+                                    <th>Paciente</th>
+                                    <th>Fecha</th>
+                                    <th>Carta aval</th>
+                                    <th class="text-center">Estatus</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php 
-                                $ln = 0;
-                                while($row = mysqli_fetch_array($result)) {
-                            $ln++; ?>
+                            <?php 
+                            if($privilegios==1){
+                                $sql = ("SELECT a.*,b.cedula,b.apellido1,b.nombre1,b.cedula FROM presupuesto a, pacientes b 
+                                        WHERE a.idpaci=b.cedula");
+                                }
+                              elseif($privilegios==2){ 
+                                  $sql = ("SELECT a.*,b.cedula,b.apellido1,b.nombre1,b.cedula FROM presupuesto a, pacientes b 
+                                           WHERE a.idpaci=b.cedula AND a.idmed='".$idlogin."'");
+                                }
+                            $result=$mysqli->query($sql);	
+
+                            while($row = mysqli_fetch_array($result)) { ?>
                             <tr>
-                                <td><?php echo $ln; ?></td>
-                                <td><a><?php echo $row['rif']; ?></a></td>
-                                <td><?php echo substr($row['razsocial'],0,25);?>...</td>
-                                <td><?php echo $row['nombrecentrosalud']; ?></td>
-                                <td><?php echo $row['estado']; ?></td>
-                    <td>
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bx bx-dots-vertical-rounded"></i>
-                          </button>
-                          <ul class="dropdown-menu dropdown-menu-end" style="">
-                            <li><a class="dropdown-item" href="updcli.php?id=<?php echo $row['idclinica'];?>"><i class="fi fi-rr-edit"></i> Editar Clínica</a></li>
-                            <li><a class="dropdown-item" href="updclicontacto.php?id=<?php echo $row['idclinica'];?>"><i class="fi fi-rr-phone-call"></i> Agregar Contacto</a></li>
-                            <li><a class="dropdown-item" href="src_del_clin.php?id=<?php echo $row['idclinica'];?>"><i class="fi fi-rr-trash"></i> Eliminar Contacto</a></li>
-                            
-                          </ul>
-                        </div>
-                    </td>
+                            <td class="project_progress"><a><?php echo $row['idpresupuesto']; ?></a></td>
+                <td class="project_progress"><?php echo $row['cedula']; ?></td>
+                <td class="project_progress"><?php echo $row['apellido1'].' '.$row['nombre1']; ?></td>
+                <td class="project-progress"><?php echo $row['fec_creacion']; ?></td>
+                <td class="project_progress"><?php echo $row['carta_aval']; ?></td>
+                <td class="project-actions text-right">
+                  <a class="btn btn-danger btn-sm" 
+                     href="src_del_user.php?idpresu=<?php echo $row['idpresupuesto'];?>">
+                     <i class="fi fi-rr-trash"></i></a>
+                </td>
                             </tr>
                                 <?php } ?>
                             </tbody>
