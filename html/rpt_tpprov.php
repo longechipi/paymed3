@@ -18,7 +18,7 @@ require('../admin/conexion.php');
                 <div class="card-body">
                     <h5 class="card-title text-primary">Listado de Tipos de Proveedores</h5>
                     <div class="text-center">
-                        <button class="btn btn-primary" href="regtipoempresa.php"><i class="fi fi-rs-supplier-alt"></i> AÑADIR PROVEEDOR</button>
+                        <a class="btn btn-primary" href="regtpprov.php" rel="noopener noreferrer"><i class="fi fi-rs-supplier-alt"></i> AÑADIR PROVEEDOR</a>
                     </div>
                     <div class="table-responsive"> <!-- INICIO Tabla Presupuesto -->
                     <table class="table table-hover" id="user" cellspacing="0" style="width: 100%;">
@@ -50,9 +50,9 @@ require('../admin/conexion.php');
                           </button>
                           <ul class="dropdown-menu dropdown-menu-end" style="">
                           <?php if ($row['idestatus']=='2') { ?>
-                            <li><a class="dropdown-item" href="onoffprov.php?id=<?php echo $row['idtppr'];?>&onoff=x1"><i class="fi fi-rr-toggle-on"></i> Activar</a></li>
+                            <li><a class="dropdown-item" href="rpt_admegr.php?id=<?php echo $row['idtppr'];?>&onoff=x1"><i class="fi fi-rr-toggle-on"></i> Activar</a></li>
                             <?php }else if ($row['idestatus']=='1') { ?>
-                                <li><a class="dropdown-item" href="onoffprov.php?id=<?php echo $row['idtppr'];?>&onoff=x9"><i class="fi fi-rr-toggle-off"></i> Desactivar</a></li>
+                                <li><a class="dropdown-item" href="rpt_admegr.php?id=<?php echo $row['idtppr'];?>&onoff=x9"><i class="fi fi-rr-toggle-off"></i> Desactivar</a></li>
                                 <?php } ?>
                             <li><a class="dropdown-item" href="src_del_tpprov.php?id=<?php echo $row['idtppr'];?>"><i class="fi fi-rr-trash"></i> Eliminar Contacto</a></li>
                             

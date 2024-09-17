@@ -45,8 +45,10 @@ $ffechahoy = date("d/m/Y", strtotime($fechahoy));
                             $rowmed = mysqli_fetch_array($arrmed);
                             $idmed  = $rowmed['idmed'];
                             
-                            $sql = ("SELECT a.*, c.cedula, b.idmed, b.idlogin, b.idcomp, b.nrodoc, b.codcolemed, b.mpss, b.rif, b.nombre1, b.nombre2, b.apellido1, b.apellido2 FROM citas a , medicos b,  pacientes c
-                            WHERE a.idmed = b.idmed  AND a.idpaci = c.idpaci  AND a.idestatus IN(3,6,7) AND fechacita='".$fechahoy."' AND b.idlogin='".$idlogin."' ORDER BY a.nombre ASC");
+                            $sql = ("SELECT a.*, c.cedula, b.idmed, b.idlogin, b.idcomp, b.nrodoc, b.codcolemed, b.mpss, b.rif, b.nombre1, b.nombre2, b.apellido1, b.apellido2 
+                            FROM citas a , medicos b,  pacientes c
+                            WHERE a.idmed = b.idmed  AND a.idpaci = c.idpaci  AND a.idestatus IN(3,6,7) 
+                            AND fechacita='".$fechahoy."' AND b.idlogin='".$idlogin."' ORDER BY a.nombre ASC");
                             
                             
                             $result = $mysqli->query($sql);
