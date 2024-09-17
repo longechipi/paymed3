@@ -18,7 +18,8 @@ require('../admin/conexion.php');
                 <div class="card-body">
                     <h5 class="card-title text-primary">Listado de Empresas</h5>
                     <div class="text-center">
-                        <button class="btn btn-primary" href="regtipoempresa.php"><i class="fi fi-rr-building"></i> AÑADIR EMPRESA</button>
+                       
+                        <a class="btn btn-primary" href="regtipoempresa.php" rel="noopener noreferrer"><i class="fi fi-rr-building"></i> AÑADIR EMPRESA</a>
                     </div>
                     <div class="table-responsive"> <!-- INICIO Tabla Presupuesto -->
                     <table class="table table-hover" id="user" cellspacing="0" style="width: 100%;">
