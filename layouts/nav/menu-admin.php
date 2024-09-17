@@ -225,7 +225,7 @@ $host = basename($_SERVER['PHP_SELF']);
     <!-- QUINTO NIVEL -->
     <li class="menu-item 
         <?php
-            if (($host === "rpt_tipoempresa.php") || ($host === "rpt_tipocuenta.php") || ($host === "rpt_tipocontacto.php")|| ($host === "rpt_tpprov.php")|| ($host === "rpt_sexo.php") || ($host === "rpt_servafafiliados.php") || ($host === "rpt_servimg.php") || ($host === "rpt_frecuencia.php")|| ($host === "rpt_estadocivil.php")|| ($host === "rpt_espmed.php") || ($host === "rpt_bancos.php") || ($host === "rpt_planes.php")) {
+            if (($host === "rpt_tipoempresa.php") || ($host === "rpt_tipocuenta.php") || ($host === "rpt_tipocontacto.php")|| ($host === "rpt_tpprov.php")|| ($host === "rpt_sexo.php") || ($host === "rpt_servafafiliados.php") || ($host === "rpt_servimg.php") || ($host === "rpt_frecuencia.php")|| ($host === "rpt_estadocivil.php")|| ($host === "rpt_espmed.php") || ($host === "rpt_bancos.php") || ($host === "rpt_planes.php") || ($host === "upd_terms.php") || ($host === "rpt_paises.php") ) {
                 echo 'active' . ' ' . 'open';
             } ?>">
         <a href="javascript:void(0)" class="menu-link menu-toggle">
@@ -342,13 +342,19 @@ $host = basename($_SERVER['PHP_SELF']);
                 </a>
             </li>
              <!-- Terminos y Condiciones -->
-             <li class="menu-item">
+             <li class="menu-item 
+                <?php if ($host === "upd_terms.php") {
+                    echo 'active';
+                } ?>">
                 <a href="../html/upd_terms.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Terminos y Condiciones</div>
                 </a>
             </li>
             <!-- Paises -->
-            <li class="menu-item">
+            <li class="menu-item 
+                <?php if ($host === "rpt_paises.php") {
+                    echo 'active';
+                } ?>">
                 <a href="../html/rpt_paises.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Paises</div>
                 </a>
@@ -358,15 +364,22 @@ $host = basename($_SERVER['PHP_SELF']);
     <!-- FIN QUINTO NIVEL -->
 
     <!-- SEXTO NIVEL -->
-    <li class="menu-item">
+    <li class="menu-item 
+        <?php
+        if (($host === "rpt_agenda.php")) {
+            echo 'active' . ' ' . 'open';
+        } ?>">
         <a href="javascript:void(0)" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons fi fi-rr-notebook-alt"></i>
             <div id="menu-hono" data-i18n="User interface">AGENDA</div>
         </a>
         <ul class="menu-sub">
             <!-- Agenda -->
-            <li class="menu-item">
-                <a href="pages/forms/rpt_agenda.php" id="sidebar-hono" class="menu-link empty">
+            <li class="menu-item 
+                <?php if ($host === "rpt_agenda.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_agenda.php" id="sidebar-hono" class="menu-link empty">
                     <div data-i18n="Accordion">Ver Actividades</div>
                 </a>
             </li>

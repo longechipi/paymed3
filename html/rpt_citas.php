@@ -1,28 +1,8 @@
 <?php 
 include('../layouts/header.php');
 require('../admin/conexion.php');
-<<<<<<< HEAD
 $fechahoy=date('Y-m-d');
 $ffechahoy = date("d/m/Y", strtotime($fechahoy));
-=======
-$usuario = $_SESSION['usuario'];
-//$idlogin = $_SESSION['idlogin'];
-if (isset($_SESSION['idloginmed'])) {$idlogin = $_SESSION['idloginmed'];}else{$idlogin = $_SESSION['idlogin'];}
-$cargo = $_SESSION['cargo'];
-$fechahoy=date('Y-m-d');
-$ffechahoy = date("d/m/Y", strtotime($fechahoy));
-
-$sqlmed = ("SELECT idmed FROM medicos WHERE correo='".$usuario."'");
-$arrmed = $mysqli->query($sqlmed);
-$rowmed = mysqli_fetch_array($arrmed);
-$idmed  = $rowmed['idmed'];
-
-$sql = ("SELECT a.*, c.cedula, b.idmed, b.idlogin, b.idcomp, b.nrodoc, b.codcolemed, b.mpss, b.rif, b.nombre1, b.nombre2, b.apellido1, b.apellido2 FROM citas a , medicos b,  pacientes c
-WHERE a.idmed = b.idmed  AND a.idpaci = c.idpaci  AND a.idestatus IN(3,6,7) AND fechacita='".$fechahoy."' AND b.idlogin='".$idlogin."' ORDER BY a.nombre ASC");
-
-
-$result = $mysqli->query($sql);
->>>>>>> 8a925a0a77a03344333e6cbe10a42012b14e3039
 ?>
 
 <div class="layout-wrapper layout-content-navbar">
@@ -38,11 +18,7 @@ $result = $mysqli->query($sql);
         <div class="d-flex align-items-end row">
             <div class="col-12">
                 <div class="card-body">
-<<<<<<< HEAD
                     <h5 class="card-title text-primary">Listado de Citas </h5>
-=======
-                    <h5 class="card-title text-primary">Listado de Citas</h5>
->>>>>>> 8a925a0a77a03344333e6cbe10a42012b14e3039
                     <?php 
                     
   
@@ -63,7 +39,6 @@ $result = $mysqli->query($sql);
                                 </tr>
                             </thead>
                             <tbody>
-<<<<<<< HEAD
                             <?php  
                             $sqlmed = ("SELECT idmed FROM medicos WHERE correo='$usuario'");
                             $arrmed = $mysqli->query($sqlmed);
@@ -78,9 +53,6 @@ $result = $mysqli->query($sql);
                             
                             
                             $hoy = strtotime(date('Y-m-d'));
-=======
-                            <?php  $hoy = strtotime(date('Y-m-d'));
->>>>>>> 8a925a0a77a03344333e6cbe10a42012b14e3039
                                        //echo $startDate; echo $currentDate;exit();
                                 while ($row = mysqli_fetch_array($result)) { $idclinica=$row['idclinica'];
                                     $fechasolimostrar = date("d-m-Y", strtotime($row['fechasoli']));
