@@ -23,11 +23,11 @@ require('../admin/conexion.php');
                         $roww = mysqli_fetch_array($result);
                     ?>
 
-<form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+<form id="reg_term">
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
-                <label for="inputName">Terminos y Condiciones</label>
+                
                 <textarea name="termn" class="form-control" id="terminos" rows="20"><?php echo $roww['terminos']; ?></textarea>
                 <div class="text-center">
                 <button class="btn btn-primary mt-3" type="submit" name="submit"><i class="fi fi-rs-refresh"></i> ACTUALIZAR</button>
@@ -56,7 +56,37 @@ require('../admin/conexion.php');
 <?php include('../layouts/script.php')?>
 <script>
 $(document).ready(function() {
-  $('#terminos').summernote({});
+  $('#terminos').summernote();
+  $('#reg_term').submit(function(e){
+    e.preventDefault();
+    $.ajax({
+        type: "POST",
+        url: "../model/reg_terminos/udterminos.php",
+        data: $("#reg_term").serialize(),
+        success: function(data){
+            if(data == 1){
+                Swal.fire({
+                    title: 'Actualización Exitosa!',
+                    text: 'Se Actualizo correctamente la Cuenta',
+                    icon: 'success',
+                    confirmButtonColor: "#007ebc",
+                    confirmButtonText: 'Aceptar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "upd_terms.php";
+                    }
+                });
+            }else{
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Ocurrio un Error al Actualizar la Cuenta',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+            }
+        }
+    })
+})
 });
 </script>
 </body>

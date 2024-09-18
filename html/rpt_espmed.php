@@ -16,9 +16,10 @@ require('../admin/conexion.php');
         <div class="d-flex align-items-end row">
             <div class="col-12">
                 <div class="card-body">
-                    <h5 class="card-title text-primary">Listado Frecuencia de Pago</h5>
+                    <h5 class="card-title text-primary">Listado Especialidades Medicas</h5>
                     <div class="text-center">
-                        <button class="btn btn-primary" href="regtipoempresa.php"><i class="fi fi-rr-doctor"></i> AÑADIR ESPECIALIDAD</button>
+                    <a class="btn btn-primary" href="regespmed.php" rel="noopener noreferrer"><i class="fi fi-rr-doctor"></i> AÑADIR ESPECIALIDAD</a>
+                        
                     </div>
                     <div class="table-responsive"> <!-- INICIO Tabla Presupuesto -->
                     <table class="table table-hover" id="user" cellspacing="0" style="width: 100%;">
@@ -26,17 +27,21 @@ require('../admin/conexion.php');
                         <tr>
                             <th>ID</th>
                             <th>Especialidad</th>
+                            <th>Estatus</th>
                             <th>Accion</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php 
-                       	$sql = ("SELECT * FROM presupuesto_especialidades");
+                       	$sql = "SELECT T1.idespmed, T1.especialidad, T1.idestatus, T2.estatus 
+                            FROM especialidadmed T1
+                            INNER JOIN estatus T2 ON T1.idestatus = T2.idestatus";
                         $result=$mysqli->query($sql);	
                         while ($row = mysqli_fetch_array($result)) { ?>
                             <tr>
-                                <td><?php echo $row['idesppresu']; ?></td>
+                                <td><?php echo $row['idespmed']; ?></td>
                                 <td><?php echo $row['especialidad']; ?></td>
+                                <td><?php echo $row['estatus']; ?></td>
                                 
                                 <td>
                                     <div class="btn-group">
@@ -45,12 +50,12 @@ require('../admin/conexion.php');
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-end">
                                             <li>
-                                                <a class="dropdown-item" href="upd_espmed.php?idespm=<?php echo $row['idesppresu']; ?>">
+                                                <a class="dropdown-item" href="upd_espmed.php?idespmed=<?php echo $row['idespmed']; ?>">
                                                     <i class="fi fi-rr-edit"></i> Editar Especialidad
                                                 </a>
                                             </li>
                                             <li>
-                                                <a class="dropdown-item" href="src_del_espmed.php?idespm=<?php echo $row['idesppresu']; ?>"><i class="fi fi-rr-trash"></i> Eliminar Especialidad
+                                                <a class="dropdown-item" href="src_del_espmed.php?idespmed=<?php echo $row['idespmed']; ?>"><i class="fi fi-rr-trash"></i> Eliminar Especialidad
                                                 </a>
                                             </li>
                                         </ul>

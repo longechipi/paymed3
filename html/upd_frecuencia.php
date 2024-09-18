@@ -9,10 +9,9 @@ require('../admin/conexion.php');
             <div class="layout-page">
                 <?php include("../layouts/navbar.php"); ?>
                 <?php 
-                $idtc = $_GET['idtc'];
-                $sql = ("SELECT * FROM tipocuenta WHERE idtipocuenta = '" . $idtc . "'");
-                $result = $mysqli->query($sql);
-                $roww = mysqli_fetch_array($result);
+                $idfrecuencia = $_GET['idfrecuencia'];
+                $sql = ("SELECT * FROM frecuenciapago WHERE idfq = '".$idfrecuencia."'");
+                $result=$mysqli->query($sql); $roww = mysqli_fetch_array($result);
                 ?>
                 <div class="content-wrapper">
                     <div class="container-xxl flex-grow-1 container-p-y">
@@ -22,14 +21,14 @@ require('../admin/conexion.php');
         <div class="d-flex align-items-end row">
             <div class="col-12">
                 <div class="card-body">
-                    <h5 class="card-title text-primary">Editando Cuenta: <?php echo $roww['tipocuenta']; ?></h5>
-                    <form id="updcuenta">
+                    <h5 class="card-title text-primary">Editando Frecuencia de Pagos: <?php echo $roww['frecuencia']; ?></h5>
+                    <form id="updfrecuencia">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="inputName">Tipo de Cuenta</label>
-                                    <input type="hidden" value="<?php echo $idtc; ?>" name="idtc">
-                              <input type="text" value="<?php echo $roww['tipocuenta']; ?>" name="tipocuenta" class="form-control mb-3">
+                                    <input type="hidden" value="<?php echo $idfrecuencia;?>"  name="idfrecuencia">
+                                    <input type="text" value="<?php echo $roww['frecuencia'];?>"  name="frecuencia" class="form-control mb-3">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -73,29 +72,29 @@ require('../admin/conexion.php');
 <?php include('../layouts/script.php')?>
 <script>
 $(document).ready(function(){
-    $('#updcuenta').submit(function(e){
+    $('#updfrecuencia').submit(function(e){
     e.preventDefault();
     $.ajax({
         type: "POST",
-        url: "../model/reg_cuenta/udpcuenta.php",
-        data: $("#updcuenta").serialize(),
+        url: "../model/reg_fre_pagos/updfrecuencia.php",
+        data: $("#updfrecuencia").serialize(),
         success: function(data){
             if(data == 1){
                 Swal.fire({
                     title: 'Actualización Exitosa!',
-                    text: 'Se Actualizo correctamente la Cuenta',
+                    text: 'Se Actualizo correctamente la Frecuencia',
                     icon: 'success',
                     confirmButtonColor: "#007ebc",
                     confirmButtonText: 'Aceptar'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = "rpt_tipocuenta.php";
+                        window.location.href = "rpt_frecuencia.php";
                     }
                 });
             }else{
                 Swal.fire({
                     title: 'Error!',
-                    text: 'Ocurrio un Error al Actualizar la Cuenta',
+                    text: 'Ocurrio un Error al Actualizar la Frecuencia ',
                     icon: 'error',
                     confirmButtonText: 'Aceptar'
                 });

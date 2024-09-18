@@ -18,7 +18,7 @@ require('../admin/conexion.php');
                 <div class="card-body">
                     <h5 class="card-title text-primary">Listado Frecuencia de Pago</h5>
                     <div class="text-center">
-                        <button class="btn btn-primary" href="regtipoempresa.php"><i class="fi fi-rr-expense"></i> AÑADIR PAGOS</button>
+                        <a class="btn btn-primary" href="regfrecuencia.php" rel="noopener noreferrer"><i class="fi fi-rr-expense"></i> AÑADIR PAGOS</a>
                     </div>
                     <div class="table-responsive"> <!-- INICIO Tabla Presupuesto -->
                     <table class="table table-hover" id="user" cellspacing="0" style="width: 100%;">
@@ -30,40 +30,40 @@ require('../admin/conexion.php');
                             <th>Accion</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <?php 
-                      $sql = ("SELECT * FROM frecuenciapago");
-                        $result=$mysqli->query($sql);	
-                        while ($row = mysqli_fetch_array($result)) { ?>
-                            <tr>
-                                <td><?php echo $row['idfq']; ?></td>
-                                <td><?php echo $row['frecuencia']; ?></td>
-                                <td><?php
-                                    $sqlst = ("SELECT estatus FROM estatus WHERE idestatus = '" . $row['idestatus'] . "'");
-                                    $respst = $mysqli->query($sqlst);
-                                    $rowst = mysqli_fetch_array($respst);
-                                    echo $rowst['estatus']; ?></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                        </button>
-                                        <ul class="dropdown-menu dropdown-menu-end">
-                                            <li>
-                                                <a class="dropdown-item" href="upd_frecuencia.php?idfrecuencia=<?php echo $row['idfq'];?>">
-                                                    <i class="fi fi-rr-edit"></i> Editar Frecuencia
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="src_del_frecuencia.php?idfrecuencia=<?php echo $row['idfq'];?>"><i class="fi fi-rr-trash"></i> Eliminar Frecuencia
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr><?php } ?>
-                     </tbody>
-                  </table>
+        <tbody>
+            <?php 
+            $sql = ("SELECT * FROM frecuenciapago");
+            $result=$mysqli->query($sql);	
+            while ($row = mysqli_fetch_array($result)) { ?>
+                <tr>
+                    <td><?php echo $row['idfq']; ?></td>
+                    <td><?php echo $row['frecuencia']; ?></td>
+                    <td><?php
+                        $sqlst = ("SELECT estatus FROM estatus WHERE idestatus = '" . $row['idestatus'] . "'");
+                        $respst = $mysqli->query($sqlst);
+                        $rowst = mysqli_fetch_array($respst);
+                        echo $rowst['estatus']; ?></td>
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bx bx-dots-vertical-rounded"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                    <a class="dropdown-item" href="upd_frecuencia.php?idfrecuencia=<?php echo $row['idfq'];?>">
+                                        <i class="fi fi-rr-edit"></i> Editar Frecuencia
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="src_del_frecuencia.php?idfrecuencia=<?php echo $row['idfq'];?>"><i class="fi fi-rr-trash"></i> Eliminar Frecuencia
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr><?php } ?>
+            </tbody>
+        </table>
                     </div>
 
                 </div>

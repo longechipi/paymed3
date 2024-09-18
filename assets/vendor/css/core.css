@@ -65,14 +65,14 @@
     scroll-behavior: smooth;
   }
 }
-@font-face {
+/* @font-face {
   font-family: 'Qartella';
   src: url('../fonts/Qartella/TTF/Qartella-Regular.ttf') format('truetype');
-}
+} */
 
 body {
   margin: 0;
-  font-family: 'Qartella';
+  font-family: 'Poppins';
   font-size: var(--bs-body-font-size);
   font-weight: var(--bs-body-font-weight);
   line-height: var(--bs-body-line-height);
@@ -112,6 +112,7 @@ h1,
   font-weight: 500;
   line-height: 1.1;
   color: #566a7f;
+  font-family: 'Qartella';
 }
 
 h1,

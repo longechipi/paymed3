@@ -608,7 +608,7 @@ a.btn-link:hover {
 
 @media (max-width: 1199.98px) {
   .app-brand .layout-menu-toggle {
-    border: 7px solid #696cff !important;
+    border: 7px solid #222a55 !important;
   }
 }
 .footer.bg-primary {
@@ -910,7 +910,7 @@ html:not(.layout-menu-collapsed) .bg-menu-theme .menu-inner .menu-item .menu-lin
 }
 
 .app-brand .layout-menu-toggle {
-  background-color: #696cff;
+  background-color: #222a55;
   border: 7px solid #f5f5f9;
 }
 .app-brand .layout-menu-toggle i {

@@ -18,7 +18,8 @@ require('../admin/conexion.php');
                 <div class="card-body">
                     <h5 class="card-title text-primary">Listado de Estado Civil</h5>
                     <div class="text-center">
-                        <button class="btn btn-primary" href="regtipoempresa.php"><i class="fi fi-ts-rings-wedding"></i> AÑADIR ESTADO</button>
+                    <a class="btn btn-primary" href="regestadocivil.php" rel="noopener noreferrer"><i class="fi fi-ts-rings-wedding"></i> AÑADIR ESTADO</a>
+          
                     </div>
                     <div class="table-responsive"> <!-- INICIO Tabla Presupuesto -->
                     <table class="table table-hover" id="user" cellspacing="0" style="width: 100%;">

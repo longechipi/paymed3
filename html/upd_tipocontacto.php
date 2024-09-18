@@ -35,7 +35,7 @@ require('../admin/conexion.php');
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="inputName">Estatus</label>
-                                    <select class="form-control custom-select" name="estatus" required>
+                                    <select class="form-select" name="estatus" required>
                                         <option value="<?php echo $roww['idestatus']; ?>" selected>
                                             <?php
                                             $sqlst = ("SELECT estatus FROM estatus 
@@ -50,7 +50,7 @@ require('../admin/conexion.php');
                             </div>
                             <div class="text-center">
                             <button type="submit" name="submit" class="btn btn-primary"><i class="fi fi-rs-disk"></i> ACTUALIZAR</button>
-                            <a href="rpt_tipoempresa.php" class="btn btn-outline-warning" rel="noopener noreferrer"><i class="fi fi-rr-undo"></i> VOLVER </a>
+                            <a href="javascript:history.back()" class="btn btn-outline-warning" rel="noopener noreferrer"><i class="fi fi-rr-undo"></i> VOLVER </a>
                             </div>
                         </div>
                     </form>

@@ -286,7 +286,7 @@ $sql = ("SELECT a.idclinica, a.idlogin, a.rif, a.razsocial, a.nombrecentrosalud,
 
                         <div class="text-center mt-4">
                             <button type="submit" id="btn_update_clinica" class="btn btn-primary"><i class="fi fi-rs-disk"></i> ACTUALIZAR</button>
-                            <a href="rpt_clin.php" class="btn btn-outline-warning" rel="noopener noreferrer"><i class="fi fi-rr-undo"></i> VOLVER </a>
+                            <a href="javascript:history.back()" class="btn btn-outline-warning" rel="noopener noreferrer"><i class="fi fi-rr-undo"></i> VOLVER </a>
                         </div>
 
                    </div>  <!-- FIN ROW 4 -->

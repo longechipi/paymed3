@@ -18,7 +18,7 @@ require('../admin/conexion.php');
                 <div class="card-body">
                     <h5 class="card-title text-primary">Listado Bancarios</h5>
                     <div class="text-center">
-                        <button class="btn btn-primary" href="regtipoempresa.php"><i class="fi fi-rr-bank"></i> AÑADIR BANCO</button>
+                        <a class="btn btn-primary" href="regbancos.php" rel="noopener noreferrer"><i class="fi fi-rr-bank"></i> AÑADIR BANCO</a>
                     </div>
                     <div class="table-responsive"> <!-- INICIO Tabla Presupuesto -->
                     <table class="table table-hover" id="user" cellspacing="0" style="width: 100%;">

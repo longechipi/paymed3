@@ -19,11 +19,11 @@ require('../admin/conexion.php');
                     <h5 class="card-title text-primary">Listado Médicos</h5>
                     <div class="row">
                         <div class="text-center">
-                            <a class="btn btn-primary mb-4" href="regcli.php" role="button"><i class="fi fi-ts-hospital"></i> AÑADIR MEDICO</a>
+                            <a class="btn btn-primary mb-4" href="regmed.php" role="button"><i class="fi fi-ts-hospital"></i> AÑADIR MEDICO</a>
                         </div>
                     </div>
                     <?php 
-                     $sql = ("SELECT * FROM medicos WHERE  idestatus!='99' ORDER BY nombre1 ASC");
+                     $sql = ("SELECT * FROM medicos WHERE idestatus!='99' ORDER BY nombre1 ASC");
                     $result=$mysqli->query($sql);	
   
                     ?>

@@ -17,9 +17,6 @@ require('../admin/conexion.php');
             <div class="col-12">
                 <div class="card-body">
                     <h5 class="card-title text-primary">Listado de Paises</h5>
-                    <div class="text-center">
-                        <button class="btn btn-primary" href="regtipoempresa.php"><i class="fi fi-ss-flag-usa"></i> AÑADIR PAÍS</button>
-                    </div>
                     <div class="table-responsive"> <!-- INICIO Tabla Presupuesto -->
                     <table class="table table-hover" id="user" cellspacing="0" style="width: 100%;">
                     <thead>
