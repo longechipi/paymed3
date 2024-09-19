@@ -40,6 +40,7 @@
 
     <!-- Dark Mode  -->
     <link rel="stylesheet" href="../assets/vendor/css/darkmode.css" />
+    
 
     <!-- SweetAlert2 -->
     <script src="../libs/sweetalert/sweetalert.js"></script>

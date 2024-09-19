@@ -20,7 +20,7 @@ require('../admin/conexion.php');
                     <h5 class="card-title text-primary">Listado de Presupuestos</h5>
                     <div class="row">
                         <div class="text-center">
-                            <a class="btn btn-primary mb-4" href="regcli.php" role="button"><i class="fi fi-ts-hospital"></i> AÑADIR PRESUPUESTO</a>
+                            <a class="btn btn-primary mb-4" href="regcli.php" role="button"><i class="fi fi-rr-calculator-bill"></i> AÑADIR PRESUPUESTO</a>
                         </div>
                     </div>
                     
@@ -50,16 +50,24 @@ require('../admin/conexion.php');
 
                             while($row = mysqli_fetch_array($result)) { ?>
                             <tr>
-                            <td class="project_progress"><a><?php echo $row['idpresupuesto']; ?></a></td>
-                <td class="project_progress"><?php echo $row['cedula']; ?></td>
-                <td class="project_progress"><?php echo $row['apellido1'].' '.$row['nombre1']; ?></td>
-                <td class="project-progress"><?php echo $row['fec_creacion']; ?></td>
-                <td class="project_progress"><?php echo $row['carta_aval']; ?></td>
-                <td class="project-actions text-right">
-                  <a class="btn btn-danger btn-sm" 
-                     href="src_del_user.php?idpresu=<?php echo $row['idpresupuesto'];?>">
-                     <i class="fi fi-rr-trash"></i></a>
-                </td>
+                            <td><a><?php echo $row['idpresupuesto']; ?></a></td>
+                <td><?php echo $row['cedula']; ?></td>
+                <td><?php echo $row['apellido1'].' '.$row['nombre1']; ?></td>
+                <td><?php echo $row['fec_creacion']; ?></td>
+                <td><?php echo $row['carta_aval']; ?></td>
+                <td>
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bx bx-dots-vertical-rounded"></i>
+                          </button>
+                          <ul class="dropdown-menu dropdown-menu-end" >
+                            <li><a class="dropdown-item" href="updcli.php?id=<?php echo $row['idclinica'];?>"><i class="fi fi-rr-edit"></i> Editar Clínica</a></li>
+                            <li><a class="dropdown-item" href="updclicontacto.php?id=<?php echo $row['idclinica'];?>"><i class="fi fi-rr-phone-call"></i> Agregar Contacto</a></li>
+                            <li><a class="dropdown-item" href="src_del_clin.php?id=<?php echo $row['idclinica'];?>"><i class="fi fi-rr-trash"></i> Eliminar Contacto</a></li>
+                            
+                          </ul>
+                        </div>
+                    </td>
                             </tr>
                                 <?php } ?>
                             </tbody>
@@ -83,6 +91,8 @@ require('../admin/conexion.php');
 <?php include('../layouts/script.php')?>
 <script>
 $(document).ready(function() {
+
+    
     $('#user').DataTable({
         "language": {
             "sProcessing": "Procesando...",
@@ -109,6 +119,7 @@ $(document).ready(function() {
             }
         },
     });
+   
 });
 </script>
 </body>

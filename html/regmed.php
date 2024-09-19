@@ -333,34 +333,60 @@ jQuery.ajax({
 });
 }
 
+function valmail(correo) {
+    var nroriginal='99';
+    jQuery.ajax({
+    type: "POST",  
+    url: "../model/mod_medico/valnro_js.php",
+    data: {quees: '3', nro: correo, nroriginal: nroriginal},
+    success:function(data){
+    console.log(data);
+    hay = parseInt(data);
+    if (hay!=0) {
+        Swal.fire({
+            title: 'Error!',
+            text: 'El Correo ya se Encuentra Registrado',
+            icon: 'error',
+            confirmButtonColor: "#007ebc",
+            confirmButtonText: 'Aceptar'
+        });
+        document.getElementById("correo").value = '';
+    }
+    },
+    error:function (){}
+});
+
+}
+
 $(document).ready(function(){
-    $('#reg_cli').submit(function(e){
+    $('#reg_med').submit(function(e){
     e.preventDefault();
     $.ajax({
         type: "POST",
         url: "../model/mod_medico/reg_med.php",
-        data: $("#reg_cli").serialize(),
+        data: $("#reg_med").serialize(),
         success: function(data){
-            if(data == 1){
-                Swal.fire({
-                    title: 'Registro Exitoso!',
-                    text: 'Se ha registrado correctamente la Clinica',
-                    icon: 'success',
-                    confirmButtonColor: "#007ebc",
-                    confirmButtonText: 'Aceptar'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = "regcli.php";
-                    }
-                });
-            }else{
-                Swal.fire({
-                    title: 'Error!',
-                    text: 'Ocurrio un Error al Registrar la Clinica',
-                    icon: 'error',
-                    confirmButtonText: 'Aceptar'
-                });
-            }
+            console.log(data)
+            // if(data == 1){
+            //     Swal.fire({
+            //         title: 'Registro Exitoso!',
+            //         text: 'Se ha registrado correctamente la Clinica',
+            //         icon: 'success',
+            //         confirmButtonColor: "#007ebc",
+            //         confirmButtonText: 'Aceptar'
+            //     }).then((result) => {
+            //         if (result.isConfirmed) {
+            //             window.location.href = "regcli.php";
+            //         }
+            //     });
+            // }else{
+            //     Swal.fire({
+            //         title: 'Error!',
+            //         text: 'Ocurrio un Error al Registrar la Clinica',
+            //         icon: 'error',
+            //         confirmButtonText: 'Aceptar'
+            //     });
+            // }
         }
     }) 
 })
