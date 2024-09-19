@@ -3,6 +3,7 @@ include('../layouts/header.php');
 require('../admin/conexion.php');
 $fechahoy=date('Y-m-d');
 $ffechahoy = date("d/m/Y", strtotime($fechahoy));
+require('../conf/borrarcitas.php');
 ?>
 
 <div class="layout-wrapper layout-content-navbar">
@@ -18,11 +19,10 @@ $ffechahoy = date("d/m/Y", strtotime($fechahoy));
         <div class="d-flex align-items-end row">
             <div class="col-12">
                 <div class="card-body">
-                    <h5 class="card-title text-primary">Listado de Citas </h5>
-                    <?php 
+                    <h5 class="card-title text-primary">Listado de Citas <?php //echo $cargo; ?></h5>
                     
   
-                    ?>
+                 
                     <div class="table-responsive"> <!-- INICIO Tabla Presupuesto -->
                         <table class="table table-hover" id="user" cellspacing="0" style="width: 100%;">
                             <thead>
@@ -40,6 +40,11 @@ $ffechahoy = date("d/m/Y", strtotime($fechahoy));
                             </thead>
                             <tbody>
                             <?php  
+                            $idlogin = isset($_SESSION['idloginmed']) ? $_SESSION['idloginmed'] : $_SESSION['idlogin'];
+
+                        
+                            
+
                             $sqlmed = ("SELECT idmed FROM medicos WHERE correo='$usuario'");
                             $arrmed = $mysqli->query($sqlmed);
                             $rowmed = mysqli_fetch_array($arrmed);

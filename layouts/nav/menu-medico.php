@@ -43,7 +43,11 @@ $sqlestatus = ("SELECT estatus  FROM loginn WHERE idlogin ='".$idlogin."';");
         </li>
     <?php } else{?> 
         <!-- PRIMER NIVEL -->
-        <li class="menu-item">
+        <li class="menu-item 
+        <?php
+        if (($host === "rpt_pacxmed.php") ) {
+            echo 'active' . ' ' . 'open';
+        } ?>">
             <a href="javascript:void(0)" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-wrench"></i>
                 <div id="menu-hono" data-i18n="User interface">PERFIL</div>
@@ -62,8 +66,9 @@ $sqlestatus = ("SELECT estatus  FROM loginn WHERE idlogin ='".$idlogin."';");
                     </a>
                 </li>
                 <!-- Pacientes -->
-                <li class="menu-item">
-                    <a href="pages/forms/rpt_pacxmed.php" id="sidebar-hono" class="menu-link empty">
+                <li class="menu-item 
+                <?php if ($host === "rpt_pacxmed.php") { echo 'active'; } ?>">
+                    <a href="../html/rpt_pacxmed.php" id="sidebar-hono" class="menu-link empty">
                         <div data-i18n="Accordion">Pacientes</div>
                     </a>
                 </li>
