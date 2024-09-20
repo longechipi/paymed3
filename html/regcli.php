@@ -9,7 +9,7 @@ require('../admin/conexion.php');
             <div class="layout-page">
                 <?php include("../layouts/navbar.php"); ?>
                 <div class="content-wrapper">
-                    <div class="container-xxl flex-grow-1 container-p-y">
+                    <div class="container-fluid flex-grow-1 container-p-y">
                         <div class="row">    
                             <div class="col-lg-12 mb-12 order-0">
 <div class="card">
@@ -24,7 +24,7 @@ require('../admin/conexion.php');
                       </div>
                         <div class="col-md-1">
                             <div class="form-group">
-                            <label for="rif">N°</label> <span class="text-danger">(*)</span>
+                            <label for="rif">N°</label>
                                 <select class="form-select"  id="tprif" name="tprif" required>
                                     <option value="N">N</option>
                                     <option value="J">J</option>
@@ -34,28 +34,28 @@ require('../admin/conexion.php');
                         </div>
                         <div class="col-md-2 mb-3">
                             <div class="form-group">
-                                <label for="rif">RIF:</label> <span class="text-danger">(*)</span>
+                                <label for="rif">RIF:</label>
                                 <input type="text" name="rif" id="rif"  maxlength="9" minlength="9" class="form-control" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" required>
 					        </div>
                         </div>
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="razsocial">Razón Social:</label> <span class="text-danger">(*)</span>
+                                <label for="razsocial">Razón Social:</label>
                                 <input type="text" name="razsocial" id="razsocial" class="form-control" style="text-transform:uppercase;" required>
                             </div>
                         </div>
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="nbcs">Nom. Centro de Salud:</label> <span class="text-danger">(*)</span>
+                                <label for="nbcs">Nom. Centro de Salud:</label>
                                 <input type="text" name="nbcs" id="nbcs" class="form-control" style="text-transform:uppercase;" required>
                             </div> 
                         </div>
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="correoppal">Correo Master:</label> <span class="text-danger">(*)</span>
+                                <label for="correoppal">Correo Master:</label>
                                 <input type="email" name="correoppal" id="correoppal" class="form-control" required>
                             </div>
                         </div>
@@ -64,7 +64,7 @@ require('../admin/conexion.php');
                     <div class="row"> <!--INICIO ROW 2 -->
                         <div class="col-md-3 ">
                             <div class="form-group">
-                            <label for="idtipo">Tipo de Empresa:</label> <span class="text-danger">(*)</span>
+                            <label for="idtipo">Tipo de Empresa:</label>
                             <select class="form-select" id="idtipo" name="idtipo" required>
                                 <option value="">-- Seleccione --</option>
                                 <?php
@@ -78,7 +78,7 @@ require('../admin/conexion.php');
 
                         <div class="col-md-3">
                             <div class="form-group">
-                            <label for="idtipo">Tipo de Proveedor:</label> <span class="text-danger">(*)</span>
+                            <label for="idtipo">Tipo de Proveedor:</label>
                                 <select class="form-select" id="idtipoprov" name="idtipoprov" required>
                                     <option value="">-- Seleccione --</option>
                                     <?php
@@ -92,7 +92,7 @@ require('../admin/conexion.php');
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="descripcion">Descripción (breve):</label> <span class="text-danger">(*)</span>
+                                <label for="descripcion">Descripción (breve):</label>
                                 <input type="text" name="descripcion" id="descripcion" style="text-transform:uppercase;" class="form-control" required>
                             </div>
                         </div>
@@ -105,7 +105,7 @@ require('../admin/conexion.php');
                         <div class="col-md-3 mb-3">
 
                         <div class="form-group">
-                            <label for="descripcion">País:</label> <span class="text-danger">(*)</span>
+                            <label for="descripcion">País:</label>
 						    <select id="idpais" class="form-select" name="idpais" required>
                                 <option value="">-- Pais --</option>
                                 <?php
@@ -120,7 +120,7 @@ require('../admin/conexion.php');
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="descripcion">Estado:</label> <span class="text-danger">(*)</span>
+                                <label for="descripcion">Estado:</label>
                                 <select id="id_estado" class="form-select" name="idestado" required>
                                     <option value="">-- Seleccione --</option>
                                 </select>
@@ -129,7 +129,7 @@ require('../admin/conexion.php');
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="descripcion">Municipio:</label> <span class="text-danger">(*)</span>
+                                <label for="descripcion">Municipio:</label>
                                 <select id="id_municipio" class="form-select" name="idmunicipio" required>
                                     <option value="">-- Municipio --</option>
                                 </select>
@@ -138,7 +138,7 @@ require('../admin/conexion.php');
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="descripcion">Parroquia:</label> <span class="text-danger">(*)</span>
+                                <label for="descripcion">Parroquia:</label>
                                 <select id="id_parroquia" class="form-select" name="idparroquia" required>
                                     <option value="">-- Parroquia --</option>
                                 </select>	
@@ -149,7 +149,7 @@ require('../admin/conexion.php');
                     <div class="row"> <!--INICIO ROW 3 -->
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="urbanizacion">Urbanización:</label> <span class="text-danger">(*)</span>
+                                <label for="urbanizacion">Urbanización:</label>
                                 <input type="text" name="urbanizacion" style="text-transform:uppercase;"  id="urbanizacion" class="form-control" required>
                             </div>
                         </div>

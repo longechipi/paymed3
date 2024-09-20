@@ -104,3 +104,149 @@
   text-align: center;
   margin-top: 1rem;
 }
+i.fi.fi-rr-user-add {
+  margin-right: 6px;
+}
+i.fi.fi-rr-hospital {
+  margin-right: 6px;
+}
+i.fi.fi-rs-disk {
+  margin-right: 6px;
+}
+i.fi.fi-rr-undo {
+  margin-right: 6px;
+}
+i.fi.fi-rs-supplier-alt {
+  margin-right: 6px;
+}
+i.fi.fi-ts-hospital {
+  margin-right: 6px;
+}
+i.fi.fi-rr-calculator-bill {
+  margin-right: 6px;
+}
+i.fi.fi-rr-folder-upload {
+  margin-right: 6px;
+}
+i.fi.fi-rr-building {
+  margin-right: 6px;
+}
+i.fi.fi-rr-file-invoice-dollar {
+  margin-right: 6px;
+}
+i.fi.fi-rr-venus-mars {
+  margin-right: 6px;
+}
+i.fi.fi-rs-membership {
+  margin-right: 6px;
+}
+
+i.fi.fi-rr-expense {
+  margin-right: 6px;
+}
+i.fi.fi-ts-rings-wedding {
+  margin-right: 6px;
+}
+i.fi.fi-rr-doctor {
+  margin-right: 6px;
+}
+i.fi.fi-rr-bank {
+  margin-right: 6px;
+}
+i.fi.fi-rs-refresh {
+  margin-right: 6px;
+}
+
+
+
+
+
+#signUpForm .form-header {
+  gap: 5px;
+  text-align: center;
+  font-size: .9em;
+}
+#signUpForm .form-header .stepIndicator {
+  position: relative;
+  flex: 1;
+  padding-bottom: 30px;
+}
+#signUpForm .form-header .stepIndicator.active {
+  font-weight: 600;
+  font-size: 20px;
+}
+#signUpForm .form-header .stepIndicator.finish {
+  font-weight: 600;
+  color: #009688;
+}
+#signUpForm .form-header .stepIndicator::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  z-index: 9;
+  width: 20px;
+  height: 20px;
+  background-color: #d5efed;
+  border-radius: 50%;
+  border: 3px solid #ecf5f4;
+}
+#signUpForm .form-header .stepIndicator.active::before {
+  background-color: #007dba;
+  border: 3px solid #007dba;
+}
+#signUpForm .form-header .stepIndicator.finish::before {
+  background-color: #007dba;
+  border: 3px solid #007dba;
+}
+#signUpForm .form-header .stepIndicator::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 8px;
+  width: 100%;
+  height: 3px;
+  background-color: #f3f3f3;
+}
+#signUpForm .form-header .stepIndicator.active::after {
+  background-color: #007dba;
+}
+#signUpForm .form-header .stepIndicator.finish::after {
+  background-color: #007dba;
+}
+#signUpForm .form-header .stepIndicator:last-child:after {
+  display: none;
+}
+
+#signUpForm input:focus {
+  border: 1px solid #009688;
+  outline: 0;
+}
+#signUpForm input.invalid {
+  border: 1px solid #f5594e;
+}
+#signUpForm .step {
+display: none;
+}
+#signUpForm .form-footer{
+  overflow:auto;
+  gap: 20px;
+}
+#signUpForm .form-footer button{
+
+  padding: 13px 30px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 5px;
+  flex: 1;
+  margin-top: 5px;
+}
+#signUpForm .form-footer button:hover {
+opacity: 0.8;
+}
+
+#signUpForm .form-footer #prevBtn {
+  background-color: #fff;
+  color: #009688;
+}

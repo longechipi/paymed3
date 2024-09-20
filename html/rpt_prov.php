@@ -9,7 +9,7 @@ require('../admin/conexion.php');
             <div class="layout-page">
                 <?php include("../layouts/navbar.php"); ?>
                 <div class="content-wrapper">
-                    <div class="container-xxl flex-grow-1 container-p-y">
+                    <div class="container-fluid flex-grow-1 container-p-y">
                         <div class="row">    
 <div class="col-lg-12 mb-12 order-0">
     <div class="card">
@@ -19,12 +19,15 @@ require('../admin/conexion.php');
                     <h5 class="card-title text-primary">Listado de Proveedores</h5>
                     <div class="row">
                         <div class="text-center">
-                            <a class="btn btn-primary mb-4" href="regcli.php" role="button">
+                            <a class="btn btn-primary mb-4" href="regprov.php" role="button">
                                 <i class="fi fi-rs-supplier-alt"></i> AÑADIR PROVEEDOR</a>
                         </div>
                     </div>
                     <?php 
-                     $sql = ("SELECT a.idprov, a.idlogin, a.rif, a.razsocial, a.dencomercial, a.idestatus, b.estado FROM proveedores a, estado b WHERE a.idestado=b.idestado ORDER BY a.razsocial ASC");
+                     $sql = "SELECT p.idprov, p.idlogin, p.idcateg, p.rif, p.razsocial, p.dencomercial, p.idestado, e.estado, p.idestatus, es.estatus
+                                FROM proveedores p
+                                LEFT JOIN estado e ON p.idestado = e.idestado
+                                LEFT JOIN estatus es ON p.idestatus = es.idestatus";
                     $result=$mysqli->query($sql);	
   
                     ?>
@@ -37,6 +40,7 @@ require('../admin/conexion.php');
                                     <th>Razón Social</th>
                                     <th>D. Comercial</th>
                                     <th>Estado</th>
+                                    <th>Estatus</th>
                                     <th>Accion</th>
                                 </tr>
                             </thead>
@@ -48,9 +52,10 @@ require('../admin/conexion.php');
                             <tr>
                                 <td><?php echo $ln; ?></td>
                                 <td><a><?php echo $row['rif']; ?></a></td>
-                                <td><?php echo substr($row['razsocial'],0,25);?>...</td>
+                                <td><?php echo $row['razsocial'];?></td>
                                 <td><?php echo $row['dencomercial']; ?></td>
                                 <td><?php echo $row['estado']; ?></td>
+                                <td><?php echo $row['estatus']; ?></td>
 <td>
 <div class="btn-group">
     <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
@@ -65,7 +70,7 @@ require('../admin/conexion.php');
         </li>
         <?php }else if ($row['idestatus']=='1' ){ ?>
             <a class="dropdown-item" href="#">
-                <i class="fi fi-rs-memo-circle-check"></i> Aprobar Proveedor</a>
+                <i class="fi fi-rs-memo-circle-check"></i> Desaprobar Proveedor</a>
         <?php } ?>
 
         <li>

@@ -10,7 +10,7 @@ $fechahoy=date('Y-m-d');
             <div class="layout-page">
                 <?php include("../layouts/navbar.php"); ?>
                 <div class="content-wrapper">
-                    <div class="container-xxl flex-grow-1 container-p-y">
+                    <div class="container-fluid flex-grow-1 container-p-y">
                         <div class="row">    
 <div class="col-lg-12 mb-12 order-0">
     <div class="card">

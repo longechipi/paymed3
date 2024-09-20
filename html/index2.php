@@ -9,7 +9,7 @@ require('../admin/conexion.php');
             <div class="layout-page">
                 <?php include("../layouts/navbar.php"); ?>
                 <div class="content-wrapper">
-                    <div class="container-xxl flex-grow-1 container-p-y">
+                    <div class="container-fluid flex-grow-1 container-p-y">
                         <div class="row">
                           <?php include('resumen.php');?>
                         </div>

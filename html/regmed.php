@@ -9,7 +9,7 @@ require('../admin/conexion.php');
             <div class="layout-page">
                 <?php include("../layouts/navbar.php"); ?>
                 <div class="content-wrapper">
-                    <div class="container-xxl flex-grow-1 container-p-y">
+                    <div class="container-fluid flex-grow-1 container-p-y">
                         <div class="row">    
                             <div class="col-lg-12 mb-12 order-0">
 <div class="card">
@@ -24,7 +24,7 @@ require('../admin/conexion.php');
                       </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                            <label for="rif">Primer Apellido</label> <span class="text-danger">(*)</span>
+                            <label for="rif">Primer Apellido</label>
                             <input type="text" name="apellido1" id="apellido1" class="form-control" style="text-transform:uppercase;" onKeypress="if (event.keyCode < 65 || event.keyCode > 90 && event.keyCode < 97 || event.keyCode > 122) event.returnValue = false;" required>
                             </div>
                         </div>
@@ -161,7 +161,7 @@ require('../admin/conexion.php');
                     <div class="row"> <!--INICIO ROW 3 -->
                         <div class="col-md-3 mb-3">
                             <div class="form-group">
-                                <label for="descripcion">País:</label> <span class="text-danger">(*)</span>
+                                <label for="descripcion">País:</label>
                                 <select id="idpais" class="form-select" name="idpais" required>
                                     <option value="">-- Pais --</option>
                                     <?php
@@ -176,7 +176,7 @@ require('../admin/conexion.php');
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="descripcion">Estado:</label> <span class="text-danger">(*)</span>
+                                <label for="descripcion">Estado:</label>
                                 <select id="id_estado" class="form-select" name="idestado" required>
                                     <option value="">-- Seleccione --</option>
                                 </select>
@@ -185,7 +185,7 @@ require('../admin/conexion.php');
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="descripcion">Municipio:</label> <span class="text-danger">(*)</span>
+                                <label for="descripcion">Municipio:</label>
                                 <select id="id_municipio" class="form-select" name="idmunicipio" required>
                                     <option value="">-- Municipio --</option>
                                 </select>
@@ -194,7 +194,7 @@ require('../admin/conexion.php');
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="descripcion">Parroquia:</label> <span class="text-danger">(*)</span>
+                                <label for="descripcion">Parroquia:</label>
                                 <select id="id_parroquia" class="form-select" name="idparroquia" required>
                                     <option value="">-- Parroquia --</option>
                                 </select>	
@@ -205,7 +205,7 @@ require('../admin/conexion.php');
                     <div class="row"> <!--INICIO ROW 3 -->
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="urbanizacion">Urbanización:</label> <span class="text-danger">(*)</span>
+                                <label for="urbanizacion">Urbanización:</label>
                                 <input type="text" name="urbanizacion" style="text-transform:uppercase;"  id="urbanizacion" class="form-control" required>
                             </div>
                         </div>

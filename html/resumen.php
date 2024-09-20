@@ -83,7 +83,8 @@ $totalCitas=$dres->fetch_array();
 <?php if ($privilegios=='1') { // Admin ?>
 <div class="row">
   <div class="col-lg-8 col-sm-12 order-0">
-  <table id="myTable" class="table table-hover">
+  <div class="table-responsive">
+  <table class="table table-hover" id="myTable" cellspacing="0" style="width: 100%;">
     <thead>
         <tr>
             <th>Actividad</th>
@@ -93,6 +94,7 @@ $totalCitas=$dres->fetch_array();
     </thead>
     <tbody></tbody>
     </table>
+    </div>
     
   </div>
     <div class="col-lg-4 col-sm-12 order-1">

@@ -1,7 +1,7 @@
 
 <!-- Core JS -->
 <!-- build:js assets/vendor/js/core.js -->
-
+<script src="../js/step.js"></script>
 <script src="../assets/vendor/libs/popper/popper.js"></script>
 <script src="../assets/vendor/js/bootstrap.js"></script>
 <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
@@ -17,7 +17,7 @@
 
 <!-- Page JS -->
 <script src="../assets/js/dashboards-analytics.js"></script>
-
+<script src="../assets/vendor/js/template-customizer.js"></script>
 <script>
 const darkModeToggle = document.getElementById('flexSwitchCheckDefault');
 const body = document.body;

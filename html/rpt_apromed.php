@@ -12,7 +12,7 @@ $resultpago = $mysqli->query($sqlpago);
             <div class="layout-page">
                 <?php include("../layouts/navbar.php"); ?>
                 <div class="content-wrapper">
-                    <div class="container-xxl flex-grow-1 container-p-y">
+                    <div class="container-fluid flex-grow-1 container-p-y">
                         <div class="row">    
 <div class="col-lg-12 mb-12 order-0">
     <div class="card">
@@ -38,7 +38,7 @@ $resultpago = $mysqli->query($sqlpago);
                                 $idmed=$row['idmed'];
                                 $sqlimg = ("SELECT imagen FROM drdocument WHERE idmed='".$idmed."'");
 
-                                $objimg    =$mysqli->query($sqlimg);
+                                $objimg =$mysqli->query($sqlimg);
                                 //$arrimg    = mysqli_fetch_array($objimg);
                                 //$imagen=$arrimg['imagen'];
                             ?>

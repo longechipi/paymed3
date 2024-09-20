@@ -407,7 +407,7 @@ a.btn-link:hover {
 
 .form-control:focus,
 .form-select:focus {
-  border-color: #007dba !important;
+  border-color: #007dba;
 }
 
 .input-group:focus-within .form-control,
@@ -915,6 +915,7 @@ html:not(.layout-menu-collapsed) .bg-menu-theme .menu-inner .menu-item .menu-lin
 }
 .app-brand .layout-menu-toggle i {
   color: #fff;
+  margin-top: 1px;
 }
 .app-brand .layout-menu-toggle .menu-inner > .menu-header::before {
   background-color: #a7acb2;
@@ -950,3 +951,10 @@ div#medico {
   border-right: 1px solid #007dba38;
   background: linear-gradient(to right, transparent, #007dba38);
 }
+
+
+button.btn.btn-primary.btn-icon.rounded-pill.dropdown-toggle.hide-arrow {
+  background-color: #d4d4f1;
+  border-color: #d4d4f1;
+}
+
