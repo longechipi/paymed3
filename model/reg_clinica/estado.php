@@ -4,7 +4,7 @@
 	$states = array();
 	while($r=$query->fetch_object()){ $states[]=$r; }
 		if(count($states)>0){
-			print "<option value=''>-- SELECCIONE --</option>";
+			print "<option value='' disabled selected>-- Municipio -- </option>";
 			foreach ($states as $s) {
 				print "<option value='$s->idmunicipio'>$s->municipio</option>";
 			}

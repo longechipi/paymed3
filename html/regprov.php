@@ -2,7 +2,6 @@
 include('../layouts/header.php');
 require('../admin/conexion.php');
 ?>
-
 <div class="layout-wrapper layout-content-navbar">
     <div class="layout-container">
         <?php include("../layouts/menu.php"); ?>
@@ -31,29 +30,29 @@ require('../admin/conexion.php');
         <!-- step one -->
         <div class="step">
         <div class="divider">
-                        <div class="divider-text">Datos de Básicos</div>
-                      </div>
+            <div class="divider-text">Datos de Básicos</div>
+        </div>
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label for="idcateg">Categoria:</label>
                         <select id="idcateg" class="form-select" name="idcateg" required>
-                        
+                        <option value="" disabled selected>-- Categoria --</option>
                             <?php
                             //require('admin/conexion.php');
                             $query = $mysqli -> query ("SELECT idcateg, categoria FROM categprove WHERE idestatus='1' ; ");
                             while ($valores = mysqli_fetch_array($query)) {
-                            echo '<option value="'.$valores['idcateg'].'">'.$valores['categoria'].'</option>';
+                                 echo '<option value="'.$valores['idcateg'].'">'.$valores['categoria'].'</option>';
                         } ?>
                         
                         </select>
                     </div>
                 </div>
 
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label for="rif">RIF:</label>
-					    <input type="text" name="rif" id="rif"  maxlength="9" minlength="9" class="form-control" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;">
+					    <input type="text" name="rif" id="rif"  maxlength="9" minlength="9" class="form-control mb-3" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;">
 					</div>
 				</div>
 
@@ -71,14 +70,13 @@ require('../admin/conexion.php');
 					</div>
 				</div>
 
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label for="correo">Correo:</label>
                         <input type="email" name="correo" id="correo" class="form-control mb-3" required>
                     </div>
                 </div>
-             </div><!-- FIN ROW -->
-             <div class="row">
+
                 <div class="col-md-1">
                     <div class="form-group">
                         <label for="codarea">Cod:</label>
@@ -86,17 +84,18 @@ require('../admin/conexion.php');
                     </div>
                 </div>
 
-                <div class="col-md-2">
+                <div class="col-md-3">
 					<div class="form-group">
 						<label for="telefono">Telefono Local:</label>
 						<input type="text" name="telefono" id="telefono" maxlength="7" minlength="7" class="form-control" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" required>
 					</div>
 				</div>
 
-                <div class="col-md-1">
+                <div class="col-md-2">
                     <div class="form-group">
                         <label for="operadora">Operadora:</label>
                         <select class="form-select" id="operadora" name="operadora">
+                        <option value="" disabled selected>Cod Cel</option>
                             <option value="0412">0412</option>
                             <option value="0414">0414</option>
                             <option value="0424">0424</option>
@@ -106,13 +105,61 @@ require('../admin/conexion.php');
                     </div>
                 </div>
 
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label for="movil">Telefono Movil</label>
                         <input type="text" name="movil" id="movil" maxlength="7" minlength="7"class="form-control mb-3" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" required>
                     </div>
                 </div> 
 
+
+             </div><!-- FIN ROW -->
+
+             <div class="row"> <!--INICIO ROW 3 -->
+                <div class="col-md-3 mb-3">
+                    <div class="form-group">
+                    <label for="descripcion">País:</label>
+                    <select id="idpais" class="form-select" name="idpais" required>
+                        <option value="">-- Pais --</option>
+                        <?php
+                        //require('admin/conexion.php');
+                        $query = $mysqli -> query ("SELECT idpais, pais, idestatus FROM paises WHERE idestatus =1 AND idpais = 232");
+                        while ($valores = mysqli_fetch_array($query)) {
+                        echo '<option value="'.$valores['idpais'].'">'.$valores['pais'].'</option>';
+                        } ?>
+                    </select>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="descripcion">Estado:</label>
+                        <select id="id_estado" class="form-select" name="idestado" required>
+                            <option value="">-- Seleccione --</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="descripcion">Municipio:</label>
+                        <select id="id_municipio" class="form-select" name="idmunicipio" required>
+                            <option value="">-- Municipio --</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="descripcion">Parroquia:</label>
+                        <select id="id_parroquia" class="form-select" name="idparroquia" required>
+                            <option value="">-- Parroquia --</option>
+                        </select>	
+                    </div>
+                </div>
+            </div><!--FIN ROW 3 -->
+
+             <div class="row">
                 <div class="col-md-3">
 					<div class="custom-file">
                         <label for="rifimg">Rif (PDF)</label>
@@ -141,32 +188,160 @@ require('../admin/conexion.php');
 					</div>
 				</div>
              </div><!-- FIN ROW -->
-            
-            
-            
-            <!-- <div class="mb-3">
-                <input type="email" placeholder="Email Address" oninput="this.className = ''" name="email">
-            </div>
-            <div class="mb-3">
-                <input type="password" placeholder="Password" oninput="this.className = ''" name="password">
-            </div>
-            <div class="mb-3">
-                <input type="password" placeholder="Confirm Password" oninput="this.className = ''" name="password">
-            </div> -->
         </div>
     
         <!-- step two -->
         <div class="step">
-            <p class="text-center mb-4">Your presence on the social network</p>
-            <div class="mb-3">
-                <input type="text" placeholder="Linked In" oninput="this.className = ''" name="linkedin">
+            <div class="divider">
+                <div class="divider-text">Datos Bancarios</div>
             </div>
-            <div class="mb-3">
-                <input type="text" placeholder="Twitter" oninput="this.className = ''" name="twitter">
+            <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="titular">Titular </label>
+                    <input type="text" name="titular" id="titular" class="form-control">
+                </div>
+			</div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="nrodoc">Nro. Documento:</label>
+                    <input type="text" name="nrodoc" id="nrodoc" class="form-control mb-3">
+                </div>
             </div>
-            <div class="mb-3">
-                <input type="text" placeholder="Facebook" oninput="this.className = ''" name="facebook">
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="idbco">Banco:</label>
+                        <select id="idbco" class="form-select" name="idbco" required>
+                        <option value="" disabled selected>-- Banco --</option>
+                        <?php
+                        $query = $mysqli -> query ("SELECT idbco, banco FROM bancos WHERE tipo='1' AND idestatus='1'");
+                        while ($valores = mysqli_fetch_array($query)) {
+                        echo '<option value="'.$valores['idbco'].'">'.$valores['banco'].'</option>';
+                    } ?>
+                    </select>
+                </div>
+			</div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="idtipocuenta">Tipo Cta:</label>
+                    <select id="idtipocuenta" class="form-select" name="idtipocuenta" required>
+                    <option value="" disabled selected>-- Cuenta --</option>
+                    <?php
+                        $query=$mysqli->query ("SELECT *FROM tipocuenta WHERE idestatus='1'");
+                        while ($valores = mysqli_fetch_array($query)) {
+                        echo '<option value="'.$valores['idtipocuenta'].'">'.$valores['tipocuenta'].'</option>';
+                    } ?>
+                    </select>
+                </div>
             </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="nrocuenta">Nro. Cuenta: <span><small>(Solo Nùmeros, 20 Digitos)</small></span> </label>
+                    <input type="text" name="nrocuenta" id="nrocuenta" value="<?php echo $nrocuenta;?>" minlength="20" maxlength="20" value="" class="form-control" 
+                    onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;"  required>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="cuenta_ext">Posee cuenta Internacional</label>
+                    <select name="cuenta_ext" class="form-select" id="cuenta_ext">
+                    <option value="" disabled selected>-- Cuenta --</option>
+                        <option value="0">No</option>
+                        <option value="1">Si</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="ext" hidden>
+                <div class="col-md-3">
+					<div class="form-group">
+						<label for="idpais" class="control-label mb-1">Pais:</label>
+						<select id="idpais" class="form-select" name="idpais" required>
+                        <option value="" disabled selected>-- Pais --</option>
+							<?php
+							$query = $mysqli -> query ("SELECT idpais, pais FROM paises WHERE idestatus='1' AND idpais!='232';");
+							while ($valores = mysqli_fetch_array($query)) {
+							echo '<option value="'.$valores['idpais'].'">'.$valores['pais'].'</option>';
+							} ?>
+						</select>
+					</div>
+				</div>
+                <div class="col-md-3">
+					<div class="form-group">
+						<label for="idbcoint">Banco:</label>
+						<select id="idbcoint" class="form-select" name="idbcoint" required>
+                        <option value="" disabled selected>--Banco--</option>
+							<?php
+							$query = $mysqli -> query ("SELECT idbco, banco FROM bancos WHERE tipo='2' AND idestatus='1';");
+							while ($valores = mysqli_fetch_array($query)) {
+							echo '<option value="'.$valores['idbco'].'">'.$valores['banco'].'</option>';
+						} ?>
+						
+						</select>
+					</div>
+				</div>
+
+                <div class="col-md-6">
+					<div class="form-group">
+						<label for="nrocuentaint">Nro. Cuenta:</label>
+						<input type="text" name="nrocuentaint" id="nrocuentaint" value="<?php echo $nrocuentaint;?>" minlength="8" maxlength="20"  value="" class="form-control form-control-sm " 
+						onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" required>
+					</div>
+				</div>
+				<!-- 3ra -->
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="ach">ACH:</label>
+						<input type="text" name="ach" id="ach" value="<?php echo $ach;?>" class="form-control form-control-sm ">
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="swit">SWIT:</label>
+						<input type="text" name="swit" id="swit" value="<?php echo $swit;?>" class="form-control form-control-sm" required>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="aba">ABA:</label>
+						<input type="text" name="aba" id="aba" value="<?php echo $aba;?>" class="form-control form-control-sm" required>
+					</div>
+				</div>
+				<!-- 4ta -->
+				<div class="col-md-8">
+					<div class="form-group">
+						<label for="dircta">Dirección Cuenta:</label>
+						<input type="text" name="dircta" id="dircta" value="<?php echo $dircta;?>" class="form-control form-control-sm " 
+						minlength="7" style="text-transform:uppercase;" required>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="form-group">
+						<label for="telefono">Teléfono:</label>
+						<!--input type="text" name="telefono" id="telefono" value="< ?php echo $telefono;?>" class="form-control form-control-sm " required-->
+						<input type="text" name="telefono" id="telefono" minlength="11" maxlength="11" value="<?php echo $telefono;?>" class="form-control form-control-sm" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" required>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="form-group">
+						<label for="codpostalint">Cod.Postal:</label>
+						<!--input type="text" name="codpostalint" id="codpostalint" value="< ?php echo $codpostalint;?>" class="form-control form-control-sm " required-->
+						<input type="text" name="codpostalint" id="codpostalint" maxlength="5" minlength="5" value="<?php echo $codpostalint;?>" class="form-control form-control-sm " onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" required>
+					</div>
+				</div>
+
+            </div>
+
+
+
+
+
+            </div> <!-- FIN ROW -->
         </div>
     
         <!-- step three -->
@@ -187,30 +362,13 @@ require('../admin/conexion.php');
         <div class="row">
             <div class="text-center">
                 <div class="form-footer ">
-                    <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                    <button type="button" class="btn btn-primary" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                    <button type="button" id="prevBtn" onclick="nextPrev(-1)">Anterior</button>
+                    <button type="button" class="btn btn-primary" id="nextBtn" onclick="nextPrev(1)">Siguiente</button>
                 </div>
             </div>
         </div>
         <!-- end previous / next buttons -->
     </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                    
                 </div>
             </div>
@@ -228,6 +386,52 @@ require('../admin/conexion.php');
     <div class="layout-overlay layout-menu-toggle"></div>
 </div>
 <?php include('../layouts/script.php')?>
+<script>
+$(document).ready(function() {
 
+   $('input').blur(function() {
+        if (!$(this).val()) {
+            $(this).removeClass('invalid buena');
+        } else {
+            $(this).removeClass('invalid').addClass('buena');
+        }
+    });
+
+    $('select').change(function() {
+        if (!$(this).val()) {
+            $(this).removeClass('invalid buena');
+        } else {
+            $(this).removeClass('invalid').addClass('buena');
+        }
+    });
+
+    $("#idpais").change(function(){				
+        $.get("../model/reg_clinica/pais.php","idpais="+$("#idpais").val(), function(data){
+            $("#id_estado").html(data);
+        });
+    });
+
+    $("#id_estado").change(function(){				
+        $.get("../model/reg_clinica/estado.php","id_estado="+$("#id_estado").val(), function(data){
+            $("#id_municipio").html(data);
+        });
+    });
+
+    $("#id_municipio").change(function(){
+        $.get("../model/reg_clinica/municipio.php","id_municipio="+$("#id_municipio").val(), function(data){
+            $("#id_parroquia").html(data);
+        });
+    });
+
+    $('#id_estado, #id_parroquia, #id_municipio, #idpais').select2({
+        theme: 'bootstrap-5',
+        width: '100%',
+    });
+    $('#idtipocuenta').select2({
+        theme: 'bootstrap-5',
+        width: '100%',
+    });
+})
+</script>
 </body>
 </html>

@@ -140,7 +140,6 @@ i.fi.fi-rr-venus-mars {
 i.fi.fi-rs-membership {
   margin-right: 6px;
 }
-
 i.fi.fi-rr-expense {
   margin-right: 6px;
 }
@@ -157,14 +156,10 @@ i.fi.fi-rs-refresh {
   margin-right: 6px;
 }
 
-
-
-
-
 #signUpForm .form-header {
   gap: 5px;
   text-align: center;
-  font-size: .9em;
+  font-size: 0.9em;
 }
 #signUpForm .form-header .stepIndicator {
   position: relative;
@@ -180,7 +175,7 @@ i.fi.fi-rs-refresh {
   color: #009688;
 }
 #signUpForm .form-header .stepIndicator::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 50%;
   bottom: 0;
@@ -201,7 +196,7 @@ i.fi.fi-rs-refresh {
   border: 3px solid #007dba;
 }
 #signUpForm .form-header .stepIndicator::after {
-  content: "";
+  content: '';
   position: absolute;
   left: 50%;
   bottom: 8px;
@@ -226,27 +221,41 @@ i.fi.fi-rs-refresh {
 #signUpForm input.invalid {
   border: 1px solid #f5594e;
 }
-#signUpForm .step {
-display: none;
+
+#signUpForm input.buena {
+  border: 1px solid #37dd25;
 }
-#signUpForm .form-footer{
-  overflow:auto;
+
+#signUpForm select.buena {
+  border: 1px solid #37dd25;
+}
+
+#signUpForm .step {
+  display: none;
+}
+#signUpForm .form-footer {
+  overflow: auto;
   gap: 20px;
 }
-#signUpForm .form-footer button{
-
-  padding: 13px 30px;
+#signUpForm .form-footer button {
+  padding: 10px 26px;
   font-size: 1em;
   cursor: pointer;
   border-radius: 5px;
   flex: 1;
-  margin-top: 5px;
 }
 #signUpForm .form-footer button:hover {
-opacity: 0.8;
+  opacity: 0.8;
 }
 
 #signUpForm .form-footer #prevBtn {
-  background-color: #fff;
-  color: #009688;
+  color: #222a55;
+  border-color: #222a55;
+  background: rgba(0, 0, 0, 0);
+}
+
+#signUpForm .form-footer #prevBtn:hover {
+  color: white;
+  border-color: #242958;
+  background-color: #242958;
 }

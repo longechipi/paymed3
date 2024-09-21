@@ -67,7 +67,7 @@
      --bs-dark-border-subtle: rgba(34, 48, 62, 0.5);
      --bs-white-rgb: 255, 255, 255;
      --bs-black-rgb: 34, 48, 62;
-     --bs-font-sans-serif: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+     --bs-font-sans-serif: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
      --bs-font-monospace: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
      --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
      --bs-root-font-size: 16px;
@@ -12681,7 +12681,7 @@
  }
  
  .form-control:hover:not([disabled]):not([focus]) {
-     border-color: #7a838b
+     border-color: #007dba
  }
  
  .input-group .form-control[type=number] {
@@ -13848,7 +13848,7 @@
  form .invalid,
  form .is-invalid .invalid:before,
  form .is-invalid::before {
-     border-width: 2px;
+     border-width: 1px;
      border-color: #ff3e1d !important
  }
  
@@ -15245,7 +15245,7 @@
  @media(max-width: 575.98px) {
      .card-group .card:not(: first-child) .card-img-top {
          border-top-left-radius: 0;
-         border-top-right-radius: 0
+         border-top-right-radius: 0;
      }
  }
  
