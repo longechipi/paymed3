@@ -207,7 +207,7 @@ require('../admin/conexion.php');
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="nrodoc">Nro. Documento:</label>
-                    <input type="text" name="nrodoc" id="nrodoc" class="form-control mb-3">
+                    <input type="text" name="nrodoc" id="nrodoc" class="form-control mb-3" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;">
                 </div>
             </div>
 
@@ -242,7 +242,7 @@ require('../admin/conexion.php');
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="nrocuenta">Nro. Cuenta: <span><small>(Solo Nùmeros, 20 Digitos)</small></span> </label>
-                    <input type="text" name="nrocuenta" id="nrocuenta" value="<?php echo $nrocuenta;?>" minlength="20" maxlength="20" value="" class="form-control mb-3" 
+                    <input type="text" name="nrocuenta" id="nrocuenta"minlength="20" maxlength="20" value="" class="form-control mb-3" 
                     onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;"  required>
                 </div>
             </div>
@@ -342,18 +342,58 @@ require('../admin/conexion.php');
     
         <!-- step three -->
         <div class="step">
-            <p class="text-center mb-4">We will never sell it</p>
-            <div class="mb-3">
-                <input type="text" placeholder="Full name" oninput="this.className = ''" name="fullname">
+            <div class="divider">
+                <div class="divider-text">Rama del Proveedor</div>
             </div>
-            <div class="mb-3">
-                <input type="text" placeholder="Mobile" oninput="this.className = ''" name="mobile">
+            <?php 
+            $sqldata = ("SELECT idespmed, especialidad, idestatus FROM especialidadmed WHERE idestatus='1';");
+            $objdata=$mysqli->query($sqldata); 
+            ?>
+            <div class="row">
+                <div class="table-responsive">
+                <table class="table table-borderless mb-0" id="user">
+                    <thead>
+                      <tr>
+                        <th scope="col">
+                         N#
+                        </th>
+                        <th scope="col">ESPECIALIDAD</th>
+                        <th scope="col">Sel.</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    	<?php $ln='0';
+                    		while ($row = mysqli_fetch_array($objdata)) { $ln++; $idespmed = $row['idespmed'];
+                    			$sql = ("SELECT count(*) as esta, idprovesp, idprov, idespmed FROM provesp");
+                                $obj=$mysqli->query($sql); $arr=$obj->fetch_array(); 
+                                $esta=$arr[0];
+                    	?>
+                      <tr>  
+                        <td><?php echo $ln.'.'; ?></td>
+                        <td><?php echo $row['especialidad']; ?></td>
+
+                        <th scope="row">
+                        	<div class="form-check"> 
+                        		<?php if ($esta!='0') { ?>
+                        				<input class="form-check-input" type="checkbox" onclick="fregesp(<?php echo $row['idespmed']; ?>)" checked />
+                        		<?php  }else{  ?>
+                        				<input class="form-check-input" type="checkbox" onclick="fregesp(<?php echo $row['idespmed']; ?>)" />
+                        		<?php	} ?>
+                        	</div> 
+                        </th>
+                      </tr>
+                    	<?php } ?>
+                    </tbody>
+                  </table>
+                    
+                </div>
             </div>
-            <div class="mb-3">
-                <input type="text" placeholder="Address" oninput="this.className = ''" name="address">
-            </div>
-        </div>
-    
+
+
+
+
+
+        </div><!-- FINstep three -->
         <!-- start previous / next buttons -->
         <div class="row">
             <div class="text-center">
@@ -382,6 +422,7 @@ require('../admin/conexion.php');
     <div class="layout-overlay layout-menu-toggle"></div>
 </div>
 <?php include('../layouts/script.php')?>
+<script src="../js/step.js"></script>
 <script>
 $(document).ready(function() {
 $('#cuenta_ext').change(function() {
@@ -440,7 +481,7 @@ $('#cuenta_ext').change(function() {
         theme: 'bootstrap-5',
         width: '100%',
     });
-    $('#idpaisint').select2({
+    $('#idpaisint', '#user').select2({
         theme: 'bootstrap-5',
         width: '100%',
     });

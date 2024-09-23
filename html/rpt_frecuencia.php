@@ -55,7 +55,8 @@ require('../admin/conexion.php');
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="src_del_frecuencia.php?idfrecuencia=<?php echo $row['idfq'];?>"><i class="fi fi-rr-trash"></i> Eliminar Frecuencia
+                                    <a class="dropdown-item" href="src_del_frecuencia.php?idfrecuencia=<?php echo $row['idfq'];?>">
+                                        <i class="fi fi-rr-trash"></i> Eliminar Frecuencia
                                     </a>
                                 </li>
                             </ul>

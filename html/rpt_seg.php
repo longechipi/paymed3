@@ -19,7 +19,7 @@ require('../admin/conexion.php');
                     <h5 class="card-title text-primary">Listado Seguros</h5>
                     <div class="row">
                         <div class="text-center">
-                            <a class="btn btn-primary mb-4" href="regcli.php" role="button"><i class="fi fi-ts-hospital"></i> AÑADIR SEGURO</a>
+                            <a class="btn btn-primary mb-4" href="regseg.php" role="button"><i class="fi fi-ts-hospital"></i> AÑADIR SEGURO</a>
                         </div>
                     </div>
                     <?php 

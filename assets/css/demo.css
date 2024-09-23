@@ -173,7 +173,7 @@ i.fi.fi-rs-refresh {
 }
 #signUpForm .form-header .stepIndicator.finish {
   font-weight: 600;
-  color: #009688;
+  color: #222954;
 }
 #signUpForm .form-header .stepIndicator::before {
   content: '';
@@ -256,4 +256,14 @@ i.fi.fi-rs-refresh {
   color: white;
   border-color: #242958;
   background-color: #242958;
+}
+
+input:read-only {
+  background-color: rgb(223, 223, 223);
+  cursor: auto;
+}
+
+input:read-only:focus {
+  background-color: rgb(223, 223, 223);
+  cursor: auto;
 }
