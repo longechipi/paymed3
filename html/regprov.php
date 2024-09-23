@@ -28,6 +28,7 @@ require('../admin/conexion.php');
         <!-- end step indicators -->
     
         <!-- step one -->
+
         <div class="step">
         <div class="divider">
             <div class="divider-text">Datos de Básicos</div>
@@ -39,7 +40,6 @@ require('../admin/conexion.php');
                         <select id="idcateg" class="form-select" name="idcateg" required>
                         <option value="" disabled selected>-- Categoria --</option>
                             <?php
-                            //require('admin/conexion.php');
                             $query = $mysqli -> query ("SELECT idcateg, categoria FROM categprove WHERE idestatus='1' ; ");
                             while ($valores = mysqli_fetch_array($query)) {
                                  echo '<option value="'.$valores['idcateg'].'">'.$valores['categoria'].'</option>';
@@ -122,7 +122,6 @@ require('../admin/conexion.php');
                     <select id="idpais" class="form-select" name="idpais" required>
                         <option value="">-- Pais --</option>
                         <?php
-                        //require('admin/conexion.php');
                         $query = $mysqli -> query ("SELECT idpais, pais, idestatus FROM paises WHERE idestatus =1 AND idpais = 232");
                         while ($valores = mysqli_fetch_array($query)) {
                         echo '<option value="'.$valores['idpais'].'">'.$valores['pais'].'</option>';
@@ -187,8 +186,10 @@ require('../admin/conexion.php');
 						<input type="file" id="cedimg2"  name="imagen4"  class="form-control mb-6" accept="application/pdf" title="Formato PDF" >
 					</div>
 				</div>
-             </div><!-- FIN ROW -->
+             </div><!-- FIN ROW -->         
+
         </div>
+
     
         <!-- step two -->
         <div class="step">
@@ -241,7 +242,7 @@ require('../admin/conexion.php');
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="nrocuenta">Nro. Cuenta: <span><small>(Solo Nùmeros, 20 Digitos)</small></span> </label>
-                    <input type="text" name="nrocuenta" id="nrocuenta" value="<?php echo $nrocuenta;?>" minlength="20" maxlength="20" value="" class="form-control" 
+                    <input type="text" name="nrocuenta" id="nrocuenta" value="<?php echo $nrocuenta;?>" minlength="20" maxlength="20" value="" class="form-control mb-3" 
                     onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;"  required>
                 </div>
             </div>
@@ -257,14 +258,14 @@ require('../admin/conexion.php');
                 </div>
             </div>
 
-            <div id="ext" hidden>
+            <div class="row" id="ext" hidden>
                 <div class="col-md-3">
 					<div class="form-group">
-						<label for="idpais" class="control-label mb-1">Pais:</label>
-						<select id="idpais" class="form-select" name="idpais" required>
+						<label for="idpaisint" class="control-label mb-1">Pais:</label>
+						<select id="idpaisint" class="form-select" name="idpaisint" required>
                         <option value="" disabled selected>-- Pais --</option>
 							<?php
-							$query = $mysqli -> query ("SELECT idpais, pais FROM paises WHERE idestatus='1' AND idpais!='232';");
+							$query = $mysqli -> query ("SELECT idpais, pais FROM paises WHERE idpais!='232';");
 							while ($valores = mysqli_fetch_array($query)) {
 							echo '<option value="'.$valores['idpais'].'">'.$valores['pais'].'</option>';
 							} ?>
@@ -289,7 +290,7 @@ require('../admin/conexion.php');
                 <div class="col-md-6">
 					<div class="form-group">
 						<label for="nrocuentaint">Nro. Cuenta:</label>
-						<input type="text" name="nrocuentaint" id="nrocuentaint" value="<?php echo $nrocuentaint;?>" minlength="8" maxlength="20"  value="" class="form-control form-control-sm " 
+						<input type="text" name="nrocuentaint" id="nrocuentaint" minlength="8" maxlength="20" class="form-control mb-3" 
 						onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" required>
 					</div>
 				</div>
@@ -297,49 +298,44 @@ require('../admin/conexion.php');
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="ach">ACH:</label>
-						<input type="text" name="ach" id="ach" value="<?php echo $ach;?>" class="form-control form-control-sm ">
+						<input type="text" name="ach" id="ach" class="form-control">
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="swit">SWIT:</label>
-						<input type="text" name="swit" id="swit" value="<?php echo $swit;?>" class="form-control form-control-sm" required>
+						<input type="text" name="swit" id="swit" class="form-control" required>
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="aba">ABA:</label>
-						<input type="text" name="aba" id="aba" value="<?php echo $aba;?>" class="form-control form-control-sm" required>
+						<input type="text" name="aba" id="aba" class="form-control" required>
 					</div>
 				</div>
 				<!-- 4ta -->
 				<div class="col-md-8">
 					<div class="form-group">
 						<label for="dircta">Dirección Cuenta:</label>
-						<input type="text" name="dircta" id="dircta" value="<?php echo $dircta;?>" class="form-control form-control-sm " 
+						<input type="text" name="dircta" id="dircta" class="form-control" 
 						minlength="7" style="text-transform:uppercase;" required>
 					</div>
 				</div>
 				<div class="col-md-2">
 					<div class="form-group">
 						<label for="telefono">Teléfono:</label>
-						<!--input type="text" name="telefono" id="telefono" value="< ?php echo $telefono;?>" class="form-control form-control-sm " required-->
-						<input type="text" name="telefono" id="telefono" minlength="11" maxlength="11" value="<?php echo $telefono;?>" class="form-control form-control-sm" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" required>
+						
+						<input type="text" name="telefono" id="telefono" minlength="11" maxlength="11" class="form-control" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" required>
 					</div>
 				</div>
 				<div class="col-md-2">
 					<div class="form-group">
 						<label for="codpostalint">Cod.Postal:</label>
-						<!--input type="text" name="codpostalint" id="codpostalint" value="< ?php echo $codpostalint;?>" class="form-control form-control-sm " required-->
-						<input type="text" name="codpostalint" id="codpostalint" maxlength="5" minlength="5" value="<?php echo $codpostalint;?>" class="form-control form-control-sm " onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" required>
+						<input type="text" name="codpostalint" id="codpostalint" maxlength="5" minlength="5" class="form-control" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" required>
 					</div>
 				</div>
-
+            
             </div>
-
-
-
-
 
             </div> <!-- FIN ROW -->
         </div>
@@ -388,6 +384,23 @@ require('../admin/conexion.php');
 <?php include('../layouts/script.php')?>
 <script>
 $(document).ready(function() {
+$('#cuenta_ext').change(function() {
+    if ($(this).val() == '1') {
+        $("#ext").removeAttr("hidden");
+    } else {
+        $("#ext").attr("hidden",true);
+        $("#idpaisint").val("");
+        $("#idbcoint").val("");
+        $("#nrocuentaint").val("");
+        $("#ach").val("");
+        $("#swit").val("");
+        $("#aba").val("");
+        $("#ach").val("");
+        $("#dircta").val("");
+        $("#telefono").val("");
+        $("#codpostalint").val("");
+    }
+});
 
    $('input').blur(function() {
         if (!$(this).val()) {
@@ -427,7 +440,7 @@ $(document).ready(function() {
         theme: 'bootstrap-5',
         width: '100%',
     });
-    $('#idtipocuenta').select2({
+    $('#idpaisint').select2({
         theme: 'bootstrap-5',
         width: '100%',
     });

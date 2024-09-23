@@ -161,6 +161,7 @@ i.fi.fi-rs-refresh {
   text-align: center;
   font-size: 0.9em;
 }
+
 #signUpForm .form-header .stepIndicator {
   position: relative;
   flex: 1;
@@ -243,9 +244,6 @@ i.fi.fi-rs-refresh {
   cursor: pointer;
   border-radius: 5px;
   flex: 1;
-}
-#signUpForm .form-footer button:hover {
-  opacity: 0.8;
 }
 
 #signUpForm .form-footer #prevBtn {

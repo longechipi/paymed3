@@ -37,9 +37,20 @@ function validateForm() {
   x = document.getElementsByClassName('step')
   y = x[currentTab].querySelectorAll('input:not([type="file"]),select')
 
+  const camposAExcluir = [
+    'idpaisint',
+    'idbcoint',
+    'nrocuentaint',
+    'ach',
+    'swit',
+    'aba',
+    'dircta',
+    'telefono',
+    'codpostalint'
+  ]
+
   for (i = 0; i < y.length; i++) {
-    if (!y[i].value) {
-      // Validación para inputs y selects
+    if (!camposAExcluir.includes(y[i].id) && !y[i].value) {
       y[i].classList.add('invalid')
       valid = false
     }
