@@ -17,8 +17,8 @@ $piso =$_POST['piso'];
 $oficina =$_POST['oficina'];
 $codpostal =$_POST['codpostal'];
 
-$str="INSERT INTO aseguradores (idlogin, idtiposeg, rif, razsocial, idpais, idestado, idmunicipio, idparroquia, calleav, casaedif, piso, oficina, urbanizacion, codpostal, idestatus, fecharegistro) 
-	VALUES ('0','".$idtiposeg."','".strtoupper($rif)."', '".strtoupper($razsocial)."','".$idpais."','".$idestado."','".$idmunicipio."','".$idparroquia."','".strtoupper($calleav)."','".strtoupper($casaedif)."','".strtoupper($piso)."','".strtoupper($oficina)."','".strtoupper($urbanizacion)."','".$codpostal."','1','".$fecharegistro."')";
+$str="INSERT INTO aseguradores (idlogin, idtiposeg, rif, razsocial, movil, ttelf, telefono, correo, idpais, idestado, idmunicipio, idparroquia, calleav, casaedif, piso, oficina, urbanizacion, codpostal, idestatus, fecharegistro) 
+	VALUES ('0','".$idtiposeg."','".strtoupper($rif)."', '".strtoupper($razsocial)."', '0' ,'0','email@email.com','".$idpais."','".$idestado."','".$idmunicipio."','".$idparroquia."','".strtoupper($calleav)."','".strtoupper($casaedif)."','".strtoupper($piso)."','".strtoupper($oficina)."','".strtoupper($urbanizacion)."','".$codpostal."','1','".$fecharegistro."')";
 $conexion=$mysqli->query($str);
 
 if($conexion){
