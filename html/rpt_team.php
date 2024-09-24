@@ -23,7 +23,7 @@ require('../admin/conexion.php');
                         </div>
                     </div>
                     <?php 
-                    $sql = ("SELECT * FROM loginn WHERE privilegios <> '2'");
+                    $sql = ("SELECT * FROM loginn");
                     $result=$mysqli->query($sql);	
   
                     ?>
@@ -35,7 +35,7 @@ require('../admin/conexion.php');
                                     <th>Correo</th>
                                     <th>Usuario</th>
                                     <th>Clave</th>
-                                    <th>Cargo</th>
+                                    <th>Nivel</th>
                                     <th>Accion</th>
                                 </tr>
                             </thead>
@@ -43,18 +43,10 @@ require('../admin/conexion.php');
                                 <?php while($row = mysqli_fetch_array($result)) { ?>
                                 <tr>
                                     <td><a><?php echo $row['fullname']; ?></a></td>                      
-                                    <td class="project_progress"><?php echo $row['correo'] ?></td>
-                                    <td class="project_progress"><?php echo $row['usuario'] ?></td>
-                                    <td class="project_progress"><a href="src_clave_team.php?idu=<?php echo $row['idlogin'];?>"><i class="fa fa-eye"></i></a></td>
-                                    <td class="project_progress">
-                                        <?php if($row['privilegios']==1){
-                                            $cargo='DIRECTOR'; echo $cargo;
-                                        }else if($row['privilegios']==3){
-                                            $cargo='GERENTE'; echo $cargo;
-                                        }else if($row['privilegios']==6){
-                                            $cargo='ASESOR'; echo $cargo;
-                                            } 
-                                        ?> </td>
+                                    <td><?php echo $row['correo'] ?></td>
+                                    <td><?php echo $row['usuario'] ?></td>
+                                    <td><a href="src_clave_team.php?idu=<?php echo $row['idlogin'];?>"><i class="fa fa-eye"></i></a></td>
+                                    <td><?php echo $row['cargo'] ?></td>
                                     <td class="project-actions text-right">
                                         <a title="Editar Usuario" class="btn btn-warning" href="moduser.php?idlogin=<?php echo $row['idlogin'];?>"><i class="fi fi-rr-edit"></i> </a>
                                         <a title="Eliminar Usuario" class="btn btn-danger" href="src_del_team.php?idlogin=<?php echo $row['idlogin'];?>"><i class="fi fi-rr-delete-user"></i></a>

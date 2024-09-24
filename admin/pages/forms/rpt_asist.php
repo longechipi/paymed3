@@ -174,7 +174,7 @@ $result = $mysqli->query($sql);
                             </thead>
                             <tbody>
                                 <?php  $hoy = strtotime(date('Y-m-d'));
-                                       //echo $startDate; echo $currentDate;exit();
+                                      
                                 while ($row = mysqli_fetch_array($result)) {
                                     /*
                                     $sqlclin = ("SELECT nombrecentrosalud FROM clinicas WHERE idclinica='".$idclinica."'");

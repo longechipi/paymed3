@@ -90,5 +90,4 @@ if($datos['correo'] == $usuario & $datos['clave'] == $pass){
 			});
 		  </script>';
 	}
-
 ?>

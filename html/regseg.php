@@ -69,7 +69,7 @@ require('../admin/conexion.php');
                     <div class="form-group">
                     <label for="descripcion">País:</label>
                     <select id="idpais" class="form-select" name="idpais" required>
-                        <option value="">-- Pais --</option>
+                        <option value="" selected disabled >Seleccione</option>
                         <?php
                         $query = $mysqli -> query ("SELECT idpais, pais, idestatus FROM paises WHERE idestatus =1 AND idpais = 232");
                         while ($valores = mysqli_fetch_array($query)) {

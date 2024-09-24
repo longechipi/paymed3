@@ -1,5 +1,5 @@
 <?php
-$sqlestatus = ("SELECT estatus  FROM loginn WHERE idlogin ='".$idlogin."';");
+$sqlestatus = "SELECT estatus FROM loginn WHERE idlogin ='$idlogin'";
   $objestatus = $mysqli->query($sqlestatus);
   $arrestatus = mysqli_fetch_array($objestatus);
   $estatusmedico = $arrestatus['estatus'];
@@ -74,7 +74,7 @@ $sqlestatus = ("SELECT estatus  FROM loginn WHERE idlogin ='".$idlogin."';");
                 </li>
                 <!-- Asistente -->
                 <li class="menu-item">
-                    <a href="pages/forms/rpt_asist.php" id="sidebar-hono" class="menu-link empty">
+                    <a href="../html/rpt_asist.php" id="sidebar-hono" class="menu-link empty">
                         <div data-i18n="Accordion">Asistente</div>
                     </a>
                 </li>

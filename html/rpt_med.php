@@ -45,7 +45,7 @@ require('../admin/conexion.php');
                                 
                                 <td><?php echo $row['nrodoc']; ?></td>
                                 <td><?php echo $row['nombre1'].' '.$row['apellido1']; ?></td>
-                                <td><?php echo $row['movil']; ?></td>
+                                <td><?php echo $row['operadora'].$row['movil']; ?></td>
                                 <td><?php echo $row['correo']; ?></td>
                     <td>
                         <div class="btn-group">
@@ -54,12 +54,12 @@ require('../admin/conexion.php');
                           </button>
                           <ul class="dropdown-menu dropdown-menu-end" style="">
                             <li>
-                                <a class="dropdown-item" href="updmed.php?id=<?php echo $row['idlogin'];?>">
+                                <a class="dropdown-item" href="updmed.php?id=<?php echo $row['idmed'];?>">
                                     <i class="fi fi-rr-edit"></i> Editar Medico</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="medctas.php?id=<?php echo $row['idmed'];?>">
-                                <i class="fi fi-rr-file-invoice-dollar"></i> Cuentas Bancarias</a>
+                                <i class="fi fi-rr-file-invoice-dollar"></i>Cuentas Bancarias</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="medctas.php?id=<?php echo $row['idmed'];?>">
@@ -73,7 +73,7 @@ require('../admin/conexion.php');
 
                             <li>
                                 <a class="dropdown-item" href="adddoc.php?id=<?php echo $row['idmed'];?>">
-                                <i class="fi fi-rs-membership"></i></i> Afiliacion</a>
+                                <i class="fi fi-rs-membership"></i> Afiliacion</a>
                             </li>
 
                             <li>

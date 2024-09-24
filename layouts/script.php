@@ -33,8 +33,7 @@ function toggleDarkMode() {
   body.classList.toggle('dark-mode');
 
   if (body.classList.contains('dark-mode')) {
-    localStorage.setItem(darkModeKey,   
- 'true');
+    localStorage.setItem(darkModeKey, 'true');
   } else {
     localStorage.removeItem(darkModeKey);
   }

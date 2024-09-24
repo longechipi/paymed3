@@ -2,14 +2,7 @@
 	session_start();
 	$usuario=$_SESSION['usuario'];
 	$idlogin = $_SESSION['idlogin'];
-	
-	/*
-	if (isset($_GET['id'])) {
-		$idlogin=$_GET['id'];	
-	}else{
-		$idlogin=$_SESSION['idlogin'];
-	}
-	$iddr ='000'.$idlogin;*/
+
 
 	require('../../conexion.php');
 	if(isset($_POST['submit'])){

@@ -366,27 +366,26 @@ $(document).ready(function(){
         url: "../model/mod_medico/reg_med.php",
         data: $("#reg_med").serialize(),
         success: function(data){
-            console.log(data)
-            // if(data == 1){
-            //     Swal.fire({
-            //         title: 'Registro Exitoso!',
-            //         text: 'Se ha registrado correctamente la Clinica',
-            //         icon: 'success',
-            //         confirmButtonColor: "#007ebc",
-            //         confirmButtonText: 'Aceptar'
-            //     }).then((result) => {
-            //         if (result.isConfirmed) {
-            //             window.location.href = "regcli.php";
-            //         }
-            //     });
-            // }else{
-            //     Swal.fire({
-            //         title: 'Error!',
-            //         text: 'Ocurrio un Error al Registrar la Clinica',
-            //         icon: 'error',
-            //         confirmButtonText: 'Aceptar'
-            //     });
-            // }
+             if(data == 1){
+                 Swal.fire({
+                     title: 'Registro Exitoso!',
+                     text: 'Se ha registrado correctamente el Médico',
+                     icon: 'success',
+                     confirmButtonColor: "#007ebc",
+                     confirmButtonText: 'Aceptar'
+                 }).then((result) => {
+                     if (result.isConfirmed) {
+                         window.location.href = "rpt_med.php";
+                     }
+                 });
+             }else{
+                 Swal.fire({
+                     title: 'Error!',
+                     text: 'Ocurrio un Error al Registrar el Médico',
+                     icon: 'error',
+                     confirmButtonText: 'Aceptar'
+                 });
+             }
         }
     }) 
 })
