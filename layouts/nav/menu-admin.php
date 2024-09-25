@@ -320,7 +320,7 @@ $host = basename($_SERVER['PHP_SELF']);
                     echo 'active';
                 } ?>">
                 <a href="../html/rpt_espmed.php" id="sidebar-hono" class="menu-link empty">
-                    <div data-i18n="Accordion">Especialiades Medicas</div>
+                    <div data-i18n="Accordion">Especialidades Medicas</div>
                 </a>
             </li>
              <!-- Registro de Bancos -->

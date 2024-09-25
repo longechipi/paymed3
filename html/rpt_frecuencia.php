@@ -25,7 +25,7 @@ require('../admin/conexion.php');
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Frecuencia de Pagos</th>
+                            <th>Frecuencia de Pago</th>
                             <th>Estatus</th>
                             <th>Accion</th>
                         </tr>

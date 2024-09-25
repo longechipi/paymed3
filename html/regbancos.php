@@ -29,7 +29,7 @@ require('../admin/conexion.php');
                             <div class="col-md-3">
                             <div class="form-group">
                                 <label for="inputName">Tipo Banco</label>
-                                <select class="form-control custom-select" name="tipobco" required>
+                                <select class="form-select" name="tipobco" required>
                                     <option value="1" selected>Nacional</option>
                                     <option value="2">Internacional</option>
                                 </select>

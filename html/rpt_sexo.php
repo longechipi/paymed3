@@ -25,7 +25,7 @@ require('../admin/conexion.php');
                     <thead>
                         <tr>
                             <th>ID</th>   
-                            <th>Proveedor</th>
+                            <th>Genero</th>
                             <th>Estatus</th>
                             <th>Acción</th>
                         </tr>

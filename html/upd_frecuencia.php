@@ -26,7 +26,7 @@ require('../admin/conexion.php');
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="inputName">Tipo de Cuenta</label>
+                                    <label for="inputName">Tipo de Frecuencia</label>
                                     <input type="hidden" value="<?php echo $idfrecuencia;?>"  name="idfrecuencia">
                                     <input type="text" value="<?php echo $roww['frecuencia'];?>"  name="frecuencia" class="form-control mb-3">
                                 </div>

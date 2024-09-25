@@ -27,7 +27,7 @@ require('../admin/conexion.php');
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="inputName">Tipo de Cuenta</label>
+                                    <label for="inputName">Tipo de Genero</label>
                                     <input type="hidden" value="<?php echo $idsex; ?>" name="idsex">
                               <input type="text" value="<?php echo $roww['sexo']; ?>" name="sexo" class="form-control mb-3">
                                 </div>
