@@ -25,8 +25,9 @@ require('../admin/conexion.php');
                     <table class="table table-hover" id="user" cellspacing="0" style="width: 100%;">
                     <thead>
                         <tr>
-                            <th>ID</th>   
-                            <th>Proveedor</th>
+                            <th>ID</th>  
+                            <th>Codigo</th> 
+                            <th>Servicio</th>
                             <th>Estatus</th>
                             <th>Acción</th>
                         </tr>
@@ -38,6 +39,7 @@ require('../admin/conexion.php');
                         while ($row = mysqli_fetch_array($result)) { ?>
                             <tr>
                             <td><?php echo $row['idservaf']; ?></td>
+                            <td><?php echo $row['nomenclatura']; ?></td>
                               <td><?php echo $row['servicio']; ?></td>
                               <td><?php 
                             $sqlst = ("SELECT estatus FROM estatus WHERE idestatus = '".$row['idestatus']."'");

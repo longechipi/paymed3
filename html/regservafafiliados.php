@@ -22,7 +22,7 @@ require('../admin/conexion.php');
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="inputName">Servicio</label>
-                                    <input type="text" value=""  name="servicios" class="form-control">
+                                    <input type="text" name="servicios" class="form-control">
                                 </div>
                             </div>
 

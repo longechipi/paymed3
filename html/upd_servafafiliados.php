@@ -25,13 +25,22 @@ require('../admin/conexion.php');
                     <h5 class="card-title text-primary">Editando Servicio: <?php echo $roww['servicio']; ?></h5>
                     <form id="updafiliado">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <div class="form-group">
-                                    <label for="inputName">Tipo de Cuenta</label>
-                                    <input type="hidden" value="<?php echo $idservi;?>" name="idservi">
-                                    <input type="text" value="<?php echo $roww['servicio']; ?>" name="servicio" class="form-control mb-3">
+                                    <label for="inputName">Codigo</label>
+                                    
+                                    <input type="text" value="<?php echo $roww['nomenclatura']; ?>" name="nomenclatura" class="form-control mb-3" readonly>
                                 </div>
                             </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="inputName">Tipo de Servicio</label>
+                                    <input type="hidden" value="<?php echo $idservi;?>" name="idservi">
+                                    <input type="text" value="<?php echo $roww['servicio']; ?>" name="servicio" class="form-control">
+                                </div>
+                            </div>
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="inputName">Estatus</label>
