@@ -10,13 +10,12 @@ if(empty($usuario) || empty($pass)){
 	echo "AQUIII";
 }
 
-// $sql=("SELECT * from loginn WHERE usuario='$usuario' ");
 $sql=("SELECT * from loginn WHERE correo='".strtolower($usuario)."'");
 
 $conexion1=$mysqli->query($sql);
 $datos=$conexion1->fetch_array();
 
-//if($datos['usuario'] == $usuario & $datos['clave'] == $pass){
+
 if($datos['correo'] == $usuario & $datos['clave'] == $pass){
 	if($datos['cargo'] =='Medico'){ //Verifico Si es medico y si pago
   		$sqlactivo=("SELECT count(*) as hay from medicos WHERE correo='$usuario' AND idestatus='3'; ");
@@ -25,7 +24,8 @@ if($datos['correo'] == $usuario & $datos['clave'] == $pass){
   		if($arractivo[0]!='0'){
   			echo '<script language="javascript">alert("Error: Sin Pago Realizado");window.location.href="../index.html";</script>';exit();	
   		}
-
+		
+			
   	}
 
 		session_start();
@@ -35,6 +35,7 @@ if($datos['correo'] == $usuario & $datos['clave'] == $pass){
 	  	@$_SESSION['correouso'] 	= $datos['correo'];
 		@$_SESSION['cargo'] 		= $datos['cargo'];
 		@$_SESSION['imagen'] 		= $datos['imagen'];
+		
 
 		$permisos=$datos['privilegios'];
 

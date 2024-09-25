@@ -7,6 +7,14 @@
 	$idlogin=$_SESSION['idlogin'];
 	$usuario=$_SESSION['usuario'];
 	$privilegios = $_SESSION['privilegios'];
+  if($privilegios==2){
+    $a="SELECT idmed FROM medicos WHERE correo = '$usuario'";
+			$ares=$mysqli->query($a);
+			$resarray=$ares->fetch_array();
+			$idmedico=$resarray[0];
+  }else{
+    $idmedico=0;
+  }
 	$cargo = $_SESSION['cargo'];
 ?>
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">

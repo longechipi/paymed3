@@ -22,7 +22,9 @@ require('../admin/conexion.php');
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="correo">Correo:</label>
-                                    <input type="email" name="correo" id="correo" class="form-control" onblur="existmail(this.value)" required>
+                                    <input type="email" name="correo" id="correo" class="form-control" required>
+                                    <input type="text" style="display:none;" name="idmed" id="idmed" class="form-control" value="<?php echo $idmedico;?>">
+                                    <input type="text" style="display:none;" name="usuario" id="usuario" class="form-control" value="<?php echo $usuario;?>">
                                 </div>
                             </div>
 
@@ -51,7 +53,8 @@ require('../admin/conexion.php');
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="nombrecargo">Cargo:</label>
-                                    <input type="text" name="nombrecargo" id="nombrecargo" class="form-control" required>
+                                    <input type="text" name="nombrecargo" id="nombrecargo" class="form-control" value="ASISTENTE" required readonly>
+                                    <input type="text" style="display:none;" name="idlogin" id="idlogin" class="form-control" value="<?php echo $idlogin;?>">
                                 </div>
                             </div>
 
@@ -95,10 +98,14 @@ require('../admin/conexion.php');
                            <?php } ?>
 
 
-                            <div class="text-center">
+                            <div class="text-center mb-6">
                                 <button type="submit" class="btn btn-primary"><i class="fi fi-rs-disk"></i> GUARDAR</button>
                                 <a href="javascript:history.back()" class="btn btn-outline-warning" rel="noopener noreferrer"><i class="fi fi-rr-undo"></i> VOLVER </a>
                                
+                            </div>
+
+                            <div class="col-md-12 text-center mb-5" id="existe" hidden>
+                                <h4 >El Asistente Esta Registrado, ¿Quiere que forme parte de su Equipo? <br> De ser correcto por favor Pulse Guardar</h4>
                             </div>
                         </div>
                     </form>
@@ -119,7 +126,61 @@ require('../admin/conexion.php');
 </div>
 <?php include('../layouts/script.php')?>
 <script>
+
 $(document).ready(function(){
+$("#correo").blur(function() {
+    const correo = $("#correo").val();
+    const idmed = $("#idmed").val();
+    $.ajax({
+        type: "POST",
+        url: "../model/reg_asisten/valida_asist.php",
+        data: {correo: correo, idmed: idmed},
+            success:function(val){
+                if(val==1){
+                    Swal.fire({
+                        title: 'El Correo Existe',
+                        text: 'El correo de este Asistente ya se encuentra registrado para este Doctor',
+                        icon: 'warning',
+                        confirmButtonColor: "#007ebc",
+                        confirmButtonText: 'Aceptar'
+                    })
+                    $("#correo").val("");
+                }else{
+                    arreglo=[];
+                    $.ajax({
+                        type: "POST",
+                        url: "../model/reg_asisten/val_email.php",
+                        data: {correo: correo},
+                        success:function(data){
+                            const arreglo = data.split("|");
+                            const lenarreglo=arreglo.length;
+                            if (arreglo.length !== 1) {
+                                
+                                $('#existe').removeAttr('hidden');
+                                const fields = ['cedula', 'apellidos', 'nombres', 'movil', 'tpasist'];
+                                    fields.forEach((field, index) => {
+                                        document.getElementById(field).value = arreglo[index];
+                                        document.getElementById(field).readOnly = true;
+                                    });
+                            } else {
+                                $('#existe').attr('hidden', true);
+                                document.getElementById('existe').style.display = 'none';
+                                const fields = ['cedula', 'apellidos', 'nombres', 'movil', 'tpasist'];
+                                    fields.forEach((field) => {
+                                        document.getElementById(field).value = '';
+                                        document.getElementById(field).readOnly = false;
+                                    });
+                            }
+                        }
+                    })
+
+                }
+            }
+    })
+
+
+});
+   
     $('#regbanco').submit(function(e){
     e.preventDefault();
     $.ajax({
@@ -128,26 +189,26 @@ $(document).ready(function(){
         data: $("#regbanco").serialize(),
         success: function(data){
             console.log(data)
-            if(data == 1){
-                Swal.fire({
-                    title: 'Registro Exitoso!',
-                    text: 'Se ha registrado correctamente el Asistente',
-                    icon: 'success',
-                    confirmButtonColor: "#007ebc",
-                    confirmButtonText: 'Aceptar'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = "rpt_asist.php";
-                    }
-                });
-            }else{
-                Swal.fire({
-                    title: 'Error!',
-                    text: 'Ocurrio un Error al Registrar el Asistente',
-                    icon: 'error',
-                    confirmButtonText: 'Aceptar'
-                });
-            }
+            // if(data == 1){
+            //     Swal.fire({
+            //         title: 'Registro Exitoso!',
+            //         text: 'Se ha registrado correctamente el Asistente',
+            //         icon: 'success',
+            //         confirmButtonColor: "#007ebc",
+            //         confirmButtonText: 'Aceptar'
+            //     }).then((result) => {
+            //         if (result.isConfirmed) {
+            //             window.location.href = "rpt_asist.php";
+            //         }
+            //     });
+            // }else{
+            //     Swal.fire({
+            //         title: 'Error!',
+            //         text: 'Ocurrio un Error al Registrar el Asistente',
+            //         icon: 'error',
+            //         confirmButtonText: 'Aceptar'
+            //     });
+            // }
         }
     }) 
 })

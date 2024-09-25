@@ -35,7 +35,8 @@
 				$conexion=$mysqli->query($str);
 				/* Busco el idlogin para registrar el asistente  */
 				$sqlmaxid = ("SELECT max(idlogin) FROM loginn;");
-		    $resultmaxid=$mysqli->query($sqlmaxid); $rowmaxid = mysqli_fetch_array($resultmaxid);
+		    $resultmaxid=$mysqli->query($sqlmaxid); 
+			$rowmaxid = mysqli_fetch_array($resultmaxid);
 		    $idlogin = $rowmaxid[0];
 		    /* Inserto en tbl asistentes */
 		    $str1="INSERT INTO asistentes(idasist, idlogin, nrodoc, apellidos, nombres, movil, correo, cargo, tpasist, idestatus) 

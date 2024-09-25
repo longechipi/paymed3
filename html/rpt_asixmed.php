@@ -17,9 +17,11 @@ $fechahoy=date('Y-m-d');
         <div class="d-flex align-items-end row">
             <div class="col-12">
                 <div class="card-body">
-                    <h5 class="card-title text-primary">Listado de Asistentes
-                    </h5>
-                    <div class="table-responsive"></div>
+                    <h5 class="card-title text-primary">Listado de Asistentes</h5>
+                    <div class="text-center">
+                        <a class="btn btn-primary" href="regasist.php" rel="noopener noreferrer"><i class="fi fi-rr-user-headset"></i> AÑADIR ASISTENTE</a>
+                    </div>
+                    <div class="table-responsive">
                     <table class="table table-hover" id="user" cellspacing="0" style="width: 100%;">
                     <thead>
                         <tr>
@@ -52,25 +54,22 @@ $fechahoy=date('Y-m-d');
                                 <td><?php echo $row['cargo']; ?></td>
                                 <td><strong><?php echo $row['nombremedico']; ?></strong></td>
                                 <td>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-end" style="">
-                                        <li><a class="dropdown-item" href="updasist.php?gp1=<?php echo $row['idasist']; ?>"><i class="fi fi-rr-edit"></i> Editar Asistente</a></li>
-                                        <li><a class="dropdown-item" href="src_del_asist.php?xy=<?php echo $row['idasist']; ?>"><i class="fi fi-rr-trash"></i> Eliminar Asistente</a></li>
-                                        
-                                    </ul>
-                                </div>
-
-
-                                   
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-end" style="">
+                                            <li><a class="dropdown-item" href="updasist.php?gp1=<?php echo $row['idasist']; ?>"><i class="fi fi-rr-edit"></i> Editar Asistente</a></li>
+                                            <li><a class="dropdown-item" href="src_del_asist.php?xy=<?php echo $row['idasist']; ?>"><i class="fi fi-rr-trash"></i> Eliminar Asistente</a></li>
+                                            
+                                        </ul>
+                                    </div>
                                 </td>
-                               
                             </tr>
                         <?php } ?>
                     </tbody>
                 </table>
+                </div>
                 </div>
             </div>
         </div>

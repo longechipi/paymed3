@@ -50,15 +50,20 @@ require('../admin/conexion.php');
                                 <td><?php echo $row['movil']; ?></td>
                                 <td><?php echo $row['cargo']; ?></td>
                                 <td><?php echo substr($row['tpasist'],-1); ?></td>
-                                <td class="project-actions text-right">
-                                    
-                                    <a class="btn btn-primary btn-sm" href="updasist.php?gp1=<?php echo $row['idasist']; ?>">
-                                        <i class="fa fa-edit"></i></a>
-                                        <!--<a class="btn btn-primary btn-sm" href="">
-                                        <i class="fa fa-book"></i></a>
-                                    -->
-                                    <a class="btn btn-danger btn-sm" href="src_del_asist.php?xy=<?php echo $row['idasist']; ?>"><i class="fas fa-trash"></i> </a>
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-end" style="">
+                                            <li><a class="dropdown-item" href="updasist.php?gp1=<?php echo $row['idasist']; ?>"><i class="fi fi-rr-edit"></i> Editar Asistente</a></li>
+                                            <li><a class="dropdown-item" href="src_del_asist.php?xy=<?php echo $row['idasist']; ?>"><i class="fi fi-rr-trash"></i> Eliminar Asistente</a></li>
+                                            
+                                        </ul>
+                                    </div>
                                 </td>
+
+
                             </tr>
                         <?php } ?>
                     </tbody>
