@@ -189,26 +189,26 @@ $("#correo").blur(function() {
         data: $("#regbanco").serialize(),
         success: function(data){
             console.log(data)
-            // if(data == 1){
-            //     Swal.fire({
-            //         title: 'Registro Exitoso!',
-            //         text: 'Se ha registrado correctamente el Asistente',
-            //         icon: 'success',
-            //         confirmButtonColor: "#007ebc",
-            //         confirmButtonText: 'Aceptar'
-            //     }).then((result) => {
-            //         if (result.isConfirmed) {
-            //             window.location.href = "rpt_asist.php";
-            //         }
-            //     });
-            // }else{
-            //     Swal.fire({
-            //         title: 'Error!',
-            //         text: 'Ocurrio un Error al Registrar el Asistente',
-            //         icon: 'error',
-            //         confirmButtonText: 'Aceptar'
-            //     });
-            // }
+            if(data == 1){
+                Swal.fire({
+                    title: 'Registro Exitoso!',
+                    text: 'Se ha registrado correctamente el Asistente',
+                    icon: 'success',
+                    confirmButtonColor: "#007ebc",
+                    confirmButtonText: 'Aceptar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "rpt_asist.php";
+                    }
+                });
+            }else{
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Ocurrio un Error al Registrar el Asistente',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+            }
         }
     }) 
 })
