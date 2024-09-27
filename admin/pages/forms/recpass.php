@@ -2,7 +2,6 @@
 	session_start();
 	//$usuario=$_SESSION['usuario'];
 	require('../../conexion.php');
-	require('../../../conf/env.php'); //Variables de Entorno
 	//datos 
 	$fecha  =date('d/m/Y');
 	$correo =$_POST['correo'];
@@ -16,7 +15,6 @@
 	$mail = new PHPMailer(true);
 
 	if(!$_POST) exit;
-
 
 	// Email verification, do not edit.
 	function isEmail($email_booking) {
@@ -34,21 +32,21 @@
 	/*-------------*/
 try {
     //Server settings
-    $mail->isSMTP();                    //Send using SMTP
-    $mail->SMTPDebug = 0;               //Enable verbose debug output
-    $mail->Host       = SMTP_HOST;      //Set the SMTP server to send through
-    $mail->SMTPAuth   = true;           //Enable SMTP authentication
-    $mail->Username   = SMTP_USERNAME;  //SMTP username
-    $mail->Password   = SMTP_PASSWORD;  //SMTP password
-    $mail->SMTPSecure = SMTP_SECURE;    //Enable implicit TLS encryption
-    $mail->Port       = SMTP_PORT;     //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+    $mail->isSMTP();                                   //Send using SMTP
+    $mail->SMTPDebug = 0;                              //Enable verbose debug output
+    $mail->Host       = "s1113.use1.mysecurecloudhost.com";     //Set the SMTP server to send through
+    $mail->SMTPAuth   = true;                          //Enable SMTP authentication
+    $mail->Username   = "info@dsinternacional.com";    //SMTP username
+    $mail->Password   = "dsi.2388";                    //SMTP password
+    $mail->SMTPSecure = "ssl";                         //Enable implicit TLS encryption
+    $mail->Port       = 465;                           //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     //Recipients
-    $mail->setFrom(FROM_EMAIL, FROM_NAME);
+    $mail->setFrom('info@dsinternacional.com', 'PAYMED GLOBAL');
     $mail->addAddress($correo);     //Add a recipient
-    $mail->addReplyTo(REPLY_TO_EMAIL, REPLY_TO_NAME);
+    $mail->addReplyTo('no-reply@noreply.com', 'Informacion');
     //$mail->addCC('ingenieria.ds2010@gmail.com');
-    $mail->addCC(CC_EMAIL);
+    $mail->addCC('caballero.nestor.10@gmail.com');
     //$mail->addBCC('ingenieria.ds2010@gmail.com');
 
     //Attachments

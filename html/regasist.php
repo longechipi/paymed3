@@ -188,7 +188,6 @@ $("#correo").blur(function() {
         url: "../model/reg_asisten/regasist.php",
         data: $("#regbanco").serialize(),
         success: function(data){
-            console.log(data)
             if(data == 1){
                 Swal.fire({
                     title: 'Registro Exitoso!',

@@ -100,7 +100,7 @@ if (isset($_POST['submit'])) {
                      <div class="row">
                         <div class="col-md-6">
                            <div class="form-group">
-                              <label for="inputName">Frecuencia de Pago</label>
+                              <label for="inputName">Tipo de Sexo</label>
                               <input type="hidden" value="<?php echo $idservi;?>" name="idservi">
                               <input type="text" value="<?php echo $roww['servicio']; ?>" name="servicio" class="form-control">
                            </div>

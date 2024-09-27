@@ -1,5 +1,5 @@
 <?php
-// Datos de conexión (reemplaza con tus datos)
+
 $servername = "127.0.0.1";
 $username = "root";
 $password = "12345";

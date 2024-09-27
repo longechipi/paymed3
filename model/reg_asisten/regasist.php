@@ -13,12 +13,27 @@ $idmed =$_POST['idmed'];
 $idloginform = $_POST['idlogin'];
 $clave = uniqid();
 $usuario = $_POST['usuario'];
+@$medi_tra = $_POST['medi_tra'];
 
+if($medi_tra){
+$idloginform = $medi_tra;
+//-------- Correo del Doctor ----------//
+$a="SELECT idmed, correo, CONCAT(apellido1, ' ',apellido2, ' ',nombre1, ' ',nombre2) AS nom_medico FROM medicos WHERE idlogin= $idloginform";
+$ares = $mysqli->query($a);
+$arow = mysqli_fetch_array($ares);
+$nom_medico = $arow['nom_medico'];
+$nom_med = $arow['correo'];
+$usuario = $nom_med;
+$idmed2 = $arow['idmed'];
+$idmed = $idmed2;
+
+}else{
 //-------- Nombre del Doctor ----------//
 $a="SELECT CONCAT(apellido1, ' ',apellido2, ' ',nombre1, ' ',nombre2) AS nom_med FROM medicos WHERE idmed= $idmed";
 $ares = $mysqli->query($a);
 $arow = mysqli_fetch_array($ares);
-$nom_med = $arow['nom_med'];
+$nom_medico = $arow['nom_med'];
+}
 
 //-------- SE CREA EL USUARIO EN LOGINN ----------//
 $str="INSERT INTO loginn (idlogin, nombres, apellidos, fullname, cedula, correo, usuario, telefono, movil, direccion, cargo, nombrecargo, clave, privilegios, idtrabajacon, trabajacon, estatus, imagen) 
@@ -44,7 +59,7 @@ $rowmaxida = mysqli_fetch_array($resultmaxida);
 $idasist = $rowmaxida[0];
 
 //------- SE CREA LA RELACION ENTRE ASISTENTE Y MEDICO ----------//
-$str2="INSERT INTO medicosxasist( idasist, idmed, onoff) VALUES('$idasist', '$idmed', 'On')";
+$str2="INSERT INTO medicosxasist(idasist, idmed, onoff) VALUES('$idasist', '$idmed', 'On')";
 $conexion2=$mysqli->query($str2);
 
 if($conexion){

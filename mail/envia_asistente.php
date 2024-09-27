@@ -197,7 +197,7 @@ text-decoration: none
 
 <td class=t13 style="width:510px;padding:0 0 1px 0;">
 
-<p class=t12 style="margin:0;Margin:0;font-family:Poppins,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif;line-height:22px;font-weight:500;font-style:normal;font-size:16px;text-decoration:none;text-transform:none;direction:ltr;color:#454545;text-align:left;mso-line-height-rule:exactly;mso-text-raise:2px;">Esta recibiendo esta notificaci&oacute;n de correo debido a que se registro como Asistente del Dr(a): '.$nom_med.'</p></td>
+<p class=t12 style="margin:0;Margin:0;font-family:Poppins,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif;line-height:22px;font-weight:500;font-style:normal;font-size:16px;text-decoration:none;text-transform:none;direction:ltr;color:#454545;text-align:left;mso-line-height-rule:exactly;mso-text-raise:2px;">Esta recibiendo esta notificaci&oacute;n de correo debido a que se registro como Asistente del Dr(a): '.$nom_medico.'</p></td>
 </tr></table>
 </td></tr><tr><td><div class=t15 style="mso-line-height-rule:exactly;mso-line-height-alt:2px;line-height:2px;font-size:1px;display:block;">&nbsp;&nbsp;</div></td></tr><tr><td align=center>
 <table class=t24 role=presentation cellpadding=0 cellspacing=0 style="Margin-left:auto;Margin-right:auto;">

@@ -40,8 +40,97 @@
   /* Busc*/
 	
 ?>
-<?php include('../layouts/header.php');?>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>PAYMED GLOBAL, LLC</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bbootstrap 4 -->
+  <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
+  <!-- Calendario ND -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/btnstyles.css">
+  
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+   <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script>
+    
+     $( document ).ready(function() {
+        /* antes, ya la selecion del medico se hace en el Index.php
+        var id_privilegios  = $("#id_privilegios").val();
+        var idmedxasis  = $("#idmedxasis").val();
+        if (id_privilegios=='7' && idmedxasis=='') {
+          //alert( "document loaded" );          
+            //$('#exampleModal').modal('show');
+        }
+        /*
+        /*  btn-salir */
+        var btnsalir = document.getElementById('btn_salir');
+        var btnconfirma = document.getElementById('btn_confirma'); 
+        btnsalir.addEventListener('click',
+          function () {
+            window.location.href = "../login.html"
+        }); // End salir
+        /*  btn_confirma */
+    
+        btnconfirma.addEventListener('click',
+          function () {
+            datos = [];
+            var select = document.getElementById('selectmodalidmed');
+            var nombremedico = select.options[select.selectedIndex].text;
+            var inputhide_usuario = document.getElementById('inputhide_usuario').value; //Asistentes
+            var idmed = document.getElementById('selectmodalidmed').value;
+            document.getElementById("p_namedr").innerHTML = 'Dr(a).:'+nombremedico;
+            jQuery.ajax({
+              type: "POST",  
+              url: "changesession_js.php",
+              data: {idmed: idmed, inputhide_usuario: inputhide_usuario},
+              success:function(data){
+              console.log(data);
+              datos = data;
+              const arrdatos = datos.split(';');
+              console.log(arrdatos);
+              document.getElementById('idmedxasis').value=arrdatos[0];
+              document.getElementById('memberdesde').innerHTML='Desde :'+arrdatos[1];
+              document.getElementById('memberhasta').innerHTML='Hasta :'+arrdatos[2];
+              },
+              error:function (){}
+            }); // end jQuery
+            $('#exampleModal').modal('hide');
+        }); // End addEventListener
+         var selemedico = document.getElementById('btnselmedico');
+selemedico.addEventListener('click',
+   function () {
+      $('#exampleModal').modal('show');
+   })
+      }); // End Ready
+    </script>
+    <style type="text/css">
+      .pointer {cursor: pointer;}
+    </style>
+</head>
 <body class="hold-transition sidebar-mini layout-fixed">
+  
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="static" 
   data-keyboard="false">
@@ -78,8 +167,7 @@
 <div class="wrapper">
      
       <!-- Sidebar Menu -->     		 
-<?php //include("menu-adm.php"); ?>
-<?php include("../layouts/menu.php"); ?>
+<?php include("menu-adm.php"); ?>
       <!-- /.sidebar-menu -->
 
   <!-- Content Wrapper. Contains page content -->
@@ -156,6 +244,6 @@
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
  <!-- AdminLTE ds -->
-<script src="js/ds.js"></script>
+  <script src="js/ds.js"></script>
 </body>
 </html>

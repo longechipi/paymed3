@@ -1,18 +1,17 @@
-<?php 
-session_start();
-	date_default_timezone_set('America/Caracas');
-	if (!isset($_SESSION['usuario'])) {
-		echo '<script language="javascript">window.location.href="../login.html";</script>';
-	}
-	$idlogin=$_SESSION['idlogin'];
-	$usuario=$_SESSION['usuario'];
-	$privilegios=$_SESSION['privilegios'];
-	$cargo=$_SESSION['cargo'];
-?>
+<?php session_start();
+	  date_default_timezone_set('America/Caracas');
+	  if (!isset($_SESSION['usuario'])) {
+			echo '<script language="javascript">window.location.href="../login.html";</script>';
+		}
+	  $idlogin=$_SESSION['idlogin'];
+	  $usuario=$_SESSION['usuario'];
+	  $privilegios = $_SESSION['privilegios']; //echo  $privilegios; exit();
+	  $cargo = $_SESSION['cargo'];
+	  ?>
     <!-- Main Sidebar Container -->
   <aside style="background: #484748" class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index.php" class="brand-link">
+    <a href="../index.php" target="_blank" class="brand-link">
       <img src="dist/img/70.png"
            alt="LOGO PAYMED GLOBAL, LLC"
            class="brand-image img-circle elevation-3"
@@ -25,10 +24,9 @@ session_start();
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-
-        	<span style="font-weight: bold">USUARIO:</span><?php echo ' '.$usuario; ?>
-			<br>
-        	<span style="font-weight: bold">CARGO:</span>
+        	<input type="hidden" id="inputhide_usuario" value="<?php echo $usuario; ?>">
+        	<a href="#" class="d-block" style="color: #fff"><span style="font-weight: bold">USUARIO:</span><?php echo ' '.$usuario; ?></a>
+        	<a href="#" class="d-block" style="color: #fff"><span style="font-weight: bold">CARGO:</span>
 				<?php 
 					// Busco nombre del que esta logeado
   					$sqldatosdr = ("SELECT idlogin, fullname  FROM loginn WHERE correo='".$usuario."';");
@@ -36,14 +34,14 @@ session_start();
   					$rowdatosdr = mysqli_fetch_array($arrdatosdr);
   					$idlogin =$rowdatosdr['idlogin'];
   					$namedr =$rowdatosdr['fullname'];
-          		if($privilegios==1){echo 'Administrador';}
+          		if($privilegios==1){echo ' Administrador';}
           		else if($privilegios==2){echo ' Médico'; echo '<p style="color:#EEFF41;" >Dr(a): '. $namedr.'</p>';
           			}
 					else if($privilegios==3){echo ' Aseguradora';}
           		else if($privilegios==4){echo ' Proveedor';}
           		else if($privilegios==7){echo ' Asistente';} 
 				?>
-			
+			</a>
 			<?php
 
 			// Busco con quien trabaja (Jefe)

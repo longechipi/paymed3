@@ -103,7 +103,7 @@ if (isset($_POST['submit'])) {
                            <div class="form-group">
                               <label for="inputName">Tipo de Contacto</label>
                               <input type="hidden" value="<?php echo $idcontacto; ?>" name="idcontacto">
-                              <input type="text" value="<?php echo $roww['tipocontacto']; ?>" name="tipocontacto" class="form-control mb-3">
+                              <input type="text" value="<?php echo $roww['tipocontacto']; ?>" name="tipocontacto" class="form-control">
                            </div>
                         </div>
                         <div class="col-md-6">
