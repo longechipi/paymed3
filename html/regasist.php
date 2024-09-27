@@ -197,7 +197,7 @@ $("#correo").blur(function() {
                     confirmButtonText: 'Aceptar'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = "rpt_asixmed.php";
+                        window.location.href = "rpt_asist.php";
                     }
                 });
             }else{
