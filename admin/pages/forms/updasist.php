@@ -234,10 +234,15 @@
 					<div class="form-group">
 						<label for="tpasist">Estatus:</label>
 						<select class="form-control form-control-sm" id="idestatus" name="idestatus" disabled>
-							<option value="<?php echo $idestatus;?>"><?php echo $estatus;?></option>
-              <option value="1">Activo</option>
-              <option value="2">Inactivo</option>
-            </select>
+    <?php if ($idestatus == 1) { ?>
+        <option value="1" selected>Activo</option>
+    <?php } else if ($idestatus == 2) { ?>
+        <option value="2" selected>Inactivo</option>
+    <?php } else { ?>
+        <option value="1">Activo</option>
+        <option value="2">Inactivo</option>
+    <?php } ?>
+</select>
 					</div>
 				</div>
 

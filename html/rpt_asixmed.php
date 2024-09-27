@@ -37,12 +37,24 @@ $fechahoy=date('Y-m-d');
                    
                     <tbody>
                         <?php  
-                        $sql="SELECT a.idlogin, b.idlogin as idloginAsist, b.idasist, b.apellidos, b.nombres, b.nrodoc, b.correo,  b.movil, b.cargo, b.tpasist, concat(a.apellido1,' ',a.nombre1) as nombremedico
-                        FROM medicos a, asistentes b, medicosxasist c 
-                        WHERE a.idmed=c.idmed 
-                        and b.idasist=c.idasist
-                        ORDER by 1;";
-                        $result = $mysqli->query($sql);
+                        if($privilegios == '1'){
+                            $sql="SELECT a.idlogin, b.idlogin as idloginAsist, b.idasist, b.apellidos, b.nombres, b.nrodoc, b.correo,  b.movil, b.cargo, b.tpasist, concat(a.apellido1,' ',a.nombre1) as nombremedico
+                            FROM medicos a, asistentes b, medicosxasist c 
+                            WHERE a.idmed=c.idmed 
+                            and b.idasist=c.idasist
+                            ORDER by 1;";
+                             $result = $mysqli->query($sql);
+                        }else{
+                            $sql = "SELECT b.idasist, b.apellidos, b.nombres, b.nrodoc, b.correo,  b.movil, b.cargo, b.tpasist,
+                                concat(a.apellido1,' ',a.nombre1) as nombremedico
+                                FROM medicos a, asistentes b, medicosxasist c 
+                                WHERE a.idmed=c.idmed 
+                                and b.idasist=c.idasist
+                                and a.idlogin='$idlogin'";
+                                $result = $mysqli->query($sql);
+                        }
+                       
+                       
                          $hoy = strtotime(date('Y-m-d'));
                             while ($row = mysqli_fetch_array($result)) {
                         ?>
@@ -60,7 +72,7 @@ $fechahoy=date('Y-m-d');
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-end" style="">
                                             <li><a class="dropdown-item" href="updasist.php?gp1=<?php echo $row['idasist']; ?>"><i class="fi fi-rr-edit"></i> Editar Asistente</a></li>
-                                            <li><a class="dropdown-item" href="src_del_asist.php?xy=<?php echo $row['idasist']; ?>"><i class="fi fi-rr-trash"></i> Eliminar Asistente</a></li>
+                                            <li><a class="dropdown-item" href="../model/reg_asisten/src_del_asist.php?id=<?php echo $row['idasist']; ?>"><i class="fi fi-rr-trash"></i> Eliminar Asistente</a></li>
                                             
                                         </ul>
                                     </div>

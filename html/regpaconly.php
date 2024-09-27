@@ -37,7 +37,7 @@ require('../admin/conexion.php');
 
                         <div class="col-md-2">
                             <div class="form-group">
-                            <label for="rif">Primer Apellido</label> <span class="text-danger">(*)</span>
+                            <label for="rif">Primer Apellido</label>
                             <input type="text" name="apellido1" id="apellido1" style="text-transform:uppercase;" onKeypress="if (event.keyCode < 65 || event.keyCode > 90 && event.keyCode < 97 || event.keyCode > 122) event.returnValue = false;" required class="form-control" required 
                             value="">
                             </div>
@@ -95,14 +95,14 @@ require('../admin/conexion.php');
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="fnacimiento">Fec.Nacimiento:</label>
-                                <input type="date" name="fnacimiento" id="fnacimiento" class="form-control" onchange="calcedad(this.value)">
+                                <input type="date" name="fnacimiento" id="fnacimiento" class="form-control">
                             </div>
                         </div>
 
                         <div class="col-md-1">
                            <div class="form-group">
                               <label for="edad">Edad:</label>
-                              <input type="text" name="edad" id="edad" class="form-control" readonly>
+                              <input type="text" name="edad" id="edad" class="form-control">
                            </div>
                         </div>
 
@@ -144,7 +144,7 @@ require('../admin/conexion.php');
                     <div class="row"> <!--INICIO ROW 3 -->
                         <div class="col-md-3 mb-3">
                             <div class="form-group">
-                                <label for="descripcion">País:</label> <span class="text-danger">(*)</span>
+                                <label for="descripcion">País:</label>
                                 <select id="idpais" class="form-select" name="idpais" required>
                                     <option value="">-- Pais --</option>
                                     <?php
@@ -159,7 +159,7 @@ require('../admin/conexion.php');
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="descripcion">Estado:</label> <span class="text-danger">(*)</span>
+                                <label for="descripcion">Estado:</label>
                                 <select id="id_estado" class="form-select" name="idestado" required>
                                     <option value="">-- Seleccione --</option>
                                 </select>
@@ -168,7 +168,7 @@ require('../admin/conexion.php');
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="descripcion">Municipio:</label> <span class="text-danger">(*)</span>
+                                <label for="descripcion">Municipio:</label>
                                 <select id="id_municipio" class="form-select" name="idmunicipio" required>
                                     <option value="">-- Municipio --</option>
                                 </select>
@@ -177,7 +177,7 @@ require('../admin/conexion.php');
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="descripcion">Parroquia:</label> <span class="text-danger">(*)</span>
+                                <label for="descripcion">Parroquia:</label>
                                 <select id="id_parroquia" class="form-select" name="idparroquia" required>
                                     <option value="">-- Parroquia --</option>
                                 </select>	
@@ -188,49 +188,16 @@ require('../admin/conexion.php');
                     <div class="row"> <!--INICIO ROW 3 -->
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="urbanizacion">Urbanización:</label> <span class="text-danger">(*)</span>
-                                <input type="text" name="urbanizacion" style="text-transform:uppercase;"  id="urbanizacion" class="form-control" required>
+                                <label for="urbanizacion">Urbanización:</label>
+                                <input type="text" name="calleav" style="text-transform:uppercase;" id="calleav" style="text-transform:uppercase;" class="form-control">
                             </div>
                         </div>
 
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="calleav">Calle/Avenida:</label>
-                                <input type="text" name="calleav" id="calleav" style="text-transform:uppercase;" class="form-control" required>
-                            </div>
-                        </div>
-
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label for="casaedif">Casa/Edif.:</label>
-                                <input type="text" maxlength="8" name="casaedif" id="casaedif" class="form-control" style="text-transform:uppercase" required>
-                            </div>
-                        </div>
-
-                        <div class="col-md-1">
-                            <div class="form-group">
-                                <label for="piso">Piso:</label>
-                                <input type="text" name="piso" id="piso" maxlength="2" class="form-control" required>
-                            </div>
-                        </div>
-
-                        <div class="col-md-1">
-                            <div class="form-group">
-                                <label for="oficina">Oficina:</label>
-                                <input type="text" style="text-transform:uppercase;" name="oficina" id="oficina" maxlength="8" class="form-control" required>
-                            </div>
-                        </div>
-
-                        <div class="col-md-1">
-                            <div class="form-group">
-                                <label for="codpostal">Cod.Postal:</label>
-                                <input type="text" name="codpostal" id="codpostal"  maxlength="4" minlength="4" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" class="form-control" required>
-                            </div>
-                        </div>
+                       
 
                         <div class="text-center mt-4">
                             <button type="submit" id="btn_register_clinica" class="btn btn-primary"><i class="fi fi-rs-disk"></i> REGISTRAR</button>
-                            <a href="rpt_med.php" class="btn btn-outline-warning" rel="noopener noreferrer"><i class="fi fi-rr-undo"></i> VOLVER </a>
+                            <a href="javascript:history.back()" class="btn btn-outline-warning" rel="noopener noreferrer"><i class="fi fi-rr-undo"></i> VOLVER </a>
                         </div>
 
                    </div>  <!-- FIN ROW 4 -->
@@ -252,31 +219,6 @@ require('../admin/conexion.php');
 </div>
 <?php include('../layouts/script.php')?>
 <script>
-
-function calcedad(fecha) {
-jQuery.ajax({
-   type: "POST",
-   url: "../model/mod_medico/caledad.php",
-   data: { fecha: fecha },
-   success: function(data) {
-      var edad = parseInt(data);
-      if (edad < 0 || edad > 90 || isNaN(edad)) {
-        Swal.fire({
-            title: 'Error!',
-            text: 'El Médico no puede ser Menor de Edad',
-            icon: 'error',
-            confirmButtonColor: "#007ebc",
-            confirmButtonText: 'Aceptar'
-        });
-        document.getElementById("fnacimiento").value = "";
-         return ;
-      } else {
-         document.getElementById("edad").value = data;
-      }
-   },
-   error: function() {}
-});
-}
 
 function busci(cinro) {
     let tpdoc=document.getElementById("tpdoc").value;
@@ -302,34 +244,31 @@ function busci(cinro) {
     });
 }
 
-
-
-
 $(document).ready(function(){
     $('#reg_med').submit(function(e){
     e.preventDefault();
     $.ajax({
         type: "POST",
-        url: "../model/mod_medico/reg_med.php",
+        url: "../model/mod_actP_med/regpaciente.php",
         data: $("#reg_med").serialize(),
         success: function(data){
-            console.log(data)
+           console.log(data)
             // if(data == 1){
             //     Swal.fire({
             //         title: 'Registro Exitoso!',
-            //         text: 'Se ha registrado correctamente la Clinica',
+            //         text: 'Se ha registrado correctamente el Paciente',
             //         icon: 'success',
             //         confirmButtonColor: "#007ebc",
             //         confirmButtonText: 'Aceptar'
             //     }).then((result) => {
             //         if (result.isConfirmed) {
-            //             window.location.href = "regcli.php";
+            //             window.location.href = "rpt_pacxmed.php";
             //         }
             //     });
             // }else{
             //     Swal.fire({
             //         title: 'Error!',
-            //         text: 'Ocurrio un Error al Registrar la Clinica',
+            //         text: 'Ocurrio un Error al Registrar el Paciente',
             //         icon: 'error',
             //         confirmButtonText: 'Aceptar'
             //     });
