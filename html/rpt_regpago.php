@@ -1,6 +1,6 @@
 <?php 
 include('../layouts/header.php');
-require('../admin/conexion.php');
+require('../conf/conexion.php');
 
 $sqlpago=("SELECT a.*, b.idmed, b.nombre1, b.correo, SUBSTRING(c.cargo,1,1) AS cargo
             FROM regpagos a, medicos b, loginn c

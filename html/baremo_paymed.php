@@ -1,6 +1,6 @@
 <?php 
 include('../layouts/header.php');
-require('../admin/conexion.php');
+require('../conf/conexion.php');
 $a = "SELECT b.idbaremo, b.validodesde, b.validohasta, b.archivo, b.descbaremo, b.idestatus, e.estatus, b.fecharegistro
  FROM baremos_paymed b
  LEFT JOIN estatus e ON b.idestatus = e.idestatus

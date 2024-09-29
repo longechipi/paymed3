@@ -1,6 +1,6 @@
 <?php 
 include('../layouts/header.php');
-require('../admin/conexion.php');
+require('../conf/conexion.php');
 $idclinica = $_GET['id'];
 $sql = ("SELECT a.idclinica, a.idlogin, a.rif, a.razsocial, a.nombrecentrosalud,a.descrip, a.idtipo, a.idtppr, a.idpais, a.idestado, a.idmunicipio, a.idparroquia, a.correoppal, a.calleav, a.casaedif, a.piso, a.oficina, a.urbanizacion, a.codpostal, a.idestatus, a.fechahora_sist, a.fecharegistro,
 				b.pais, c.estado, d.municipio, e.parroquia, a.correoppal
@@ -106,7 +106,7 @@ $sql = ("SELECT a.idclinica, a.idlogin, a.rif, a.razsocial, a.nombrecentrosalud,
                       </div>
                         <div class="col-md-1">
                             <div class="form-group">
-                            <label for="rif">N°</label> <span class="text-danger">(*)</span>
+                            <label for="rif">N°</label>
                                 <select class="form-select"  id="tprif" name="tprif" required>
                                     <option value="<?php echo $tprif; ?>"><?php echo $tprif; ?></option>
                                     <option value="N">N</option>
@@ -117,28 +117,28 @@ $sql = ("SELECT a.idclinica, a.idlogin, a.rif, a.razsocial, a.nombrecentrosalud,
                         </div>
                         <div class="col-md-2 mb-3">
                             <div class="form-group">
-                                <label for="rif">RIF:</label> <span class="text-danger">(*)</span>
+                                <label for="rif">RIF:</label>
                                 <input type="text" name="rif" id="rif" value="<?php echo $rif; ?>" minlength="9" maxlength="9" class="form-control" required>
 					        </div>
                         </div>
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="razsocial">Razón Social:</label> <span class="text-danger">(*)</span>
+                                <label for="razsocial">Razón Social:</label>
                                 <input type="text" name="razsocial" id="razsocial" value="<?php echo $razsocial; ?>" class="form-control"style="text-transform:uppercase;" required>
                             </div>
                         </div>
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="nbcs">Nom. Centro de Salud:</label> <span class="text-danger">(*)</span>
+                                <label for="nbcs">Nom. Centro de Salud:</label>
                                 <input type="text" name="nbcm" id="nbcm" value="<?php echo $nbdcm; ?>" class="form-control" style="text-transform:uppercase;" required>
                             </div> 
                         </div>
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="correoppal">Correo Master:</label> <span class="text-danger">(*)</span>
+                                <label for="correoppal">Correo Master:</label>
                                 <input type="text" name="correoppal" id="correoppal" value="<?php echo $correoppal; ?>" class="form-control" required>
                             </div>
                         </div>
@@ -147,7 +147,7 @@ $sql = ("SELECT a.idclinica, a.idlogin, a.rif, a.razsocial, a.nombrecentrosalud,
                     <div class="row"> <!--INICIO ROW 2 -->
                         <div class="col-md-3 ">
                             <div class="form-group">
-                            <label for="idtipo">Tipo de Empresa:</label> <span class="text-danger">(*)</span>
+                            <label for="idtipo">Tipo de Empresa:</label>
                             <select id="idtipo" class="form-select" name="tipo" required>
                                 <option value="<?php echo $idtipo; ?>">
                                     <?php
@@ -167,7 +167,7 @@ $sql = ("SELECT a.idclinica, a.idlogin, a.rif, a.razsocial, a.nombrecentrosalud,
 
                         <div class="col-md-3">
                             <div class="form-group">
-                            <label for="idtipo">Tipo de Proveedor:</label> <span class="text-danger">(*)</span>
+                            <label for="idtipo">Tipo de Proveedor:</label>
                             <select class="form-select" id="idtipoprov" name="idtipoprov">
                                 <option value="<?php echo $idtipoprov; ?>">
                                     <?php
@@ -186,7 +186,7 @@ $sql = ("SELECT a.idclinica, a.idlogin, a.rif, a.razsocial, a.nombrecentrosalud,
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="descripcion">Descripción (breve):</label> <span class="text-danger">(*)</span>
+                                <label for="descripcion">Descripción (breve):</label>
                                 <input type="text" name="descripcion" id="descripcion" style="text-transform:uppercase;" 
                                 value="<?php echo $descripcion; ?>" class="form-control" required>
                             </div>
@@ -200,7 +200,7 @@ $sql = ("SELECT a.idclinica, a.idlogin, a.rif, a.razsocial, a.nombrecentrosalud,
                         <div class="col-md-3 mb-3">
 
                         <div class="form-group">
-                            <label for="descripcion">País:</label> <span class="text-danger">(*)</span>
+                            <label for="descripcion">País:</label>
 						    <select id="idpais"class="form-select" name="idpais" required>
                                 <option value="<?php echo $idpais; ?>"><?php echo $pais; ?></option>
                                 <?php
@@ -215,7 +215,7 @@ $sql = ("SELECT a.idclinica, a.idlogin, a.rif, a.razsocial, a.nombrecentrosalud,
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="descripcion">Estado:</label> <span class="text-danger">(*)</span>
+                                <label for="descripcion">Estado:</label>
                                 <select id="id_estado" class="form-select" name="idestado" required>
                                     <option value="<?php echo $idestado; ?>"><?php echo $estado; ?></option>
                                 </select>
@@ -224,7 +224,7 @@ $sql = ("SELECT a.idclinica, a.idlogin, a.rif, a.razsocial, a.nombrecentrosalud,
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="descripcion">Municipio:</label> <span class="text-danger">(*)</span>
+                                <label for="descripcion">Municipio:</label>
                                 <select id="id_municipio" class="form-select" name="idmunicipio" required>
                                     <option value="<?php echo $idmunicipio; ?>"><?php echo $municipio; ?></option>
                                 </select>
@@ -233,7 +233,7 @@ $sql = ("SELECT a.idclinica, a.idlogin, a.rif, a.razsocial, a.nombrecentrosalud,
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="descripcion">Parroquia:</label> <span class="text-danger">(*)</span>
+                                <label for="descripcion">Parroquia:</label>
                                 <select id="id_parroquia" class="form-select" name="idparroquia" required>
                                     <option value="<?php echo $idparroquia; ?>"><?php echo $parroquia; ?></option>
                                 </select>	
@@ -244,7 +244,7 @@ $sql = ("SELECT a.idclinica, a.idlogin, a.rif, a.razsocial, a.nombrecentrosalud,
                     <div class="row"> <!--INICIO ROW 3 -->
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="urbanizacion">Urbanización:</label> <span class="text-danger">(*)</span>
+                                <label for="urbanizacion">Urbanización:</label>
                                 <input type="text" name="urbanizacion" style="text-transform:uppercase;" id="urbanizacion" value="<?php echo $urbanizacion; ?>" class="form-control" required>
                             </div>
                         </div>

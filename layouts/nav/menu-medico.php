@@ -27,7 +27,7 @@ $sqlestatus = "SELECT estatus FROM loginn WHERE idlogin ='$idlogin'";
             <ul class="menu-sub">
                 <!-- Actualizar -->
                 <li class="menu-item">
-                    <a href="pages/forms/updmed.php" id="sidebar-hono" class="menu-link empty">
+                    <a href="../html/perfil.php" id="sidebar-hono" class="menu-link empty">
                         <div data-i18n="Accordion">Actualizar</div>
                     </a>
                 </li>
@@ -55,7 +55,7 @@ $sqlestatus = "SELECT estatus FROM loginn WHERE idlogin ='$idlogin'";
             <ul class="menu-sub">
                 <!-- Actualizar -->
                 <li class="menu-item">
-                    <a href="pages/forms/updmed.php" id="sidebar-hono" class="menu-link empty">
+                    <a href="../html/perfil.php" id="sidebar-hono" class="menu-link empty">
                         <div data-i18n="Accordion">Actualizar</div>
                     </a>
                 </li>

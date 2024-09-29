@@ -1,6 +1,6 @@
 <?php 
 include('../layouts/header.php');
-require('../admin/conexion.php');
+require('../conf/conexion.php');
 $idclinica = $_GET['id'];
 
 $sql = ("SELECT a.idclinica, a.idlogin, a.rif, a.razsocial, a.nombrecentrosalud,a.descrip, a.idtipo, a.idpais, a.idestado, a.idmunicipio, a.idparroquia, a.correoppal, a.calleav, a.casaedif, a.piso, a.oficina, a.urbanizacion, a.codpostal, a.idestatus, a.fechahora_sist, a.fecharegistro,

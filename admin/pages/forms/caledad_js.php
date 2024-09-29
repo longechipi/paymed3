@@ -1,5 +1,5 @@
 <?php
-	//require('../admin/conexion.php');
+	//require('../conf/conexion.php');
 	//$fecha=date('Y-m-d');
 	$fechanacimiento=$_POST['fecha'];
 	//echo $fechanacimiento; exit();

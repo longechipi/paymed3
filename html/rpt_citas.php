@@ -1,6 +1,6 @@
 <?php 
 include('../layouts/header.php');
-require('../admin/conexion.php');
+require('../conf/conexion.php');
 $fechahoy=date('Y-m-d');
 $ffechahoy = date("d/m/Y", strtotime($fechahoy));
 require('../conf/borrarcitas.php');

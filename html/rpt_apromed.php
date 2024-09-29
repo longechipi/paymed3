@@ -1,6 +1,6 @@
 <?php 
 include('../layouts/header.php');
-require('../admin/conexion.php');
+require('../conf/conexion.php');
 $sqlpago = ("SELECT a.idmed, b.idlogin, a.nrodoc, a.apellido1, a.nombre1, a.movil, a.correo, a.idestatus , b.estatus
 FROM medicos a, loginn b WHERE a.idlogin=b.idlogin and b.estatus='I' and a.idestatus='4'");
 $resultpago = $mysqli->query($sqlpago);

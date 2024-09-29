@@ -1,6 +1,6 @@
 <?php 
 include('../layouts/header.php');
-require('../admin/conexion.php');
+require('../conf/conexion.php');
 ?>
 
 <div class="layout-wrapper layout-content-navbar">

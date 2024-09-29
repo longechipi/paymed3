@@ -1,6 +1,6 @@
 <?php 
 include('../layouts/header.php');
-require('../admin/conexion.php');
+require('../conf/conexion.php');
 $cod_med = $_GET['id'];
 $a ="SELECT * FROM medicos WHERE idmed = $cod_med";
 $ares=$mysqli->query($a);
