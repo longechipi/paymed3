@@ -38,11 +38,11 @@
    $sql = ("SELECT iddocument, idmed, imagen FROM drdocument WHERE idmed='".$idmed."'; ");
    $objimg=$mysqli->query($sql);
   /* Busco Horario */
-  $sqlclinmedi = ("SELECT b.idclinica, c.idmed, b.razsocial, a.pacxdia, a.pacconseg, a.pacsinseg
+  $sqlclinmedi = "SELECT b.idclinica, c.idmed, b.razsocial, a.pacxdia, a.pacconseg, a.pacsinseg
                   FROM clinicamedico a, clinicas b, medicos c
                   WHERE a.idclinica =b.idclinica
                   AND a.idmed=c.idmed
-                  AND a.idmed='".$idmed."'; ");
+                  AND c.idlogin = $idlogin";
 
   $objclinmedi=$mysqli->query($sqlclinmedi);
 ?>

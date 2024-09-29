@@ -34,7 +34,8 @@
 				FROM datbconac a, bancos b, tipocuenta c
 				WHERE a.idbco=b.idbco AND a.idtipocuenta=c.idtipocuenta AND a.idlogin = '".$idlogin."';");
 	     
-	     	$objdat=$mysqli->query($sqldat); $arrdat=$objdat->fetch_array();
+	     	$objdat=$mysqli->query($sqldat); 
+			$arrdat=$objdat->fetch_array();
 	     	$titular=$arrdat['titular'];
 	     	//$nrodoc=$arrdat['nrodoc'];
 	     	$idbco=$arrdat['idbco'];
@@ -51,7 +52,6 @@
 	    /*  Ctas Internacionales */
 	    if ($rowcounti=='0') { 
 	    	$sqlinsi = ("INSERT INTO datbcoint(iddatbcoint, idlogin) VALUES (null, '".$idlogin."');");
-
 	    	$conex=$mysqli->query($sqlinsi);
 	    	$titularint='';
 	     	$idpais='';
@@ -66,7 +66,7 @@
 	     	$dircta='';
 	     	$telefono='';
 	     	$codpostalint='';
-	     	$idestatus='1'; // Por ahora $arrdati['idestatus'];
+	     	$idestatus='1'; 
 	     }else{
 	     	$sqldati = ("SELECT a.iddatbcoint, a.titular, a.idpais, c.pais,  a.nrodoc, a.idbco, b.banco, a.ach, 
 	     		a.nrocuenta, 
