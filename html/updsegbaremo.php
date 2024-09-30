@@ -18,7 +18,7 @@ require('../conf/conexion.php');
                   $objaseg = $mysqli->query($sql);
                   $arraseg = mysqli_fetch_array($objaseg);
 
-                $sqlct = ("SELECT * FROM asegura_negocia WHERE idaseg='" . $idaseg . "' ORDER BY idneg DESC");
+                $sqlct = ("SELECT * FROM asegura_negocia WHERE idaseg='$idaseg' ORDER BY idneg DESC");
 	            $resulct = $mysqli->query($sqlct);
                 ?>
                 <div class="content-wrapper">
@@ -181,47 +181,48 @@ $(document).ready(function(){
         },
     });
     
-    $('#updseg').submit(function(e){
-    e.preventDefault();
-    const desde = $('#desde').val();
-    const hasta = $('#hasta').val();
-    if(desde > hasta){
-        Swal.fire({
-            title: 'Error!',
-            text: 'La fecha de inicio no puede ser mayor a la fecha final',
-            icon: 'error',
-            confirmButtonText: 'Aceptar'
-        });
-        return false;
-    }
-    $.ajax({
-        type: "POST",
-        url: "../model/mod_seguro/updsegbaremo.php",
-        data: $("#updseg").serialize(),
-        success: function(data){
-            if(data == 1){
-                Swal.fire({
-                    title: 'Actualización Exitosa!',
-                    text: 'Agrego Correctamente el Baremo',
-                    icon: 'success',
-                    confirmButtonColor: "#007ebc",
-                    confirmButtonText: 'Aceptar'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = "rpt_seg.php";
-                    }
-                });
-            }else{
-                Swal.fire({
-                    title: 'Error!',
-                    text: 'Ocurrio un Error Agregar el Baremo',
-                    icon: 'error',
-                    confirmButtonText: 'Aceptar'
-                });
-            }
-        }
-    })
-})
+//     $('#updseg').submit(function(e){
+//     e.preventDefault();
+//     const desde = $('#desde').val();
+//     const hasta = $('#hasta').val();
+//     if(desde > hasta){
+//         Swal.fire({
+//             title: 'Error!',
+//             text: 'La fecha de inicio no puede ser mayor a la fecha final',
+//             icon: 'error',
+//             confirmButtonText: 'Aceptar'
+//         });
+//         return false;
+//     }
+//     $.ajax({
+//         type: "POST",
+//         url: "../model/mod_seguro/updsegbaremo.php",
+//         data: $("#updseg").serialize(),
+//         success: function(data){
+//             console.log(data)
+//             // if(data == 1){
+//             //     Swal.fire({
+//             //         title: 'Actualización Exitosa!',
+//             //         text: 'Agrego Correctamente el Baremo',
+//             //         icon: 'success',
+//             //         confirmButtonColor: "#007ebc",
+//             //         confirmButtonText: 'Aceptar'
+//             //     }).then((result) => {
+//             //         if (result.isConfirmed) {
+//             //             window.location.href = "rpt_seg.php";
+//             //         }
+//             //     });
+//             // }else{
+//             //     Swal.fire({
+//             //         title: 'Error!',
+//             //         text: 'Ocurrio un Error Agregar el Baremo',
+//             //         icon: 'error',
+//             //         confirmButtonText: 'Aceptar'
+//             //     });
+//             // }
+//         }
+//     })
+// })
  })
 </script>
 
