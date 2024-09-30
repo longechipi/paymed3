@@ -13,6 +13,8 @@ $a = "SELECT * FROM medicos WHERE idlogin=$idlogin";
 $ares = $mysqli->query($a);
 $row = $ares->fetch_array();
 $idmed = $row['idmed'];
+$codcolemed = $row['codcolemed'];
+$mpss = $row['mpss'];
 
 ?>
 <div class="content-wrapper">
@@ -39,10 +41,10 @@ $idmed = $row['idmed'];
 			<button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#especialidades" aria-controls="especialidades" aria-selected="false"> Especialidades </button>
 		</li>
 		<li class="nav-item">
-			<button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-messages" aria-controls="navs-pills-top-messages" aria-selected="false"> Documentos </button>
+			<button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#documentos" aria-controls="documentos" aria-selected="false"> Documentos </button>
 		</li>
 		<li class="nav-item">
-			<button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-messages" aria-controls="navs-pills-top-messages" aria-selected="false"> Servicios Afiliados </button>
+			<button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#servicios" aria-controls="servicios" aria-selected="false"> Servicios Afiliados </button>
 		</li>
 	</ul>
 	<hr>
@@ -477,55 +479,283 @@ $idmed = $row['idmed'];
 			</form>
 		</div>
 		<div class="tab-pane fade" id="especialidades" role="tabpanel">
-			<form id="upd_espe">
+			
 				<div class="row">
 					<div class="col-md-5">
 						<div class="form-group">
-							<label for="apellido1">Clinicas:</label>
-							<select  name="idaseg" id="idclinica" class="form-select" required>
-								<option value="">-- Seleccione --</option>
+							<label for="apellido1">Especialidades:</label>
+							<select class="form-select" id="idespmed" name="idespmed" onchange="asignaesp(this.value)" >
+								<option value="" disabled selected>Seleccione</option>
 								<?php
-								$query = $mysqli -> query ("SELECT a.idclinica, a.razsocial from clinicas a
-													WHERE a.idclinica not in(select b.idclinica from clinicamedico b where b.idmed='".$idmed."') AND a.idestatus='1'; ");
-									while ($valores = mysqli_fetch_array($query)) {
-									echo '<option value="'.$valores['idclinica'].'">'.$valores['razsocial'].'</option>';} ?>
-							</select>
+								$query = $mysqli -> query ("SELECT idesppresu, especialidad FROM presupuesto_especialidades");
+								while ($valores = mysqli_fetch_array($query)) {
+								echo '<option value="'.$valores['idesppresu'].'">'.$valores['especialidad'].'</option>';
+										} ?>
+            				</select>
 						</div>
 					</div>
 					<div class="col-md-7">
-					<table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th scope="col">Pacientes Por Dia:</th>
-                    <th scope="col"><input type="text" id="pacxdia" value="0" size="3" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;"></th>
-                  </tr>
-                  <tr>
-                    <th scope="col">Pacientes Con Seguro:</th>
-                    <th scope="col"><input type="tex" id="pacconseg" value="0" size="3" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;"></th>
-                  </tr>
-                  <tr>
-                    <th scope="col">Pacientes Sin Seguro:</th>
-                    <th scope="col"><input type="text" id="pacsinseg" value="0" size="3" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;"></th>
-                  </tr>
-                </thead>
-              </table>
+					<?php 
+					$b = "SELECT  c.idespmed, c.especialidad FROM medicos a, medicos_esp b, especialidadmed c
+					WHERE a.idmed= $idmed and a.idmed=b.idmed and b.idespmed =c.idespmed and a.idestatus='1'";
+					$bres=$mysqli->query($b);
+					?>
+					<div class="table-responsive">
+						<table class="table table-hover" id="user" cellspacing="0" style="width: 100%;">
+						<thead>
+							<tr>
+								<th>Especialidad Seleccionada</th>
+								<th>Acción</th>
+							</tr>
+							</thead>
+							<tbody>
+								<?php
+									while ($row = $bres->fetch_array(MYSQLI_ASSOC)) {
+									echo '<tr>';
+									echo '<td>'.$row['especialidad'].'</td>';
+									echo '<td><a href="javascript:borrar('.$row['idespmed'].')"><i class="fi fi-rs-trash"></i></a></td>';
+									echo '</tr>';
+									}
+								?>
+							</tbody>
+						</table>
+						</div>
 					</div>
+				 </div> <!-- FIN DE ROW 2 -->
+				 <div class="row"> 
+					<div class="divider">
+						<div class="divider-text">Horarios de Atención</div>
+					</div>
+					<div class="text-center mb-5">
+						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+						<i class="fi fi-rs-disk"></i> Agregar Horarios de Atención
+						</button>
+						
+					</div>
+					
+				 <div class="table-responsive">
+				 <table class="table table-hover" id="user2" cellspacing="0" style="width: 100%;">
+					<thead>
+						<tr>
+							<th>Clinica</th>
+							<th>Horario de Atención</th>
+							<th>Accion</th>
+						</tr>
+					</thead>
+						<tbody>
+							<?php
+							$c = "SELECT HM.idclinica, HM.idmed, C.razsocial, HM.dia, HM.desde, HM.hasta
+									FROM horariomed HM
+									INNER JOIN clinicas C ON C.idclinica = HM.idclinica
+									WHERE idmed= 2";
+								$cres=$mysqli->query($c);
+								while ($rowc = $cres->fetch_array(MYSQLI_ASSOC)) {
+									$desde=date("g:iA", strtotime($rowc['desde']));
+                    				$hasta=date("g:iA", strtotime($rowc['hasta']));
+								echo '<tr>';
+								echo '<td>'.$rowc['razsocial'].'</td>';
+								echo '<td>'.$rowc['dia'].' : '.$desde.'-'.$hasta.'</td>';
+								echo '<td><a href="javascript:borrar('.$rowc['idclinica'].')"><i class="fi fi-rs-trash"></i></a></td>';
+								echo '</tr>';
+								}
+							?>
 
 
 
+				 </table>
 
+				 </div>
 
-				</div>
+				 </div>
+			
 				<div class="text-center mt-4">
-					<button type="submit" id="btn_upd_banco" class="btn btn-primary">
-						<i class="fi fi-rs-disk"></i> ACTUALIZAR
-					</button>
 					<a href="javascript:history.back()" class="btn btn-outline-warning" rel="noopener noreferrer">
 						<i class="fi fi-rr-undo"></i> VOLVER 
 					</a>
 				</div>
-			</form>
+		
 		</div>
+
+		<div class="tab-pane fade" id="documentos" role="tabpanel">
+			<div class="divider">
+                    <div class="divider-text">Documentación Médica</div>
+            </div>
+			<form enctype="multipart/form-data" action="updoc.php" method="post">
+				<input type="text" id="idmed" name="idmed" value="<?php echo $idmed; ?>" hidden/> 
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+						<label for="codcolmed">Código Colegio Médico</label>
+						<input type="text" name="codcolemed" id="codcolemed" minlength="9" maxlength="9" value="<?php echo $codcolemed; ?>" class="form-control" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" required />
+						</div>  
+					</div>
+
+					<div class="col-md-6">
+						<div class="form-group">
+						<label for="codcolmed">MPSS</label>
+						<input type="text" name="mpsscod" id="mpsscod"  minlength="5" maxlength="5" value="<?php echo $mpss; ?>" class="form-control mb-4" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" required />
+						</div>  
+					</div>
+
+
+					<div class="col-md-3">
+						<label for="cedula">Cédula</label>
+						<div class="custom-file">
+							<input type="file" id="cedula" name="imagen" class="form-control" accept="application/pdf" required>  
+							<label id="cedula"  class="custom-file-label" for="cedula"></label> 
+						</div>
+					</div>
+					<div class="col-md-3">
+					<label for="rif">RIF</label>
+						<div class="custom-file">
+							<input type="file" id="rif" name="imagen1" class="form-control" accept="application/pdf" required>
+							
+						</div>
+					</div>
+					
+					<div class="col-md-3">
+					<label for="colemed">Carnet C.M.</label>
+						<div class="custom-file">
+							<input type="file" id="colemed"  name="imagen2"  class="form-control" accept="application/pdf" required>
+							
+						</div>
+					</div>
+					<div class="col-md-3">
+					<label for="colemed">MPSS</label>
+						<div class="custom-file">
+							<input type="file" id="mpss"  name="imagen3"  class="form-control" accept="application/pdf" required>
+							
+						</div>
+					</div>
+				</div>
+			</form>
+			<div class="table-responsive">
+				 <table class="table table-hover" id="user3" cellspacing="0" style="width: 100%;">
+					<thead>
+						<tr>
+							<th>Documento</th>
+							<th>Accion</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php 
+						$sql = ("SELECT iddocument, idmed, imagen FROM drdocument WHERE idmed='$idmed'; ");
+						$objimg=$mysqli->query($sql);
+						while($rowdoc = mysqli_fetch_array($objimg)) { ?>
+						<tr>
+						<td>
+							
+						<a href="drdocument/<?php echo $rowdoc['imagen'];?>" target="_blank"><?php echo $rowdoc['imagen']; ?></a>
+						</td>
+						<td align="center">
+							<button type="button" onclick="fdeldoc(<?php echo $rowdoc['iddocument'];?>)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+							
+						</td>
+						</tr>
+					<?php } ?>
+
+					</tbody>
+
+				 </table>
+			</div>
+
+		</div>
+
+		<div class="tab-pane fade" id="servicios" role="tabpanel">
+			<div class="divider">
+                    <div class="divider-text">Servicios Afiliados</div>
+            </div>
+			<?php 
+			 $sql = ("SELECT idservaf, servicio, idestatus FROM serviciosafiliados where idestatus='1'; ");
+			 $result=$mysqli->query($sql);
+			// busco imagenes de firma, si tiene 
+			$sql = ("SELECT iddocument, idmed, imagen, quees FROM drdocument WHERE idmed='".$idmed."' AND quees='firma'; ");
+			$obj=$mysqli->query($sql); $arr=$obj->fetch_array();  
+			$firmaimg=$arr['imagen'];
+			// busco imagenes de sello, si tiene 
+			$sql = ("SELECT iddocument, idmed, imagen, quees FROM drdocument WHERE idmed='".$idmed."' AND quees='sello'; ");
+			$obj=$mysqli->query($sql); $arr=$obj->fetch_array();  
+			$selloimg=$arr['imagen'];
+			
+			
+			?>
+			<div class="row">
+				<form enctype="multipart/form-data" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+					<input type="hidden" id="idmed" name="idmed" value="<?php echo $idmed; ?>">
+					<input type="hidden" name="nrodoc" value="<?php echo $nrodoc; ?>">
+					<div style="text-align: left;">
+						<div class="row">
+						<?php while($row = mysqli_fetch_array($result)) { 
+							$sqlbusca="SELECT COUNT(*) as cant FROM convafixmedico WHERE idmed= '".$idmed."' and   idservaf = '".$row['idservaf']."'; ";
+							$obj=$mysqli->query($sqlbusca);
+							$arrlast=$obj->fetch_array();
+							$cant=$arrlast[0];
+						?>
+							<div class="col-md-3">
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" id="<?php echo $row['idservaf'];?>"  onclick="fcheckafilia(this.id)" 
+									<?php if ($cant!='0') { ?>
+									checked
+									<?php } ?>
+									>
+									<label class="form-check-label" for="<?php echo $row['idservaf'];?>">
+										<?php echo $row['servicio'];?>
+									</label>
+								</div>
+							</div>
+						<?php } ?>
+							
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-6">
+							<h5>Firma:</h5>
+							<div class="custom-file">
+								<input type="file" id="firma" name="imagen" class="form-control" accept="image/png, image/jpeg" >  
+								<label id="firma"  class="custom-file-label" for="firma"></label> 
+								<small style="color: red" >Formato permitido: Png/Jpg</small>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<h5>Sello:</h5>
+							<div class="custom-file">
+								<input type="file" id="sello" name="imagen1" class="form-control" accept="image/png, image/jpeg" >  
+								<label id="sello"  class="custom-file-label" for="sello"></label> 
+								<small style="color: red" >Formato permitido: Png/Jpg</small>
+							</div>
+						</div>
+						<!-- Imagenes -->
+						<div align="center" class="col-md-6">
+							<img src="<?php echo $firmaimg ?>" alt="Sin Imagen Seleccionada!!!" style="width:200px;height:200px;">
+						</div>
+						<div align="center" class="col-md-6">
+							<img src="<?php echo $selloimg ?>" alt="Sin Imagen Seleccionada!!!" style="width:200px;height:200px;">
+						</div>
+
+						<div align="right" class="col-md-12"><br>
+							<input style="background: #F89921;border-color: #F89921" type="submit" name="submit" value="Actualizar" class="btn btn-main btn-primary btn-lg uppercase">
+						</div>
+					</div>
+
+				</form>
+			</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</div>
+
 	</div>
 </div>
 </div>
@@ -548,6 +778,7 @@ $idmed = $row['idmed'];
 <!-- Overlay -->
 <div class="layout-overlay layout-menu-toggle"></div>
 </div>
+<?php include('../layouts/modals/add-horarios.php')?>
 <?php include('../layouts/script.php') ?>
 <script>
 $('#upd_datos').submit(function(e){
@@ -632,10 +863,88 @@ $("#id_municipio").change(function() {
 	});
 });
 
-$('#id_estado, #id_parroquia, #id_municipio, #idpais').select2({
+$('#id_estado, #id_parroquia, #id_municipio, #idpais, #idespmed').select2({
 	theme: 'bootstrap-5',
 	width: '100%',
 });
+$('#user').DataTable({
+        "language": {
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+        },
+    });
+	$('#user2').DataTable({
+        "language": {
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+        },
+    });
+	$('#user3').DataTable({
+        "language": {
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+        },
+    });
 </script>
 </body>
 

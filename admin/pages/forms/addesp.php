@@ -656,7 +656,6 @@
 						<select class="form-control custom-select form-control-sm" id="idespmed" name="idespmed" onchange="asignaesp(this.value)" >
 							<option value="">-- Seleccione --</option>
                   			<?php
-							//require('admin/conexion.php');
 							$query = $mysqli -> query ("SELECT idesppresu, especialidad FROM presupuesto_especialidades");
 							while ($valores = mysqli_fetch_array($query)) {
 							echo '<option value="'.$valores['idesppresu'].'">'.$valores['especialidad'].'</option>';
@@ -675,8 +674,6 @@
 							</tr>
 						  </thead>
 						  <tbody>
-							
-							<!-- <tr><td>Mark</td><th scope="row">X</th></tr> -->
 						  </tbody>
 						</table>
 					</div>
@@ -708,7 +705,9 @@
               </div>
               <div class="col-md-9">
                 <p>
-                <?php $idmedhorario=$rowclinmedi["idmed"];$idclinicahorario=$rowclinmedi["idclinica"];
+                <?php 
+                $idmedhorario=$rowclinmedi["idmed"];
+                $idclinicahorario=$rowclinmedi["idclinica"];
 
                 $sqlhorario="SELECT a.idhorario, a.idmedcli, a.idclinica, b.razsocial, a.idmed, a.dia, a.desde, a.hasta 
                   FROM horariomed a, clinicas b
@@ -717,7 +716,9 @@
                   AND a.idmed='".$idmedhorario."';";
                   $objhorario=$mysqli->query($sqlhorario);
                   
-                  while($rowhorario = mysqli_fetch_array($objhorario)) {$desde=date("g:iA", strtotime($rowhorario['desde']));$hasta=date("g:iA", strtotime($rowhorario['hasta']));?>
+                  while($rowhorario = mysqli_fetch_array($objhorario)) {
+                    $desde=date("g:iA", strtotime($rowhorario['desde']));
+                    $hasta=date("g:iA", strtotime($rowhorario['hasta']));?>
                     <span>
                       <?php echo $rowhorario['dia'].' : '.$desde.'-'.$hasta;?>/
                       </span>

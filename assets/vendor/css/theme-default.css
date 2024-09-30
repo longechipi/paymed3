@@ -361,7 +361,7 @@ a.btn-link:hover {
 .nav-pills .nav-link.active,
 .nav-pills .nav-link.active:hover,
 .nav-pills .nav-link.active:focus {
-  background-color: #696cff;
+  background-color: #007cba;
   color: #fff;
 }
 
@@ -372,7 +372,7 @@ a.btn-link:hover {
 .nav-tabs .nav-link.active:hover,
 .nav-tabs .nav-link.active:focus {
   -webkit-box-shadow: 0 -2px 0 #696cff inset;
-  box-shadow: 0 -2px 0 #696cff inset;
+  box-shadow: 0 -2px 0 #007cba inset;
 }
 
 .nav-align-bottom .nav-tabs .nav-link.active,
@@ -381,8 +381,8 @@ a.btn-link:hover {
 .nav-align-bottom .nav-tabs .nav-link.active,
 .nav-align-bottom .nav-tabs .nav-link.active:hover,
 .nav-align-bottom .nav-tabs .nav-link.active:focus {
-  -webkit-box-shadow: 0 2px 0 #696cff inset;
-  box-shadow: 0 2px 0 #696cff inset;
+  -webkit-box-shadow: 0 2px 0 #007cba inset;
+  box-shadow: 0 2px 0 #007cba inset;
 }
 
 .nav-align-left .nav-tabs .nav-link.active,
@@ -391,8 +391,8 @@ a.btn-link:hover {
 .nav-align-left .nav-tabs .nav-link.active,
 .nav-align-left .nav-tabs .nav-link.active:hover,
 .nav-align-left .nav-tabs .nav-link.active:focus {
-  -webkit-box-shadow: -2px 0px 0 #696cff inset;
-  box-shadow: -2px 0px 0 #696cff inset;
+  -webkit-box-shadow: -2px 0px 0 #007cba inset;
+  box-shadow: -2px 0px 0 #007cba inset;
 }
 
 .nav-align-right .nav-tabs .nav-link.active,
