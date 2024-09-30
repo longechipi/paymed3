@@ -45,7 +45,7 @@ $sqlestatus = "SELECT estatus FROM loginn WHERE idlogin ='$idlogin'";
         <!-- PRIMER NIVEL -->
         <li class="menu-item 
         <?php
-        if (($host === "rpt_pacxmed.php") ) {
+        if (($host === "rpt_pacxmed.php") || ($host === "perfil.php")|| ($host === "rpt_asixmed.php") || ($host === "rpt_horar.php")) {
             echo 'active' . ' ' . 'open';
         } ?>">
             <a href="javascript:void(0)" class="menu-link menu-toggle">
@@ -54,7 +54,8 @@ $sqlestatus = "SELECT estatus FROM loginn WHERE idlogin ='$idlogin'";
             </a>
             <ul class="menu-sub">
                 <!-- Actualizar -->
-                <li class="menu-item">
+                <li class="menu-item 
+                <?php if ($host === "perfil.php") { echo 'active'; } ?>">
                     <a href="../html/perfil.php" id="sidebar-hono" class="menu-link empty">
                         <div data-i18n="Accordion">Actualizar</div>
                     </a>
@@ -73,13 +74,15 @@ $sqlestatus = "SELECT estatus FROM loginn WHERE idlogin ='$idlogin'";
                     </a>
                 </li>
                 <!-- Asistente -->
-                <li class="menu-item">
+                <li class="menu-item 
+                <?php if ($host === "rpt_asixmed.php") { echo 'active'; } ?>">
                     <a href="../html/rpt_asixmed.php" id="sidebar-hono" class="menu-link empty">
                         <div data-i18n="Accordion">Asistente</div>
                     </a>
                 </li>
                 <!-- Horarios -->
-                <li class="menu-item">
+                <li class="menu-item 
+                <?php if ($host === "rpt_horar.php") { echo 'active'; } ?>">
                     <a href="../html/rpt_horar.php" id="sidebar-hono" class="menu-link empty">
                         <div data-i18n="Accordion">Horarios</div>
                     </a>
@@ -89,21 +92,27 @@ $sqlestatus = "SELECT estatus FROM loginn WHERE idlogin ='$idlogin'";
         <!-- FIN PRIMER NIVEL -->
 
         <!-- SEGUNDO NIVEL -->
-        <li class="menu-item">
+        <li class="menu-item 
+        <?php
+        if (($host === "rpt_citpac.php") ||($host === "rpt_citas.php") ) {
+            echo 'active' . ' ' . 'open';
+        } ?>">
             <a href="javascript:void(0)" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-wrench"></i>
                 <div id="menu-hono" data-i18n="User interface">AGENDA</div>
             </a>
             <ul class="menu-sub">
                 <!-- Ver Citas -->
-                <li class="menu-item">
-                    <a href="pages/forms/rpt_citas.php" id="sidebar-hono" class="menu-link empty">
+                <li class="menu-item 
+                <?php if ($host === "rpt_citas.php") { echo 'active'; } ?>">
+                    <a href="../html/rpt_citas.php" id="sidebar-hono" class="menu-link empty">
                         <div data-i18n="Accordion">Ver Citas</div>
                     </a>
                 </li>
                 <!-- Crear Citas -->
-                <li class="menu-item">
-                    <a href="pages/forms/rpt_citpac.php" id="sidebar-hono" class="menu-link empty">
+                <li class="menu-item 
+                <?php if ($host === "rpt_citpac.php") { echo 'active'; } ?>">
+                    <a href="../html/rpt_citpac.php" id="sidebar-hono" class="menu-link empty">
                         <div data-i18n="Accordion">Crear Citas</div>
                     </a>
                 </li>

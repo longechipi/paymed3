@@ -54,6 +54,9 @@
     <script src="../assets/vendor/js/helpers.js"></script>
     <script src="../assets/js/config.js"></script>
     
+    <!-- Evocalendar -->
+    <link href="../libs/evocalendar/evo.min.css" rel="stylesheet">
+    <script src="../libs/evocalendar/evo.min.js"></script>
 
     <!-- SELECT2 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
