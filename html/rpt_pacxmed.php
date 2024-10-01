@@ -34,70 +34,40 @@ require('../conf/conexion.php');
                     </thead>
                     <tbody>
                         <?php 
-                        if ($cargo=='Asistente1' || $cargo=='Asistente2') {
-                            if (isset($_SESSION['idloginmed'])) {$idlogin_session = $_SESSION['idloginmed'];}else{$idlogin_session = $_SESSION['idlogin'];}
-                                 // busco idtrabajacon en loginn para poder vincular con idmed
-                                 $sqlasist = ("SELECT idlogin, idtrabajacon FROM loginn WHERE correo='".$usuario."'");
-                                 $objasist = $mysqli->query($sqlasist); $arrasist = $objasist->fetch_array();
-                                 $idregistrador = $arrasist['idlogin'];       // Leo el idlogin del Asistente para registrarlo en la pacientes
-                                 $idtrabajacon = $arrasist['idtrabajacon'];   // Leo el idlogin del Medico para quien trabaja
-                                 //echo $cargo.'/'; echo $idtrabajacon; exit();
-                                 // busco idmed para insertarlo en paciente
-                                 //antes $sqlmed = ("SELECT idmed FROM medicos WHERE idlogin='".$idtrabajacon."'");
-                                 $sqlmed = ("SELECT idmed FROM medicos WHERE idlogin='".$idlogin_session."'");
-                                 $objmed = $mysqli->query($sqlmed); $arrmed = $objmed->fetch_array();
-                                 $idmed = $arrmed['idmed'];
-                                 //echo $idmed; exit();
-                                 $sql = ("SELECT a.idpaci, a.apellido1, a.nombre1, a.cedula, a.operadora , a.movil, a.correo 
-                                 FROM pacientes a, medicos b
-                                 WHERE a.idmed=b.idmed
-                                 AND b.idmed = '".$idmed."';");
-                         }else if ($cargo=='Medico') {
-                                 $sql = ("SELECT a.idpaci, a.apellido1, a.nombre1, a.cedula, a.operadora , a.movil, a.correo 
-                                 FROM pacientes a, medicos b
-                                 WHERE a.idmed=b.idmed
-                                 AND b.idlogin = '".$idlogin."';");
-                         }
-                         
-                        $result = $mysqli->query($sql);?>
-                         <?php while ($row = mysqli_fetch_array($result)) { 
-                             $idpaci=$row['idpaci'];
-                             $sqlhist = ("SELECT count(*) as hay, nrohistoria FROM historias WHERE idpaci='".$idpaci."'");
-                 
-                             $objhist = $mysqli->query($sqlhist); $arrhist = $objhist->fetch_array();
-                             if ($arrhist[0]=='0') {$nrohistoria='S/H';}else{$nrohistoria = $arrhist[1];}
-                             ?>
-                             <tr>
-                <td><?php echo $nrohistoria; ?></td>
-                <td><?php echo $row['apellido1'].' '.$row['nombre1']; ?></td>
-                <td><?php echo $row['cedula']; ?></td>
-                <td><?php echo $row['operadora'].$row['movil']; ?></td>
-                <td><?php echo $row['correo']; ?></td>
-                <td>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bx bx-dots-vertical-rounded"></i>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li>
-                                <a class="dropdown-item" href="updpac.php?i=<?php echo $row['idpaci'];?>">
-                                <i class="fi fi-rr-edit"></i> Editar Paciente
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="src_del_user.php?idlogin=<?php echo $row['cedula'];?>">
-                                <i class="fi fi-rr-trash"></i> Eliminar Paciente
-                                </a>
-                            </li>
-                            
-                        </ul>
-                    </div>
-                </td>
-              </tr>
-
-                        <?php
-                        }
+                        include('../controller/pacientes/rpt_pacxmed.php');
                         ?>
+                        <?php foreach ($data as $row): ?>
+                            <tr>
+                                <td><?php echo $row['num_histo']; ?></td>
+                                <td><?php echo $row['nom_paci']; ?></td>
+                                <td><?php echo $row['cedula']; ?></td>
+                                <td><?php echo $row['celular']; ?></td>
+                                <td><?php echo $row['correo']; ?></td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-end">
+                                            <li>
+                                                <a class="dropdown-item" href="updpac.php?i=<?php echo $row['idpaci'];?>">
+                                                <i class="fi fi-rr-edit"></i> Editar Paciente
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="src_del_user.php?idlogin=<?php echo $row['cedula'];?>">
+                                                <i class="fi fi-rr-trash"></i> Eliminar Paciente
+                                                </a>
+                                            </li>
+                                            
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                   
+                  
+
                      </tbody>
                   </table>
                     </div>

@@ -8,13 +8,12 @@ $idmed = $_POST['idmed'];
 $a = "SELECT * FROM pacientes WHERE SUBSTRING(cedula, 2)=$ced_paci ";
 $ares=$mysqli->query($a);
     if ($ares->num_rows > 0) {
-       // echo "SI";
         $datos_paci = $ares->fetch_assoc();
         if($datos_paci['idmed']==$idmed){
-            //echo "SI ES EL MISMO MEDICO";
             $idpaci = $datos_paci['idpaci'];
             //------------ DATOS DE LA CONSULTA PREVIA -------------//
-            $b ="SELECT CM.idpaci, CM.fechadia, CM.idcita, CM.hora, CONCAT(P.apellido1,' ', P.nombre1) AS nom_paci, SUBSTRING(P.cedula, 2) AS Cedula, P.edad
+            $b ="SELECT CM.idpaci, CM.fechadia, CM.idcita, CM.hora, CONCAT(P.apellido1,' ', P.nombre1) AS nom_paci, 
+            SUBSTRING(P.cedula, 2) AS Cedula, P.edad
                 FROM consultas_med CM
                 INNER JOIN pacientes P ON CM.idpaci = P.idpaci
                 WHERE CM.idpaci = $idpaci";
@@ -23,6 +22,8 @@ $ares=$mysqli->query($a);
                         $data = array();
                         while ($datos_cons = $bres->fetch_assoc()) {
                             $data[] = array(
+                                'error' => false,
+                                'message' => 'OK',
                                 'IDPACI' => $datos_cons['idpaci'],
                                 'IDCITA' => $datos_cons['idcita'],
                                 'FECHACONSU' => $datos_cons['fechadia'],
@@ -35,21 +36,27 @@ $ares=$mysqli->query($a);
                         echo json_encode($data);
 
                     }else{
-                        echo "ERROCONSUL";
+                        $error_msg[] = array( 
+                            'error' => true,
+                            'message' => 'SINCONSULTA'
+                        );
+                        echo json_encode($error_msg);
                     }
 
         }else{
-            echo "NO ES OTRO MEDICO";
+            $error_msg[] = array( 
+                'error' => true,
+                'message' => 'OTRODR'
+            );
+            echo json_encode($error_msg);
         } 
 
-
-
-
-
-
-
-        
     }else{
-        echo "NO EXISTE PACIENTE";
+
+        $error_msg[] = array( 
+            'error' => true,
+           'message' => 'NOEXISTE'
+        );
+        echo json_encode($error_msg);
     }
 ?>

@@ -1,3 +1,13 @@
+<?php 
+$a="SELECT CONCAT(M.apellido1, ' ' ,M.nombre1) AS nom_med, M.idlogin, L.cargo
+FROM medicos M
+INNER JOIN loginn L ON M.idlogin = L.idlogin
+WHERE idmed = $idmedico";
+$ares=$mysqli->query($a);
+$row=$ares->fetch_assoc();
+?>
+
+
 <nav class="layout-navbar container-fluid navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
 <div class="layout-menu-toggle navbar-nav align-items-xl-center me-4 me-xl-0   d-xl-none ">
         <a class="nav-item nav-link px-0 me-xl-6" href="javascript:void(0)">
@@ -21,8 +31,6 @@
         
       </div>
       <?php include('../layouts/notifica.php')?>
-      
-
       <!-- User -->
       <li class="nav-item navbar-dropdown dropdown-user dropdown">
         <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
@@ -40,8 +48,8 @@
                   </div>
                 </div>
                 <div class="flex-grow-1">
-                  <span class="fw-semibold d-block">John Doe</span>
-                  <small class="text-muted">Admin</small>
+                  <span class="fw-semibold d-block"><?php echo $row['nom_med'];?></span>
+                  <small class="text-muted"><?php echo $row['cargo']?></small>
                 </div>
               </div>
             </a>
@@ -50,22 +58,22 @@
             <div class="dropdown-divider"></div>
           </li>
           <li>
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="../html/perfil.php">
               <i class="bx bx-user me-2"></i>
-              <span class="align-middle">My Profile</span>
+              <span class="align-middle">Mi Perfil</span>
             </a>
           </li>
           <li>
             <a class="dropdown-item" href="#">
               <i class="bx bx-cog me-2"></i>
-              <span class="align-middle">Settings</span>
+              <span class="align-middle">Opciones</span>
             </a>
           </li>
           <li>
             <a class="dropdown-item" href="#">
               <span class="d-flex align-items-center align-middle">
                 <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                <span class="flex-grow-1 align-middle">Billing</span>
+                <span class="flex-grow-1 align-middle">Balance</span>
                 <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
               </span>
             </a>
@@ -74,9 +82,9 @@
             <div class="dropdown-divider"></div>
           </li>
           <li>
-            <a class="dropdown-item" href="auth-login-basic.html">
+            <a class="dropdown-item" href="../auth/salir.php">
               <i class="bx bx-power-off me-2"></i>
-              <span class="align-middle">Log Out</span>
+              <span class="align-middle">Salir</span>
             </a>
           </li>
         </ul>

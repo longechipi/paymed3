@@ -79,66 +79,105 @@ require('../conf/conexion.php');
                 data: {ced:ced , idmed:idmed},
                 success: function(data){
                     const parsedData = JSON.parse(data);
-                    $('#datos_paci').removeAttr('hidden');
-                    $('#pacientes').DataTable().destroy();
-                    //$('#pacientes tbody').html(data);
-                    $('#pacientes').DataTable({
-                        data: parsedData,
-                        columns: [{
-                            data: 'FECHACONSU'
-                        }, {
-                            data: 'HORACONSU'
-                        }, {
-                            data: 'CEDULA'
-                        }, {
-                            data: 'NOM_PACI'
-                        }, {
-                            data: 'EDAD'
-                        },],
-                        "columnDefs": [{
-                            "targets": 5,
-                            orderable: false,
-                            "render": function(data, type, row, meta){
-                                return '<a class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="HISTORIAL DE LA CONSULTA" href="historia_paci.php?idcita=' + row['IDCITA'] + '" rel="noopener noreferrer">VER HISTORIAL</a>'
+                    if(parsedData[0].message =="OK"){
+                        $('#datos_paci').removeAttr('hidden');
+                        $('#pacientes').DataTable().destroy();
+                        $('#pacientes tbody').html(data);
+                        $('#pacientes').DataTable({
+                            data: parsedData,
+                            columns: [{
+                                data: 'FECHACONSU'
+                            }, {
+                                data: 'HORACONSU'
+                            }, {
+                                data: 'CEDULA'
+                            }, {
+                                data: 'NOM_PACI'
+                            }, {
+                                data: 'EDAD'
+                            },],
+                            "columnDefs": [{
+                                "targets": 5,
+                                orderable: false,
+                                "render": function(data, type, row, meta){
+                                    return '<a class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="HISTORIAL DE LA CONSULTA" href="historia_paci.php?idcita=' + row['IDCITA'] + '" rel="noopener noreferrer">VER HISTORIAL</a>'
+                                }
+                            }],
+                        "language": {
+                            "sProcessing": "Procesando...",
+                            "sLengthMenu": "Mostrar _MENU_ registros",
+                            "sZeroRecords": "No se encontraron resultados",
+                            "sEmptyTable": "Ningún dato disponible en esta tabla",
+                            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                            "sInfoPostFix": "",
+                            "sSearch": "Buscar:",
+                            "sUrl": "",
+                            "sInfoThousands": ",",
+                            "sLoadingRecords": "Cargando...",
+                            "oPaginate": {
+                                "sFirst": "Primero",
+                                "sLast": "Último",
+                                "sNext": "Siguiente",
+                                "sPrevious": "Anterior"
+                            },
+                            "oAria": {
+                                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
                             }
-                        }],
-                    "language": {
-                        "sProcessing": "Procesando...",
-                        "sLengthMenu": "Mostrar _MENU_ registros",
-                        "sZeroRecords": "No se encontraron resultados",
-                        "sEmptyTable": "Ningún dato disponible en esta tabla",
-                        "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                        "sInfoPostFix": "",
-                        "sSearch": "Buscar:",
-                        "sUrl": "",
-                        "sInfoThousands": ",",
-                        "sLoadingRecords": "Cargando...",
-                        "oPaginate": {
-                            "sFirst": "Primero",
-                            "sLast": "Último",
-                            "sNext": "Siguiente",
-                            "sPrevious": "Anterior"
                         },
-                        "oAria": {
-                            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        drawCallback: function () {
+                            let tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+                            let tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl, {
+                            boundary: document.body,
+                            container: 'body',
+                            trigger: 'hover'
+                            }));
+
+                            tooltipList.forEach((tooltip) => { $('.tooltip').hide(); });
+
                         }
-                    },
-                    drawCallback: function () {
-                        let tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-                        let tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl, {
-                        boundary: document.body,
-                        container: 'body',
-                        trigger: 'hover'
-                        }));
-
-                        tooltipList.forEach((tooltip) => { $('.tooltip').hide(); });
-
+                            
+                        });
                     }
-                        
-                    });
+                    if(parsedData[0].message =="OTRODR"){
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'El Paciente esta Registrado con otro Doctor',
+                            confirmButtonColor: "#007ebc",
+                            confirmButtonText: "Aceptar",
+                        });
+                        $('#ced').val("");
+                        return
+                    }
+
+                    if(parsedData[0].message =="SINCONSULTA"){
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'El Paciente esta Registrado pero no Tiene consultas Previas',
+                            confirmButtonColor: "#007ebc",
+                            confirmButtonText: "Aceptar",
+                        });
+                        $('#ced').val("");
+                        return
+                    }
+
+                    if(parsedData[0].message =="NOEXISTE"){
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'El Paciente no esta Registrado en el Sistema',
+                            confirmButtonColor: "#007ebc",
+                            confirmButtonText: "Aceptar",
+                        });
+                        $('#ced').val("");
+                        return
+                    }
+                   
+                    
                     
                 }
             });
