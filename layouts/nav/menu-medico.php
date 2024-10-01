@@ -121,15 +121,20 @@ $sqlestatus = "SELECT estatus FROM loginn WHERE idlogin ='$idlogin'";
         <!-- FIN SEGUNDO NIVEL -->
 
         <!-- TERCER NIVEL -->
-        <li class="menu-item">
+        <li class="menu-item 
+        <?php
+        if (($host === "prefilterpac.php")) {
+            echo 'active' . ' ' . 'open';
+        } ?>">
             <a href="javascript:void(0)" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-wrench"></i>
                 <div id="menu-hono" data-i18n="User interface">HISTORIA MEDICA</div>
             </a>
             <ul class="menu-sub">
                 <!-- Historia Medica -->
-                <li class="menu-item">
-                    <a href="pages/forms/prefilterpac.php" id="sidebar-hono" class="menu-link empty">
+                <li class="menu-item 
+                <?php if ($host === "prefilterpac.php") { echo 'active'; } ?>">
+                    <a href="../html/prefilterpac.php" id="sidebar-hono" class="menu-link empty">
                         <div data-i18n="Accordion">VER</div>
                     </a>
                 </li>

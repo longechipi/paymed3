@@ -87,7 +87,7 @@ require('../conf/conexion.php');
                             <label for="rif">RIF</label>
                             <div class="input-group">
                             
-                                <select class="form-select " style="" id="tprif" name="tprif">
+                                <select class="form-select "id="tprif" name="tprif">
                                     <option value="V">V</option>
                                     <option value="J">J</option>
                                     <option value="E">E</option>
