@@ -1,53 +1,71 @@
 <?php
 require('../../conf/conexion.php');
 
+//------------ Datos que registra ------------//
+$idlogin = $_POST['idlogin'];
+$privilegios = $_POST['privi'];
+$idmed = empty($_POST['idmedico']) ? '' : $_POST['idmedico'];
+$medi_tra = empty($_POST['medi_tra']) ? '' : $_POST['medi_tra'];
+
+//------------ Datos de Paciente -------------//
 $apellido1 = $_POST['apellido1'];
 $apellido2 = $_POST['apellido2'];
 $nombre1   = $_POST['nombre1'];
 $nombre2   = $_POST['nombre2'];
-
 $tpdoc  = $_POST['tpdoc'];
 $nrodoc = $tpdoc.''.$_POST['nrodoc'];
-/*Valido de nuevo cedula*/
-$sql = ("SELECT idpaci FROM pacientes WHERE cedula = '".$nrodoc."';");
-$result=$mysqli->query($sql);
-$row_cnt = $result->num_rows;
-$esta='0';
-if($row_cnt>0){$esta='1';
-      echo '<script language="javascript">alert("ERROR:Nro. Cedula Registrado!");
-      window.history.back();</script>';
-      
-      //window.location.href="rpt_pacxmed.php"
-      //header('Location: rpt_pacxmed.php');
-      //exit();
-}
 $fnacimiento = $_POST['fnacimiento'];
 $edad        = $_POST['edad'];
 $idsexo      = $_POST['idsexo'];
-
-
-$operadora = ''; // Queda en un solo campo  $_POST['operadora'];
+$idestcivil  = $_POST['idestcivil'];
 $movil     = $_POST['movil'];
 $correo    = $_POST['correo'];
-
 $idpais = $_POST['idpais'];
 $idestado = $_POST['idestado'];
 $idmunicipio = $_POST['idmunicipio'];
 $idparroquia = $_POST['idparroquia'];
-
-$urbanizacion = ''; //$_POST['urbanizacion'];
 $calleav = $_POST['calleav'];
-$casaedif =  ''; //$_POST['casaedif'];
-$piso =  ''; //$_POST['piso'];
-$codpostal = $_POST['codpostal'];
 
+if($privilegios== 7){
+            //---------- PERFIL ASISTENTE ------------- //
+//--------- SE BUSCA EL ID DEL MEDICO SI ES ASISTENTE ----------//
+      $a1 = "SELECT idlogin, idtrabajacon FROM loginn WHERE idlogin = $idlogin";
+      $ares=$mysqli->query($a1);
+      $rowa1 = $ares->fetch_array();
+      $idtrabajacon = $rowa1['idtrabajacon'];
+      $idasistente = $rowa1['idlogin'];
 
-$str = "INSERT INTO pacientes (idlogin, idmed, idregistrador, apellido1, apellido2, nombre1, nombre2, cedula, fnacimiento, edad, idsexo, correo, operadora, movil, idpais, idestado, idmunicipio, idparroquia, calleav, casaedif, piso, urbanizacion, codpostal, estatus) 
-      VALUES ('".$idlogin."','".$idmed."','".$idregistrador."','".strtoupper($apellido1)."','".strtoupper($apellido2)."','".strtoupper($nombre1)."','".strtoupper($nombre2)."','".$nrodoc."','".$fnacimiento."','".$edad."','".$idsexo."','".$correo."','".$operadora."','".$movil."','".$idpais."','".$idestado."','".$idmunicipio."','".$idparroquia."','".$calleav."','".$casaedif."','".$piso."','".$urbanizacion."','".$codpostal."','1')";
-   $conexion = $mysqli->query($str);
-   
-   echo $str;
-
+$a="INSERT INTO pacientes(idlogin, idaseg, idmed, idregistrador, apellido1, apellido2, nombre1, nombre2, cedula, fnacimiento, edad, idsexo, idestcivil, correo, codarea, telefono, operadora, movil, idpais, idestado, idmunicipio, idparroquia, calleav, casaedif, piso, urbanizacion, codpostal, dirnovzla, codpostalnovzla, estatus) 
+VALUES (0,0,'$idtrabajacon','$idasistente','$apellido1','$apellido2','$nombre1','$nombre2','$nrodoc','$fnacimiento','$edad','$idsexo','$idestcivil','$correo','0000','$movil','0000','$movil','$idpais','$idestado','$idmunicipio','$idparroquia','--','--','0','$calleav','0000','0000','--','0000',1)";
+$conexion=$mysqli->query($a);
+      if($conexion){
+            echo "1";
+      }else{
+            echo "0";
+      }
+}elseif($privilegios== 2){
+        //---------- PERFIL MEDICO ------------- //
+//--------- SE BUSCA ID DEL MEDICO SI ES MEDICO ---------//   
+$a="INSERT INTO pacientes(idlogin, idaseg, idmed, idregistrador, apellido1, apellido2, nombre1, nombre2, cedula, fnacimiento, edad, idsexo, idestcivil, correo, codarea, telefono, operadora, movil, idpais, idestado, idmunicipio, idparroquia, calleav, casaedif, piso, urbanizacion, codpostal, dirnovzla, codpostalnovzla, estatus, fecreg) 
+VALUES (0,0,'$idmed','$idlogin','$apellido1','$apellido2','$nombre1','$nombre2','$nrodoc','$fnacimiento','$edad','$idsexo','$idestcivil','$correo','0000','$movil','0000','$movil','$idpais','$idestado','$idmunicipio','$idparroquia','--','--','0','$calleav','0000','0000','--','0000',1)";  
+$conexion=$mysqli->query($a);
+      if($conexion){
+            echo "1";
+      }else{
+            echo "0";
+      }   
+}else{
+        //---------- PERFIL ADMINISTRADOR ------------- //
+//---------- SE INSERTA EL MEDICO SELECCIONADO SI ES ADMIN ---------//
+$a="INSERT INTO pacientes(idlogin, idaseg, idmed, idregistrador, apellido1, apellido2, nombre1, nombre2, cedula, fnacimiento, edad, idsexo, idestcivil, correo, codarea, telefono, operadora, movil, idpais, idestado, idmunicipio, idparroquia, calleav, casaedif, piso, urbanizacion, codpostal, dirnovzla, codpostalnovzla, estatus, fecreg) 
+VALUES (0,0,'$medi_tra','$idlogin','$apellido1','$apellido2','$nombre1','$nombre2','$nrodoc','$fnacimiento','$edad','$idsexo','$idestcivil','$correo','0000','$movil','0000','$movil','$idpais','$idestado','$idmunicipio','$idparroquia','--','--','0','$calleav','0000','0000','--','0000',1)";  
+$conexion=$mysqli->query($a);
+      if($conexion){
+            echo "1";
+      }else{
+            echo "0";
+      }     
+}
 
 
 ?>

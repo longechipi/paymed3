@@ -122,10 +122,10 @@ $sqlestatus = "SELECT estatus FROM loginn WHERE idlogin ='$idlogin'";
 
         <!-- TERCER NIVEL -->
         <li class="menu-item 
-        <?php
-        if (($host === "prefilterpac.php")) {
-            echo 'active' . ' ' . 'open';
-        } ?>">
+            <?php
+            if (($host === "prefilterpac.php")) {
+                echo 'active' . ' ' . 'open';
+            } ?>">
             <a href="javascript:void(0)" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-wrench"></i>
                 <div id="menu-hono" data-i18n="User interface">HISTORIA MEDICA</div>

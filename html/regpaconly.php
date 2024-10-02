@@ -16,8 +16,11 @@ require('../conf/conexion.php');
     <div class="d-flex align-items-end row">
         <div class="col-12">
             <div class="card-body">
-                <h5 class="card-title text-primary">Registro de Paciente</h5>
+                <h5 class="card-title text-primary">Registro de Paciente </h5>
                 <form id="reg_med">
+                    <input type="text" name="privi" id="privi" value="<?php echo $privilegios;?>" hidden />
+                    <input type="text" name="idlogin" id="idlogin" value="<?php echo $idlogin;?>" hidden />
+                    <input type="text" name="idmedico" id="idmedico" value="<?php echo empty($idmedico) ? '' : $idmedico; ?>" hidden/>
                      <div class="row"> <!--INICIO ROW 1 -->
                      <div class="divider">
                         <div class="divider-text">Datos de Principales</div>
@@ -30,7 +33,7 @@ require('../conf/conexion.php');
                                     <option value="V">V</option>
                                     <option value="E">E</option>
                                 </select>
-                                <input type="text" name="nrodoc" id="nrodoc" minlength="6" maxlength="8" onblur="busci(this.value)"
+                                <input type="text" name="nrodoc" id="nrodoc" minlength="6" maxlength="9" onblur="busci(this.value)"
                                 onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" class="form-control" required>
                             </div>
                         </div>
@@ -95,14 +98,14 @@ require('../conf/conexion.php');
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="fnacimiento">Fec.Nacimiento:</label>
-                                <input type="date" name="fnacimiento" id="fnacimiento" class="form-control">
+                                <input type="date" name="fnacimiento" id="fnacimiento" class="form-control" onblur="calcedad(this.value)"/>
                             </div>
                         </div>
 
                         <div class="col-md-1">
                            <div class="form-group">
-                              <label for="edad">Edad:</label>
-                              <input type="text" name="edad" id="edad" class="form-control">
+                              <label for="edad">Edad:</label> 
+                              <input type="text" name="edad" id="edad" class="form-control" readonly/>
                            </div>
                         </div>
 
@@ -129,7 +132,7 @@ require('../conf/conexion.php');
                         <div class="col-md-4">
                            <div class="form-group">
                               <label for="correo">Correo:</label>
-                              <input type="email" name="correo" id="correo" onblur="valmail(this.value)" class="form-control " required>
+                              <input type="email" name="correo" id="correo" class="form-control " required>
                            </div>
                         </div>
 
@@ -148,7 +151,6 @@ require('../conf/conexion.php');
                                 <select id="idpais" class="form-select" name="idpais" required>
                                     <option value="">-- Pais --</option>
                                     <?php
-                                    //require('admin/conexion.php');
                                     $query = $mysqli -> query ("SELECT idpais, pais, idestatus FROM paises WHERE idestatus =1 AND idpais = 232");
                                     while ($valores = mysqli_fetch_array($query)) {
                                     echo '<option value="'.$valores['idpais'].'">'.$valores['pais'].'</option>';
@@ -193,7 +195,44 @@ require('../conf/conexion.php');
                             </div>
                         </div>
 
-                       
+                        <!-- Habilita si es Admin -->
+                        <?php if($privilegios == 1){ ?>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="movil">Seleccionar Medico</label>
+                                    <select name="medi_tra" id="medi_tra" class="form-select">
+                                    <option value="" selected disabled >Seleccione</option>
+                                    <?php 
+                                        $a ="SELECT idlogin, CONCAT(apellido1, ' ',apellido2, ' ',nombre1, ' ',nombre2) from medicos ";
+                                        $ares = $mysqli->query($a); ?>
+                                        <?php while($row = $ares->fetch_array()){ ?>
+                                            <option value="<?php echo $row[0] ?>"><?php echo $row[1] ?></option>
+                                        <?php } ?>
+                                    </select>
+                            </div>
+                        </div>
+                           <?php } ?>
+
+                        <!-- Habilita que medico trabaja con el asistente -->
+                        <?php if($privilegios == 7){ ?>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="movil">Seleccionar Medico</label>
+                                    <select name="medi_tra" id="medi_tra" class="form-select">
+                                    <option value="" selected disabled >Seleccione</option>
+                                    <?php 
+                                        $a ="SELECT L.idlogin, L.idtrabajacon, CONCAT(M.apellido1, ' ',M.apellido2, ' ',M.nombre1, ' ',M.nombre2) AS nom_med
+                                            FROM loginn L
+                                            INNER JOIN medicos M ON L.idtrabajacon = M.idlogin
+                                            WHERE L.idlogin = $idlogin";
+                                        $ares = $mysqli->query($a); ?>
+                                        <?php while($row = $ares->fetch_array()){ ?>
+                                            <option value="<?php echo $row['idtrabajacon'] ?>"><?php echo $row['nom_med'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                            </div>
+                        </div>
+                           <?php } ?>
 
                         <div class="text-center mt-4">
                             <button type="submit" id="btn_register_clinica" class="btn btn-primary"><i class="fi fi-rs-disk"></i> REGISTRAR</button>
@@ -229,6 +268,7 @@ function busci(cinro) {
     url: "../model/mod_actP_med/busci_js.php",
     data: {cedula: cedula },
     success: function(data) {
+        console.log(data)
         if (data =='1') {
             Swal.fire({
                 title: 'Error!',
@@ -236,14 +276,13 @@ function busci(cinro) {
                 icon: 'error',
                 confirmButtonColor: "#007ebc",
                 confirmButtonText: 'Aceptar'
-            });
-            return false;
+            });   
+            return;          
         }
-    },
-    error: function() {}
-    });
+    }
+});
 }
-
+    
 $(document).ready(function(){
     $('#reg_med').submit(function(e){
     e.preventDefault();
@@ -252,58 +291,35 @@ $(document).ready(function(){
         url: "../model/mod_actP_med/regpaciente.php",
         data: $("#reg_med").serialize(),
         success: function(data){
-           console.log(data)
-            // if(data == 1){
-            //     Swal.fire({
-            //         title: 'Registro Exitoso!',
-            //         text: 'Se ha registrado correctamente el Paciente',
-            //         icon: 'success',
-            //         confirmButtonColor: "#007ebc",
-            //         confirmButtonText: 'Aceptar'
-            //     }).then((result) => {
-            //         if (result.isConfirmed) {
-            //             window.location.href = "rpt_pacxmed.php";
-            //         }
-            //     });
-            // }else{
-            //     Swal.fire({
-            //         title: 'Error!',
-            //         text: 'Ocurrio un Error al Registrar el Paciente',
-            //         icon: 'error',
-            //         confirmButtonText: 'Aceptar'
-            //     });
-            // }
+            if(data == 1){
+                Swal.fire({
+                    title: 'Registro Exitoso!',
+                    text: 'Se ha registrado correctamente el Paciente',
+                    icon: 'success',
+                    confirmButtonColor: "#007ebc",
+                    confirmButtonText: 'Aceptar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "rpt_pacxmed.php";
+                    }
+                });
+            }else{
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Ocurrio un Error al Registrar el Paciente',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                });
+            }
         }
     }) 
 })
 
-
-
-
-    $("#idpais").change(function(){				
-        $.get("../model/reg_clinica/pais.php","idpais="+$("#idpais").val(), function(data){
-            $("#id_estado").html(data);
-        });
-    });
-
-    $("#id_estado").change(function(){				
-        $.get("../model/reg_clinica/estado.php","id_estado="+$("#id_estado").val(), function(data){
-            $("#id_municipio").html(data);
-        });
-    });
-
-    $("#id_municipio").change(function(){
-        $.get("../model/reg_clinica/municipio.php","id_municipio="+$("#id_municipio").val(), function(data){
-            $("#id_parroquia").html(data);
-        });
-    });
-
-    $('#id_estado, #id_parroquia, #id_municipio, #idpais').select2({
-        theme: 'bootstrap-5',
-        width: '100%',
-    });
 });
 
 </script>
+<!-- Adicionales -->
+<script src="../js/direcciones.js"></script>
+<script src="../js/fun_globales.js"></script>
 </body>
 </html>

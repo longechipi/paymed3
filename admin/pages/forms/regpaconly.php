@@ -63,10 +63,15 @@ if (isset($_POST['submit'])) {
    /* Fin */
          
    if ($cargo=='Asistente1' || $cargo=='Asistente2') {
-      if (isset($_SESSION['idloginmed'])) {$idlogin_session = $_SESSION['idloginmed'];}else{$idlogin_session = $_SESSION['idlogin'];}
+      if (isset($_SESSION['idloginmed'])) {
+         $idlogin_session = $_SESSION['idloginmed'];
+      }else{
+         $idlogin_session = $_SESSION['idlogin'];
+      }
       // busco idtrabajacon en loginn para poder vincular con idmed
       $sqlasist = ("SELECT idlogin, idtrabajacon FROM loginn WHERE correo='".$usuario."'");
-      $objasist = $mysqli->query($sqlasist); $arrasist = $objasist->fetch_array();
+      $objasist = $mysqli->query($sqlasist); 
+      $arrasist = $objasist->fetch_array();
       $idregistrador = $arrasist['idlogin'];       // Leo el idlogin del Asistente para registrarlo en la pacientes
       $idtrabajacon = $arrasist['idtrabajacon'];   // Leo el idlogin del Medico para quien trabaja
       //echo $cargo.'/'; echo $idtrabajacon; exit();

@@ -70,7 +70,7 @@ $fechahoy=date('Y-m-d');
                                         <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
                                             <i class="bx bx-dots-vertical-rounded"></i>
                                         </button>
-                                        <ul class="dropdown-menu dropdown-menu-end" style="">
+                                        <ul class="dropdown-menu dropdown-menu-end">
                                             <li><a class="dropdown-item" href="updasist.php?gp1=<?php echo $row['idasist']; ?>"><i class="fi fi-rr-edit"></i> Editar Asistente</a></li>
                                             <li><a class="dropdown-item" href="../model/reg_asisten/src_del_asist.php?id=<?php echo $row['idasist']; ?>"><i class="fi fi-rr-trash"></i> Eliminar Asistente</a></li>
                                             

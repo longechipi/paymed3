@@ -57,16 +57,20 @@ $host = basename($_SERVER['PHP_SELF']);
     <!-- FIN SEGUNDO NIVEL -->
 
     <!-- TERCER NIVEL -->
-    <li class="menu-item">
+    <li class="menu-item 
+        <?php if (($host === "rpt_pacxmed.php") ) {
+            echo 'active' . ' ' . 'open';
+        } ?>">
         <a href="javascript:void(0)" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons bx bx-wrench"></i>
             <div id="menu-hono" data-i18n="User interface">PACIENTES</div>
         </a>
         <ul class="menu-sub">
             <!-- Actualizar Paciente -->
-            <li class="menu-item">
-                <a href="pages/forms/rpt_pacxmed.php" id="sidebar-hono" class="menu-link empty">
-                    <div data-i18n="Accordion">Actualizar</div>
+            <li class="menu-item 
+                <?php if ($host === "rpt_pacxmed.php") { echo 'active'; } ?>">
+                <a href="../html/rpt_pacxmed.php" id="sidebar-hono" class="menu-link empty">
+                    <div data-i18n="Accordion">Pacientes</div>
                 </a>
             </li>
         </ul>

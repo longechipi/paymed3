@@ -80,7 +80,7 @@ require('../conf/conexion.php');
 
                             <?php 
                             //------ Habilita si es Admin ------//
-                                if($idlogin == 1){ ?>
+                            if($idlogin == 1){ ?>
                               <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="movil">Seleccionar Medico</label>

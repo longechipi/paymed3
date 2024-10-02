@@ -16,7 +16,7 @@ require('../conf/conexion.php');
         <div class="d-flex align-items-end row">
             <div class="col-12">
                 <div class="card-body">
-                    <h5 class="card-title text-primary">Listado de Paises</h5>
+                    <h5 class="card-title text-primary">Listado de Pacientes</h5>
                     <div class="text-center">
                         <a class="btn btn-primary" href="regpaconly.php" rel="noopener noreferrer"><i class="fi fi-rr-hospital-user"></i> AÑADIR PACIENTE</a>
                     </div>
