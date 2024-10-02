@@ -1,8 +1,5 @@
 <?php 
-$a="SELECT CONCAT(M.apellido1, ' ' ,M.nombre1) AS nom_med, M.idlogin, L.cargo
-FROM medicos M
-INNER JOIN loginn L ON M.idlogin = L.idlogin
-WHERE idmed = $idmedico";
+$a="SELECT idlogin, fullname, cargo FROM loginn WHERE idlogin = $idlogin";
 $ares=$mysqli->query($a);
 $row=$ares->fetch_assoc();
 ?>
@@ -48,7 +45,7 @@ $row=$ares->fetch_assoc();
                   </div>
                 </div>
                 <div class="flex-grow-1">
-                  <span class="fw-semibold d-block"><?php echo $row['nom_med'];?></span>
+                  <span class="fw-semibold d-block"><?php echo $row['fullname'];?></span>
                   <small class="text-muted"><?php echo $row['cargo']?></small>
                 </div>
               </div>

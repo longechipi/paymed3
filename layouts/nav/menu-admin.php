@@ -72,7 +72,7 @@ $host = basename($_SERVER['PHP_SELF']);
     <!-- SEGUNDO NIVEL -->
     <li class="menu-item 
         <?php
-        if (($host === "rpt_clin.php") || ($host === "rpt_prov.php")|| ($host === "rpt_seg.php") || ($host === "rpt_med.php") || ($host === "rpt_presupuestos.php")) {
+        if (($host === "rpt_clin.php") || ($host === "rpt_prov.php")|| ($host === "rpt_seg.php") || ($host === "rpt_med.php") || ($host === "rpt_presupuestos.php") || ($host === "rpt_pacxmed.php") ) {
             echo 'active' . ' ' . 'open';
         } ?>">
         <a href="javascript:void(0)" class="menu-link menu-toggle">
@@ -107,6 +107,18 @@ $host = basename($_SERVER['PHP_SELF']);
                     <div data-i18n="Accordion">Aseguradoras</div>
                 </a>
             </li>
+
+            <!-- Pacientes -->
+            <li class="menu-item 
+                <?php if ($host === "rpt_pacxmed.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_pacxmed.php" id="sidebar-hono" class="menu-link empty">
+                    <div data-i18n="Accordion">Pacientes</div>
+                </a>
+            </li>
+
+
             <!-- Medicos -->
             <li class="menu-item 
                 <?php if ($host === "rpt_med.php") {
