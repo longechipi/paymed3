@@ -10,21 +10,6 @@
    $nombre=$arr['nombre'];
    $codcolemed=$arr['codcolemed'];
    $mpss=$arr['mpss'];
-   //echo "s11111111111111111111111111111111ccc"; exit();
-   /*Busco Doc*/
-   /*
-   $sql = ("SELECT iddocument, idmed, imagen FROM drdocument WHERE idmed='".$idmed."'; ");
-   $objimg=$mysqli->query($sql);
-   */
-   //$row_cnt = $objimg->num_rows; 
-   //$arrimg=$objimg->fetch_array();
-   /*
-   if ($row_cnt!='0') {
-    $imagen=$arrimg['imagen'];
-   }else{
-    $imagen='Vavio';
-   }
-    */
   } // End isset 
   if(isset($_POST['submit'])){ echo "submit"; exit();
     $idmed=$_POST['idmed'];

@@ -29,6 +29,7 @@ require('../conf/conexion.php');
                             <th>Cedula</th>
                             <th>Movil</th>
                             <th>Correo</th>
+                            <?php if($privilegios ==1){ echo "<th>Médico Tratante</th>";}?>
                             <th>Accion</th>
                         </tr>
                     </thead>
@@ -43,6 +44,8 @@ require('../conf/conexion.php');
                                 <td><?php echo $row['cedula']; ?></td>
                                 <td><?php echo $row['celular']; ?></td>
                                 <td><?php echo $row['correo']; ?></td>
+                                <?php if($privilegios ==1){ echo "<td>". $row['nom_med'] ."</td>";}?>
+                                
                                 <td>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">

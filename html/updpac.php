@@ -58,7 +58,7 @@ $parroquia=$arr[0];
 
                         <div class="col-md-2">
                            <div class="form-group">
-                              <label for="apellido1">1er Apellido:</label>
+                              <label for="apellido1">Primer Apellido:</label>
                               <input type="text" name="apellido1" id="apellido1" style="text-transform:uppercase;" onKeypress="if (event.keyCode < 65 || event.keyCode > 90 && event.keyCode < 97 || event.keyCode > 122) event.returnValue = false;" class="form-control" 
                               value="<?php echo $row['apellido1']; ?>">
                            </div>
@@ -66,7 +66,7 @@ $parroquia=$arr[0];
 
                         <div class="col-md-2">
                            <div class="form-group">
-                              <label for="apellido2">2do Apellido: </label>
+                              <label for="apellido2">Segundo Apellido: </label>
                               <input type="text" name="apellido2" id="apellido2" style="text-transform:uppercase;" onKeypress="if (event.keyCode < 65 || event.keyCode > 90 && event.keyCode < 97 || event.keyCode > 122) event.returnValue = false;" class="form-control" 
                               value="<?php echo $row['apellido2'];;?>">
                            </div>
@@ -74,7 +74,7 @@ $parroquia=$arr[0];
 
                         <div class="col-md-2">
                            <div class="form-group">
-                              <label for="nombre1">1er Nombre: </label>
+                              <label for="nombre1">Primer Nombre: </label>
                               <input type="text" name="nombre1" id="nombre1" style="text-transform:uppercase;" onKeypress="if (event.keyCode < 65 || event.keyCode > 90 && event.keyCode < 97 || event.keyCode > 122) event.returnValue = false;" class="form-control mb-3" required 
                               value="<?php echo  $row['nombre1'];?>">
                            </div>
@@ -82,7 +82,7 @@ $parroquia=$arr[0];
 
                         <div class="col-md-2">
                            <div class="form-group">
-                              <label for="mombre2">2do Nombre: </label>
+                              <label for="mombre2">Segundo Nombre: </label>
                               <input type="text" name="nombre2" id="nombre2" style="text-transform:uppercase;" onKeypress="if (event.keyCode < 65 || event.keyCode > 90 && event.keyCode < 97 || event.keyCode > 122) event.returnValue = false;" class="form-control" 
                               value="<?php echo $row['nombre2']; ?>">
                            </div>
@@ -115,8 +115,6 @@ $parroquia=$arr[0];
                             </div>
                         </div>
 
-                       
-
                         <div class="col-md-2">
                             <div class="form-group">
                             <label for="idsexo">Sexo:</label>
@@ -136,24 +134,17 @@ $parroquia=$arr[0];
                            <div class="form-group">
                               <!--label for="movil" style="visibility: hidden;">.</label-->
                               <label for="movil">Móvil:</label>
-                              <input type="text" name="movil" id="movil" maxlength="11" minlength="7" class="form-control" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" required 
+                              <input type="text" name="movil" id="movil" maxlength="11" minlength="7" class="form-control mb-3" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" required 
                                  value="<?php echo $row['movil'];?>">
                            </div>
                         </div> 
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                            <div class="form-group">
                               <label for="correo">Correo:</label>
                               <input type="email" name="correo" id="correo" class="form-control" required value="<?php echo $row['correo'];?>">
                            </div>
                         </div>
-
-
                     </div><!-- FIN ROW BASE INTERNA -->
-
-                     <div class="row"> <!--INICIO ROW 1 -->
-                    
-                       
-                    </div> <!--FIN ROW 2 --> 
 
                     <div class="divider">
                         <div class="divider-text">Datos de Vivienda</div>
@@ -171,7 +162,6 @@ $parroquia=$arr[0];
                                     echo '<option value="' . $valores['idpais'] . '">' . $valores['pais'] . '</option>';
                                  } ?>
                               </select>
-                            
                            </div>
                         </div>
 
@@ -191,6 +181,7 @@ $parroquia=$arr[0];
                               </select>
                            </div>
                         </div>
+
                         <div  id="div-parroquia" class="col-md-3">
                            <div class="form-group">
                               <label for="correo">Parroquia:</label>
@@ -208,8 +199,6 @@ $parroquia=$arr[0];
                               <input type="text" name="calleav" style="text-transform:uppercase;" id="calleav" style="text-transform:uppercase;" class="form-control"  value="<?php echo $row['calleav'];?>">
                            </div>
                         </div>
-
-                       
 
                         <div class="text-center mt-4">
                             <button type="submit" id="btn_update_clinica" class="btn btn-primary"><i class="fi fi-rs-disk"></i> ACTUALIZAR</button>
@@ -246,11 +235,11 @@ $('#upd_cli').submit(function(e){
         data: $("#upd_cli").serialize(),
         success: function(data){
             if(data == 1){
-                console.log(data)
                 Swal.fire({
                     title: 'Actualizo con Exito!',
                     text: 'Se actualizo correctamente el Paciente',
                     icon: 'success',
+                    confirmButtonColor: "#007ebc",
                     confirmButtonText: 'Aceptar'
                 }).then((result) => {
                     if (result.isConfirmed) {
@@ -263,6 +252,7 @@ $('#upd_cli').submit(function(e){
                     title: 'Error!',
                     text: 'Ocurrio un Error al Actualizar el Paciente',
                     icon: 'error',
+                    confirmButtonColor: "#007ebc",
                     confirmButtonText: 'Aceptar'
                 });
             }

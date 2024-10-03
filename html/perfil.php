@@ -56,118 +56,32 @@ require('../conf/conexion.php');
 
 <?php include('../layouts/script.php') ?>
 <script>
-$('#upd_datos').submit(function(e){
-e.preventDefault();
-    $.ajax({
-        type: "POST",
-        url: "../model/perfil/udp_datos.php",
-        data: $("#upd_datos").serialize(),
-        success: function(data){
-			console.log(data);
-            // if(data == 1){
-            //     Swal.fire({
-            //         title: 'Registro Exitoso!',
-            //         text: 'Se ha registrado correctamente la Clinica',
-            //         icon: 'success',
-            //         confirmButtonColor: "#007ebc",
-            //         confirmButtonText: 'Aceptar'
-            //     }).then((result) => {
-            //         if (result.isConfirmed) {
-            //             window.location.href = "regcli.php";
-            //         }
-            //     });
-            // }else{
-            //     Swal.fire({
-            //         title: 'Error!',
-            //         text: 'Ocurrio un Error al Registrar la Clinica',
-            //         icon: 'error',
-            //         confirmButtonText: 'Aceptar'
-            //     });
-            // }
-        }
-    }) 
-})
-
-$('#form2').submit(function(e){
-e.preventDefault();
-    $.ajax({
-        type: "POST",
-        url: "../model/perfil/upd_bancos.php",
-        data: $("#form2").serialize(),
-        success: function(data){
-			console.log(data);
-            // if(data == 1){
-            //     Swal.fire({
-            //         title: 'Registro Exitoso!',
-            //         text: 'Se ha registrado correctamente la Clinica',
-            //         icon: 'success',
-            //         confirmButtonColor: "#007ebc",
-            //         confirmButtonText: 'Aceptar'
-            //     }).then((result) => {
-            //         if (result.isConfirmed) {
-            //             window.location.href = "regcli.php";
-            //         }
-            //     });
-            // }else{
-            //     Swal.fire({
-            //         title: 'Error!',
-            //         text: 'Ocurrio un Error al Registrar la Clinica',
-            //         icon: 'error',
-            //         confirmButtonText: 'Aceptar'
-            //     });
-            // }
-        }
-    }) 
-})
-
-$("#idpais").change(function() {
-		$.get("../model/reg_clinica/pais.php", "idpais=" + $("#idpais").val(), function(data) {
-		$("#id_estado").html(data);
-	});
-});
-
-$("#id_estado").change(function() {
-		$.get("../model/reg_clinica/estado.php", "id_estado=" + $("#id_estado").val(), function(data) {
-		$("#id_municipio").html(data);
-	});
-});
-
-$("#id_municipio").change(function() {
-		$.get("../model/reg_clinica/municipio.php", "id_municipio=" + $("#id_municipio").val(), function(data) {
-		$("#id_parroquia").html(data);
-	});
-});
-
-$('#id_estado, #id_parroquia, #id_municipio, #idpais, #idespmed').select2({
-	theme: 'bootstrap-5',
-	width: '100%',
-});
 $('#user').DataTable({
-        "language": {
-            "sProcessing": "Procesando...",
-            "sLengthMenu": "Mostrar _MENU_ registros",
-            "sZeroRecords": "No se encontraron resultados",
-            "sEmptyTable": "Ningún dato disponible en esta tabla",
-            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-            "sInfoPostFix": "",
-            "sSearch": "Buscar:",
-            "sUrl": "",
-            "sInfoThousands": ",",
-            "sLoadingRecords": "Cargando...",
-            "oPaginate": {
-                "sFirst": "Primero",
-                "sLast": "Último",
-                "sNext": "Siguiente",
-                "sPrevious": "Anterior"
-            },
-            "oAria": {
-                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-            }
+    "language": {
+        "sProcessing": "Procesando...",
+        "sLengthMenu": "Mostrar _MENU_ registros",
+        "sZeroRecords": "No se encontraron resultados",
+        "sEmptyTable": "Ningún dato disponible en esta tabla",
+        "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+        "sInfoPostFix": "",
+        "sSearch": "Buscar:",
+        "sUrl": "",
+        "sInfoThousands": ",",
+        "sLoadingRecords": "Cargando...",
+        "oPaginate": {
+            "sFirst": "Primero",
+            "sLast": "Último",
+            "sNext": "Siguiente",
+            "sPrevious": "Anterior"
         },
-    });
+        "oAria": {
+            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+        }
+    },
+});
 	$('#user2').DataTable({
         "language": {
             "sProcessing": "Procesando...",
@@ -194,33 +108,35 @@ $('#user').DataTable({
             }
         },
     });
-	$('#user3').DataTable({
-        "language": {
-            "sProcessing": "Procesando...",
-            "sLengthMenu": "Mostrar _MENU_ registros",
-            "sZeroRecords": "No se encontraron resultados",
-            "sEmptyTable": "Ningún dato disponible en esta tabla",
-            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-            "sInfoPostFix": "",
-            "sSearch": "Buscar:",
-            "sUrl": "",
-            "sInfoThousands": ",",
-            "sLoadingRecords": "Cargando...",
-            "oPaginate": {
-                "sFirst": "Primero",
-                "sLast": "Último",
-                "sNext": "Siguiente",
-                "sPrevious": "Anterior"
-            },
-            "oAria": {
-                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-            }
+$('#user3').DataTable({
+    "language": {
+        "sProcessing": "Procesando...",
+        "sLengthMenu": "Mostrar _MENU_ registros",
+        "sZeroRecords": "No se encontraron resultados",
+        "sEmptyTable": "Ningún dato disponible en esta tabla",
+        "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+        "sInfoPostFix": "",
+        "sSearch": "Buscar:",
+        "sUrl": "",
+        "sInfoThousands": ",",
+        "sLoadingRecords": "Cargando...",
+        "oPaginate": {
+            "sFirst": "Primero",
+            "sLast": "Último",
+            "sNext": "Siguiente",
+            "sPrevious": "Anterior"
         },
-    });
+        "oAria": {
+            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+        }
+    },
+});
 </script>
+<script src="../js/direcciones.js"></script>
+<script src="../js/fun_globales.js"></script>
 </body>
 
 </html>
