@@ -55,7 +55,7 @@ require('../conf/conexion.php');
                                                 </a>
                                             </li>
                                             <li>
-                                                <a class="dropdown-item" href="src_del_user.php?idlogin=<?php echo $row['cedula'];?>">
+                                                <a class="dropdown-item" href="../model/mod_actP_med/del_paci.php?idpaci=<?php echo $row['idpaci'];?>">
                                                 <i class="fi fi-rr-trash"></i> Eliminar Paciente
                                                 </a>
                                             </li>

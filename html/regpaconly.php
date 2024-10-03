@@ -136,13 +136,6 @@ require('../conf/conexion.php');
                            </div>
                         </div>
 
-                        <div class="col-md-4">
-                           <div class="form-group">
-                              <label for="correoalt">Correo Alterno:</label>
-                              <input type="email" name="correoalt" id="correoalt" class="form-control ">
-                           </div>
-                        </div>
-
                     </div>
                     <div class="row"> <!--INICIO ROW 3 -->
                         <div class="col-md-3 mb-3">
@@ -268,7 +261,6 @@ function busci(cinro) {
     url: "../model/mod_actP_med/busci_js.php",
     data: {cedula: cedula },
     success: function(data) {
-        console.log(data)
         if (data =='1') {
             Swal.fire({
                 title: 'Error!',
@@ -291,6 +283,7 @@ $(document).ready(function(){
         url: "../model/mod_actP_med/regpaciente.php",
         data: $("#reg_med").serialize(),
         success: function(data){
+            console.log(data);
             if(data == 1){
                 Swal.fire({
                     title: 'Registro Exitoso!',

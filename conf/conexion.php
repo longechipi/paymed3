@@ -1,8 +1,7 @@
 <?php
-
-$servername = "127.0.0.1";
-$username = "root";
-$password = "12345";
+$servername = "66.85.132.90";
+$username = "root_autogas";
+$password = "19341986Chipi**";
 $dbname = "paymed";
 
 $mysqli = new mysqli($servername, $username, $password, $dbname);
