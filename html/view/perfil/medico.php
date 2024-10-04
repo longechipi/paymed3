@@ -307,6 +307,7 @@ $parroquia=$arr[0];
 										title: 'Error!',
 										text: 'Ocurrio un Error al Actualizar los Datos Basicos ',
 										icon: 'error',
+										confirmButtonColor: "#007ebc",
 										confirmButtonText: 'Aceptar'
 									});
 								}
@@ -540,6 +541,7 @@ $parroquia=$arr[0];
 										title: 'Error!',
 										text: 'Ocurrio un Error al Actualizar los Datos Bancarios ',
 										icon: 'error',
+										confirmButtonColor: "#007ebc",
 										confirmButtonText: 'Aceptar'
 									});
 								}
@@ -552,11 +554,14 @@ $parroquia=$arr[0];
 		</div><!-- FIN PESTAÑA DE DATOS BANCARIOS -->
 		<!-- PESTAÑA DE DATOS DE ESPECIALIDADES -->
 		<div class="tab-pane fade" id="especialidades" role="tabpanel">
+			<div class="divider">
+				<div class="divider-text">Especialidades Médicas</div>
+			</div>
 			<div class="row">
 				<div class="col-md-5">
 					<div class="form-group">
-						<label for="apellido1">Especialidades:</label>
-						<select class="form-select" id="idespmed" name="idespmed"> <!-- onchange="asignaesp(this.value)" -->
+						<label for="apellido1">Especialidad</label>
+						<select class="form-select" id="idespmed" name="idespmed">
 							<option value="" disabled selected>Seleccione</option>
 							<?php
 							$a3 = $mysqli -> query ("SELECT idespmed, especialidad FROM especialidadmed WHERE idestatus = 1");
@@ -572,7 +577,7 @@ $parroquia=$arr[0];
 				$bres=$mysqli->query($b);
 				?>
 				<div class="table-responsive">
-					<table class="table table-hover" id="user" cellspacing="0" style="width: 100%;">
+					<table class="table table-hover" id="tblesp" cellspacing="0" style="width: 100%;">
 					<thead>
 						<tr>
 							<th>Especialidad Seleccionada</th>
@@ -584,13 +589,14 @@ $parroquia=$arr[0];
 								while ($row = $bres->fetch_array(MYSQLI_ASSOC)) {
 								echo '<tr>';
 								echo '<td>'.$row['especialidad'].'</td>';
-								echo '<td><a href="javascript:borrar('.$row['idespmed'].')"><i class="fi fi-rs-trash"></i></a></td>';
+								echo '<td><button class="btn btn-primary" type="button" onclick="borrar('.$row['idespmed'].')" id="del-'.$row['idespmed'].'"><i class="fi fi-rr-delete-user"></i></button></td>';
 								echo '</tr>';
 								}
 							?>
 						</tbody>
 					</table>
 					</div>
+					
 				</div>
 				</div> <!-- FIN DE ROW 2 -->
 				<div class="row"> 
@@ -626,13 +632,14 @@ $parroquia=$arr[0];
 							echo '<tr>';
 							echo '<td>'.$rowc['razsocial'].'</td>';
 							echo '<td>'.$rowc['dia'].' : '.$desde.'-'.$hasta.'</td>';
-							echo '<td><a href="javascript:borrar('.$rowc['idclinica'].')"><i class="fi fi-rs-trash"></i></a></td>';
+							echo '<td><button class="btn btn-primary" type="button" onclick="borrarcli('.$rowc['idclinica'].')" id="del-'.$rowc['idclinica'].'"><i class="fi fi-rr-delete-user"></i></button></td>';
 							echo '</tr>';
 							}
 						?>
 				</table>
 
 				</div>
+
 
 				</div>
 		
@@ -643,67 +650,101 @@ $parroquia=$arr[0];
 			</div>
 		<script>
 			$("#idespmed").change(function () {
-				var idespmed = $("#idespmed").val();
-				var idmed = $("#idmed").val();
-				
+				const idespmed = $("#idespmed").val();
+				const idmed = $("#idmed").val();
 				$.ajax({
 					type: "POST",
 					url: "../model/perfil/medicos/datos_especialidades.php",
 					data: { idespmed: idespmed, idmed: idmed },
 					success: function (data) {
-						console.log(data)
-						// if(data == 1){
-						// 	Swal.fire({
-						// 		title: 'Actualización Exitosa!',
-						// 		text: 'Se Actualizo correctamente la Especialidad',
-						// 		icon: 'success',
-						// 		confirmButtonColor: "#007ebc",
-						// 		confirmButtonText: 'Aceptar'
-						// 	}).then((result) => {
-						// 		if (result.isConfirmed) {
-						// 			window.location.href = "perfil.php";
-						// 		}
-						// 	});
-						// }else{
-						// 	Swal.fire({
-						// 		title: 'Error!',
-						// 		text: 'Ocurrio un Error al Actualizar la Especialidad ',
-						// 		icon: 'error',
-						// 		confirmButtonText: 'Aceptar'
-						// 	});
-						// }
+						if(data == 2){
+							Swal.fire({
+								title: 'Error!',
+								text: 'La especialidad seleccionada ya esta incluida anteriormente',
+								icon: 'error',
+								confirmButtonColor: "#007ebc",
+								confirmButtonText: 'Aceptar'
+							});
+							return false;
+						}
+						const arrdata = data.split('-');
+						const id =arrdata[0];
+						const espe =arrdata[1];
+						document.getElementById("tblesp").insertRow(-1).innerHTML = '<tr><td>'+espe+'</td><td><button class="btn btn-primary" type="button" onclick="borrar('+id+')" id="del-'+id+'"><i class="fi fi-rr-delete-user"></i></button></td></tr>';
 					}
 				});
 			});
+			function borrar(id) {
+				const idmed = $("#idmed").val();
+				$.ajax({
+					type: "POST",
+					url: "../model/perfil/medicos/del_espe.php",
+					data: { id: id, idmed: idmed },
+					success: function (data) {
+						var tabla = document.getElementById("tblesp");
+						var filas = tabla.getElementsByTagName("tr");
+						for (var i = 0; i < filas.length; i++) {
+							var celdas = filas[i].getElementsByTagName("td");
+							if (celdas.length > 0) {
+								var boton = celdas[celdas.length - 1].getElementsByTagName("button")[0];
+									if (boton.getAttribute("onclick").includes(id)) {
+										tabla.deleteRow(i);
+										break;
+									}
+							}
+						}
+					}
+				});
+			}
 
-
-
+			function borrarcli(id) {
+				const idmed = $("#idmed").val();
+				$.ajax({
+					type: "POST",
+					url: "../model/perfil/medicos/del_cli.php",
+					data: { id: id, idmed: idmed },
+					success: function (data) {
+						var tabla = document.getElementById("user2");
+						var filas = tabla.getElementsByTagName("tr");
+						for (var i = 0; i < filas.length; i++) {
+							var celdas = filas[i].getElementsByTagName("td");
+							if (celdas.length > 0) {
+								var boton = celdas[celdas.length - 1].getElementsByTagName("button")[0];
+									if (boton.getAttribute("onclick").includes(id)) {
+										tabla.deleteRow(i);
+										break;
+									}
+							}
+						}
+					}
+				});
+			}
 
 			$('#idespmed').select2({
 				theme: 'bootstrap-5',
 				width: '100%',
 			});
 		</script>
-		</div>
-
+		</div><!-- FIN PESTAÑA DE DATOS DE ESPECIALIDADES -->
+		<!-- PESTAÑA DE DATOS DE DOCUMENTOS -->
 		<div class="tab-pane fade" id="documentos" role="tabpanel">
 			<div class="divider">
                     <div class="divider-text">Documentación Médica</div>
             </div>
-			<form enctype="multipart/form-data" action="updoc.php" method="post">
+			<form enctype="multipart/form-data" action="../model/perfil/medicos/add_doc.php" method="post">
 				<input type="text" id="idmed" name="idmed" value="<?php echo $idmed; ?>" hidden/> 
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
 						<label for="codcolmed">Código Colegio Médico</label>
-						<input type="text" name="codcolemed" id="codcolemed" minlength="9" maxlength="9" value="<?php echo $codcolemed; ?>" class="form-control" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" required />
+						<input type="text" name="codcolemed" id="codcolemed" minlength="9" maxlength="9" value="<?php echo $codcolemed; ?>" class="form-control" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;"  />
 						</div>  
 					</div>
 
 					<div class="col-md-6">
 						<div class="form-group">
 						<label for="codcolmed">MPSS</label>
-						<input type="text" name="mpsscod" id="mpsscod"  minlength="5" maxlength="5" value="<?php echo $mpss; ?>" class="form-control mb-4" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" required />
+						<input type="text" name="mpsscod" id="mpsscod"  minlength="5" maxlength="5" value="<?php echo $mpss; ?>" class="form-control mb-4" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;"  />
 						</div>  
 					</div>
 
@@ -711,14 +752,14 @@ $parroquia=$arr[0];
 					<div class="col-md-3">
 						<label for="cedula">Cédula</label>
 						<div class="custom-file">
-							<input type="file" id="cedula" name="imagen" class="form-control" accept="application/pdf" required>  
+							<input type="file" id="cedula" name="imagen" class="form-control" accept="application/pdf" >  
 							<label id="cedula"  class="custom-file-label" for="cedula"></label> 
 						</div>
 					</div>
 					<div class="col-md-3">
 					<label for="rif">RIF</label>
 						<div class="custom-file">
-							<input type="file" id="rif" name="imagen1" class="form-control" accept="application/pdf" required>
+							<input type="file" id="rif" name="imagen1" class="form-control" accept="application/pdf" >
 							
 						</div>
 					</div>
@@ -726,17 +767,21 @@ $parroquia=$arr[0];
 					<div class="col-md-3">
 					<label for="colemed">Carnet C.M.</label>
 						<div class="custom-file">
-							<input type="file" id="colemed"  name="imagen2"  class="form-control" accept="application/pdf" required>
+							<input type="file" id="colemed"  name="imagen2"  class="form-control" accept="application/pdf" >
 							
 						</div>
 					</div>
 					<div class="col-md-3">
 					<label for="colemed">MPSS</label>
 						<div class="custom-file">
-							<input type="file" id="mpss"  name="imagen3"  class="form-control" accept="application/pdf" required>
-							
+							<input type="file" id="mpss"  name="imagen3"  class="form-control" accept="application/pdf" >
 						</div>
 					</div>
+					<div class="text-center">
+						<button type="submit" class="btn btn-primary"><i class="fi fi-rs-cloud-upload"></i> Cargar</button>
+					</div>
+
+
 				</div>
 			</form>
 			<div class="table-responsive">

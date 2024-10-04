@@ -1,8 +1,7 @@
 <!-- Modal -->
-
 <?php 
-$a = "SELECT * FROM medicos WHERE idmed = $idmed";
-$ares=$mysqli->query($a); 
+$a_cli = "SELECT * FROM medicos WHERE idmed = $idmed";
+$ares=$mysqli->query($a_cli); 
 $row = $ares->fetch_assoc();
 ?>
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -15,6 +14,7 @@ $row = $ares->fetch_assoc();
       <div class="modal-body">
        
         <form id="horario">
+          <input type="text" name="idmed_hora" id="idmed_hora" class="form-control" value="<?php echo $idmed; ?>" hidden>
             <div class="row">
                 <div class="divider">
                     <div class="divider-text">Clinica </div>
@@ -22,15 +22,16 @@ $row = $ares->fetch_assoc();
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="apellido1">Clinicas:</label>
-                        <select  name="idaseg" id="idclinica" class="form-select" required>
-                        <option value="">-- Seleccione --</option>
-                        <?php
-                        $query = $mysqli -> query ("SELECT a.idclinica, a.razsocial 
-                                                    from clinicas a
-                                                    WHERE a.idclinica not in(select b.idclinica from clinicamedico b where b.idmed='".$idmed."') AND a.idestatus='1'; ");
-                        while ($valores = mysqli_fetch_array($query)) {
-                        echo '<option value="'.$valores['idclinica'].'">'.$valores['razsocial'].'</option>';} ?>
-                        </select>
+                          <select name="idclinica" id="idclinica" class="form-select" required>
+                            <option value="" selected disabled>Seleccione</option>
+                            <?php
+                            $query = $mysqli -> query 
+                            ("SELECT a.idclinica, a.razsocial 
+                            from clinicas a
+                            WHERE a.idclinica not in(select b.idclinica from clinicamedico b where b.idmed='$idmed') AND a.idestatus='1';");
+                            while ($valores = mysqli_fetch_array($query)) {
+                            echo '<option value="'.$valores['idclinica'].'">'.$valores['razsocial'].'</option>';} ?>
+                          </select>
                     </div>
                 </div>
 
@@ -70,8 +71,8 @@ $row = $ares->fetch_assoc();
 
                 <div class="col-md-4">
                   <div class="form-group">
-                    <label for="pacsinseg">Pacientes Con Seguro</label>
-                    <input type="text" class="form-control" name="pacsinseg" id="pacsinseg" value="0" size="3" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" />
+                    <label for="pacconseg">Pacientes Con Seguro</label>
+                    <input type="text" class="form-control" name="pacconseg" id="pacconseg" value="0" size="3" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" />
                   </div>
                 </div>
 
@@ -119,26 +120,20 @@ $row = $ares->fetch_assoc();
                         <div>
                             <button id="add_hora" class="btn btn-primary mt-5"> Agregar </button>
                         </div>
-                        
-                        
                     </div>
-
-                    
-
-
                 </div>
-                <div >
-                        <table class="table" id="tabla-hora">
-                            <thead>
-                                <tr>
-                                    <th>Dia</th>
-                                    <th>Desde</th>
-                                    <th>Hasta</th>
-                                </tr>
-                            </thead>
-                            
-                        </table>
-                    </div>
+                <div>
+                  <table class="table" id="tabla-hora">
+                    <thead>
+                        <tr>
+                          <th>Dia</th>
+                          <th>Desde</th>
+                          <th>Hasta</th>
+                        </tr>
+                    </thead>
+                      <tbody></tbody>
+                  </table>
+                </div>
 
             </div>
             <div class="modal-footer">
@@ -154,40 +149,88 @@ $row = $ares->fetch_assoc();
 </div>
 
 <script>
-
-    $('#dias').change(function(){
-        const dias = $(this).val();
-        $('#horas').removeAttr('hidden');
-    }); 
-    $('#add_hora').click(function(e){
-        e.preventDefault();
-        const desde = $('#desde').val();
-        const hasta = $('#hasta').val();
-        const dias = $('#dias').val();
-        if(desde == '' || hasta == ''){
-            alert('Tiene que Seleccionar el Horario de Atención');
-            return;
-        }
-        //table tbody
-        const html = `<tbody id="tabla-hora">
-                    <tr>
-                        <td>${dias}</td>
-                        <td>${desde}</td>
-                        <td>${hasta}</td>
-                    </tr>
-                    </tbody>`;
-        
-        $('#tabla-hora').append(html);
-    });
+$('#dias').change(function(){
+    const dias = $(this).val();
+    $('#horas').removeAttr('hidden');
+}); 
+$('#add_hora').click(function(e){
+    e.preventDefault();
+    const desde = $('#desde').val();
+    const hasta = $('#hasta').val();
+    const dias = $('#dias').val();
+    if(desde == '' || hasta == ''){
+        alert('Tiene que Seleccionar el Horario de Atención');
+        return;
+    }
+    const html = `<tr><td>${dias}</td><td>${desde}</td><td>${hasta}</td></tr>`;
+    $('#tabla-hora').append(html);
+});
     $('#horario').submit(function(e){
-        e.preventDefault();
+      e.preventDefault();
+      const pacxdia = $('#pacxdia').val();
+      const pacconseg = $('#pacconseg').val();
+      const pacsinseg = $('#pacsinseg').val();
+      const totalPac = parseInt(pacconseg) + parseInt(pacsinseg);  
+      const horarios = [];
+        if(pacxdia < totalPac){
+          Swal.fire({
+            title: '¡Error!',
+            text: '¡Los pacientes con Seguro y Sin Seguro no puede Superar a los Pacientes por día!',
+            icon: 'error',
+            confirmButtonColor: "#007ebc",
+            confirmButtonText: 'Aceptar'
+          }).then(() => {
+              const modal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
+              modal.hide();
+            });
+          return;
+        }
+            $('#tabla-hora tr').each(function() {
+              const $row = $(this);
+              const dias = $row.find('td:eq(0)').text();
+              const desde = $row.find('td:eq(1)').text();
+              const hasta = $row.find('td:eq(2)').text();
+              if (dias && desde && hasta) {
+                  horarios.push({
+                      dias,
+                      desde,
+                      hasta
+                  });
+              }
+            });
+
+      const data = $("#horario").serialize() + '&horarios=' + JSON.stringify(horarios);
         $.ajax({
-            type: "POST",
-            url: "../model/perfil/add_horarios.php",
-            data: $("#horario").serialize(),
-                success: function(data){
-                    console.log(data)
-                }
+          type: "POST",
+          url: "../model/perfil/medicos/add_horarios.php",
+          data: data,
+            success: function(data){
+              if(data == 1){
+                Swal.fire({
+                  title: '¡Éxito!',
+                  text: '¡Horarios y Clinicas Agregados Correctamente!',
+                  icon: 'success',
+                  confirmButtonColor: "#007ebc",
+                  confirmButtonText: 'Aceptar'
+                })
+                location.reload();
+              }
+              if(data == 2){
+                Swal.fire({
+                  title: 'Error!',
+                  text: 'La Clinica seleccionada ya esta incluida anteriormente',
+                  icon: 'error',
+                  confirmButtonColor: "#007ebc",
+                  confirmButtonText: 'Aceptar'
+                });
+							return false;
+              }
+            }
         }) 
     });
 </script>
+<style>
+  .swal2-container {
+    z-index: 99999;
+}
+</style>

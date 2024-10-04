@@ -195,26 +195,6 @@
         if (document.getElementById("dohasta").value==''){Swal.fire({icon: 'error',title: 'Error Dia Domingo'});return false;}
       }
 
-          
-        /*if (document.getElementById("ludesde").value==''){Swal.fire({icon: 'error',title: 'Error Dia Lunes'});return false;}
-        if (document.getElementById("madesde").value==''){Swal.fire({icon: 'error',title: 'Error Dia Martes'});return false;}
-        if (document.getElementById("midesde").value==''){Swal.fire({icon: 'error',title: 'Error Dia Miercoles'});return false;}
-        if (document.getElementById("judesde").value==''){Swal.fire({icon: 'error',title: 'Error Dia Jueves'});return false;}
-        if (document.getElementById("videsde").value==''){Swal.fire({icon: 'error',title: 'Error Dia Viernes'});return false;}
-        if (document.getElementById("sadesde").value==''){Swal.fire({icon: 'error',title: 'Error Dia Sabado'});return false;}
-        if (document.getElementById("dodesde").value==''){Swal.fire({icon: 'error',title: 'Error Dia Domingo'});return false;}
-
-        if (document.getElementById("luhasta").value==''){Swal.fire({icon: 'error',title: 'Error Dia Lunes'});return false;}
-        if (document.getElementById("mahasta").value==''){Swal.fire({icon: 'error',title: 'Error Dia Martes'});return false;}
-        if (document.getElementById("mihasta").value==''){Swal.fire({icon: 'error',title: 'Error Dia Miercoles'});return false;}
-        if (document.getElementById("juhasta").value==''){Swal.fire({icon: 'error',title: 'Error Dia Jueves'});return false;}
-        if (document.getElementById("vihasta").value==''){Swal.fire({icon: 'error',title: 'Error Dia Viernes'});return false;}
-        if (document.getElementById("sahasta").value==''){Swal.fire({icon: 'error',title: 'Error Dia Sabado'});return false;}
-        if (document.getElementById("dohasta").value==''){Swal.fire({icon: 'error',title: 'Error Dia Domingo'});return false;}
-*/
-      
-      /* ____ Inserto en clinicamedico, sino existe ____ */
-
       jQuery.ajax({
                 type: "POST",   
                 url: "reghorario_js.php",
