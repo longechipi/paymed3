@@ -752,33 +752,30 @@ $parroquia=$arr[0];
 					<div class="col-md-3">
 						<label for="cedula">Cédula</label>
 						<div class="custom-file">
-							<input type="file" id="cedula" name="imagen" class="form-control" accept="application/pdf" >  
-							<label id="cedula"  class="custom-file-label" for="cedula"></label> 
+						<input type="file" id="cedula" name="imagen" class="form-control" accept="image/jpeg, image/png, image/jpg, image/webp, application/pdf">
 						</div>
 					</div>
 					<div class="col-md-3">
 					<label for="rif">RIF</label>
 						<div class="custom-file">
-							<input type="file" id="rif" name="imagen1" class="form-control" accept="application/pdf" >
-							
+						<input type="file" id="rif" name="imagen1" class="form-control" accept="image/jpeg, image/png, image/jpg, image/webp, application/pdf">
 						</div>
 					</div>
 					
 					<div class="col-md-3">
 					<label for="colemed">Carnet C.M.</label>
 						<div class="custom-file">
-							<input type="file" id="colemed"  name="imagen2"  class="form-control" accept="application/pdf" >
-							
+						<input type="file" id="colemed" name="imagen2" class="form-control" accept="image/jpeg, image/png, image/jpg, image/webp, application/pdf">
 						</div>
 					</div>
 					<div class="col-md-3">
 					<label for="colemed">MPSS</label>
 						<div class="custom-file">
-							<input type="file" id="mpss"  name="imagen3"  class="form-control" accept="application/pdf" >
+							<input type="file" id="mpss" name="imagen3" class="form-control" accept="image/jpeg, image/png, image/jpg, image/webp, application/pdf">
 						</div>
 					</div>
 					<div class="text-center">
-						<button type="submit" class="btn btn-primary"><i class="fi fi-rs-cloud-upload"></i> Cargar</button>
+						<button type="submit" class="btn btn-primary mt-4"><i class="fi fi-rs-cloud-upload"></i> Cargar</button>
 					</div>
 
 
@@ -794,16 +791,16 @@ $parroquia=$arr[0];
 					</thead>
 					<tbody>
 						<?php 
-						$sql = ("SELECT iddocument, idmed, imagen FROM drdocument WHERE idmed='$idmed'; ");
+						$sql = ("SELECT iddocument, idmed, imagen, quees FROM drdocument WHERE idmed='$idmed' AND quees NOT IN ('firma', 'sello')");
 						$objimg=$mysqli->query($sql);
 						while($rowdoc = mysqli_fetch_array($objimg)) { ?>
 						<tr>
 						<td>
 							
-						<a href="drdocument/<?php echo $rowdoc['imagen'];?>" target="_blank"><?php echo $rowdoc['imagen']; ?></a>
+						<a href="../upload/doc_medicos/<?php echo $rowdoc['imagen'];?>" target="_blank"><?php echo $rowdoc['imagen']; ?></a>
 						</td>
 						<td align="center">
-							<button type="button" onclick="fdeldoc(<?php echo $rowdoc['iddocument'];?>)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+							<button type="button" onclick="fdeldoc(<?php echo $rowdoc['iddocument'];?>)" class="btn btn-primary btn-sm"><i class="fi fi-rr-delete-user"></i></button>
 							
 						</td>
 						</tr>
@@ -813,23 +810,77 @@ $parroquia=$arr[0];
 
 				 </table>
 			</div>
+		<script>
+		function fdeldoc(id) {
+			const idmed = $("#idmed").val();
+			$.ajax({
+				type: "POST",
+				url: "../model/perfil/medicos/del_docs.php",
+				data: { id: id, idmed: idmed },
+				success: function (data) {
+					if(data == 1){
+						Swal.fire({
+							title: "Documento Eliminado",
+							text: "Elimino con Exito el Documento y el Registro seleccionado",
+							icon: "success",
+							confirmButtonColor: "#007ebc",
+							confirmButtonText: "Aceptar"
+						})
+						var tabla = document.getElementById("user3");
+						var filas = tabla.getElementsByTagName("tr");
+						for (var i = 0; i < filas.length; i++) {
+							var celdas = filas[i].getElementsByTagName("td");
+							if (celdas.length > 0) {
+								var boton = celdas[celdas.length - 1].getElementsByTagName("button")[0];
+									if (boton.getAttribute("onclick").includes(id)) {
+										tabla.deleteRow(i);
+										break;
+									}
+							}
+						}
+					}else{
+						Swal.fire({
+							icon: "error",
+							title: "Error al Eliminar",
+							text:"Ocurrio un error al Eliminar el Documento",
+							confirmButtonText: "Volver",
+							confirmButtonColor: "#005e43",
+						})
+					}
+					if(data == 3){
+						Swal.fire({
+							icon: "error",
+							title: "No se encuentra el documento",
+							text:"Ocurrio un error al Eliminar el Documento",
+							confirmButtonText: "Volver",
+							confirmButtonColor: "#005e43",
+							}).then(function() {
+								window.location.href = "../../../html/perfil.php";
+							});
 
-		</div>
-
+					}
+				}
+			});
+		}
+		</script>
+		</div><!-- FIN PESTAÑA DE DATOS DE DOCUMENTOS -->
+		<!-- PESTAÑA DE DATOS DE SERVICIOS -->
 		<div class="tab-pane fade" id="servicios" role="tabpanel">
 			<div class="divider">
-                    <div class="divider-text">Servicios Afiliados</div>
+                <div class="divider-text">Servicios Afiliados</div>
             </div>
 			<?php 
-			 $sql = ("SELECT idservaf, servicio, idestatus FROM serviciosafiliados where idestatus='1'; ");
+			 $sql = "SELECT idservaf, servicio, idestatus FROM serviciosafiliados where idestatus='1'";
 			 $result=$mysqli->query($sql);
 			// busco imagenes de firma, si tiene 
-			$sql = ("SELECT iddocument, idmed, imagen, quees FROM drdocument WHERE idmed='".$idmed."' AND quees='firma'; ");
-			$obj=$mysqli->query($sql); $arr=$obj->fetch_array();  
+			$sql = ("SELECT iddocument, idmed, imagen, quees RFOM drdocument WHERE idmed='".$idmed."' AND quees='firma'; ");
+			$obj=$mysqli->query($sql); 
+			$arr=$obj->fetch_array();  
 			$firmaimg=$arr['imagen'];
 			// busco imagenes de sello, si tiene 
 			$sql = ("SELECT iddocument, idmed, imagen, quees FROM drdocument WHERE idmed='".$idmed."' AND quees='sello'; ");
-			$obj=$mysqli->query($sql); $arr=$obj->fetch_array();  
+			$obj=$mysqli->query($sql); 
+			$arr=$obj->fetch_array();  
 			$selloimg=$arr['imagen'];
 			
 			
@@ -837,11 +888,10 @@ $parroquia=$arr[0];
 			<div class="row">
 				<form enctype="multipart/form-data" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
 					<input type="text" id="idmed" name="idmed" value="<?php echo $idmed; ?>" hidden>
-					<input type="text" name="nrodoc" value="<?php echo "$nrodoc"; ?>" hidden>
 					<div style="text-align: left;">
 						<div class="row">
 						<?php while($row = mysqli_fetch_array($result)) { 
-							$sqlbusca="SELECT COUNT(*) as cant FROM convafixmedico WHERE idmed= '".$idmed."' and   idservaf = '".$row['idservaf']."'; ";
+							$sqlbusca="SELECT COUNT(*) as cant FROM convafixmedico WHERE idmed= '".$idmed."' and  idservaf = '".$row['idservaf']."'; ";
 							$obj=$mysqli->query($sqlbusca);
 							$arrlast=$obj->fetch_array();
 							$cant=$arrlast[0];

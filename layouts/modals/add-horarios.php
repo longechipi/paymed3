@@ -93,7 +93,7 @@ $row = $ares->fetch_assoc();
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="apellido1">Dias:</label>
-                        <select  name="dias" id="dias" class="form-select" required>
+                        <select  name="dias" id="dias" class="form-select mb-4" required>
                             <option value="" disabled selected>Seleccione</option>
                             <option value="Lunes">Lunes</option>
                             <option value="Martes">Martes</option>

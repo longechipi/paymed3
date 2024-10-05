@@ -159,7 +159,6 @@ if (isset($_POST['submit'])) {
         });
         function fcheckafilia(id){
             var idmed  = document.getElementById("idmed").value;
-
             jQuery.ajax({
                 type: "POST",   
                 url: "regconvafi_js.php",
@@ -167,8 +166,6 @@ if (isset($_POST['submit'])) {
                 success:function(data){ 
                   console.log(data);
                   if (data!='1') {
-                    
-                    
                   }
                 }
             });// End Ajax

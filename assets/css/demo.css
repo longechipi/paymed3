@@ -264,6 +264,5 @@ input:read-only {
 }
 
 input:read-only:focus {
-  background-color: rgb(223, 223, 223);
   cursor: auto;
 }
