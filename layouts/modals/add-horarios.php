@@ -8,7 +8,7 @@ $row = $ares->fetch_assoc();
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Clinica y Horarios para el Dr(a): <?php echo $row['apellido1'].' '. $row['apellido2'].' '.  $row['nombre1'].' '. $row['nombre2'];?></h5>
+        <h5 class="modal-title" id="staticBackdropLabel">Clinica y Horarios para el Dr(a): <?php echo strtoupper($row['apellido1']).' '. strtoupper($row['apellido2']).' '.  strtoupper($row['nombre1']).' '. strtoupper($row['nombre2']);?></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">

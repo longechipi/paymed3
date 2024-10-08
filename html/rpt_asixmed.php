@@ -59,12 +59,12 @@ $fechahoy=date('Y-m-d');
                             while ($row = mysqli_fetch_array($result)) {
                         ?>
                             <tr>
-                                <td><?php echo $row['apellidos'].' '.$row['nombres']; ?></td>
+                                <td><?php echo strtoupper($row['apellidos']).' '.strtoupper($row['nombres']); ?></td>
                                 <td><?php echo $row['nrodoc']; ?></td>
-                                <td><?php echo $row['correo']; ?></td>
+                                <td><?php echo strtoupper($row['correo']); ?></td>
                                 <td><?php echo $row['movil']; ?></td>
-                                <td><?php echo $row['cargo']; ?></td>
-                                <td><strong><?php echo $row['nombremedico']; ?></strong></td>
+                                <td><?php echo strtoupper($row['cargo']); ?></td>
+                                <td><strong><?php echo strtoupper($row['nombremedico']); ?></strong></td>
                                 <td>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">

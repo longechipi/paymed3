@@ -7,6 +7,7 @@ require('../../../conf/conexion.php');
 $idmed = $_POST['idmed'];
 $codcolemed = $_POST['codcolemed'];
 $mpsscod = $_POST['mpsscod'];
+$idlogin = $_POST['idlogin'];
 
 $a = "SELECT nrodoc FROM medicos WHERE idmed='$idmed'";
 $ares=$mysqli->query($a);
@@ -97,7 +98,22 @@ if (isset($_FILES['imagen3'])) {
     }
 }
 
-echo '<script>
+if($idlogin ==1){
+    echo '<script>
+    Swal.fire({
+        title: "Informacion Actualizada!",
+        text: "Documentos e Información actualizados con Exito",
+        icon: "success",
+        confirmButtonColor: "#007ebc",
+        confirmButtonText: "Aceptar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = "../../../html/rpt_med.php";
+        }
+    });
+</script>';
+}else{
+    echo '<script>
         Swal.fire({
             title: "Informacion Actualizada!",
             text: "Documentos e Información actualizados con Exito",
@@ -110,3 +126,5 @@ echo '<script>
             }
         });
     </script>';
+}
+

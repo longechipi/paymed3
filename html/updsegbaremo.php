@@ -111,11 +111,8 @@ require('../conf/conexion.php');
                                     <td><?php echo $rowct['tipobaremo']; ?></td>
                                     <td><?php echo $rowct['descripcion']; ?></td>
                                     <td><?php echo $rowct['descbaremo']; ?>%</td>
-                                    <td><a href="../upload/baremos/<?php echo $rowct['archivo'] ?>" target="_blank" ><?php if($rowct['archivo']==''){echo 'BAREMO PAYMED';}
-                                            else{echo $rowct['archivo'];} ?>	</a></td>
+                                    <td><a href="../upload/baremos/<?php echo $rowct['archivo'] ?>" target="_blank" ><?php if($rowct['archivo']==''){echo 'BAREMO PAYMED';}else{echo $rowct['archivo'];} ?>	</a></td>
                                     <td>
-
-
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="bx bx-dots-vertical-rounded"></i>
@@ -123,7 +120,7 @@ require('../conf/conexion.php');
                                         <ul class="dropdown-menu dropdown-menu-end">
                                             <li>
                                             <a class="dropdown-item" href="../model/mod_seguro/delbaremoseg.php?idseg=<?php echo $rowct['idaseg']; ?>&idlin=<?php echo $rowct['idneg']; ?>">
-                                                <i class="fi fi-rr-trash"></i> Eliminar Contacto
+                                                <i class="fi fi-rr-trash"></i> Eliminar Baremo
                                             </a>
                                             </li>
                                             

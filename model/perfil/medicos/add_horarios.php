@@ -34,11 +34,11 @@ $horarios = json_decode($horariosJSON, true);
         $c="INSERT INTO horariomed(idmedcli, idclinica, idmed, dia, desde, hasta, idestatus)
         VALUES (0, $idclinica, $idmed, '$dias','$desde','$hasta', 1); ";
         $cres=$mysqli->query($c); 
-        if ($cres) {
-            echo '1';
-        }else{
-            echo '0';
-        }
+    }
+    if ($cres) {
+        echo '1';
+    }else{
+        echo '0';
     }
 }
 ?>

@@ -23,7 +23,11 @@ require('../conf/conexion.php');
                         </div>
                     </div>
                     <?php 
-                     $sql = ("SELECT a.idaseg, a.idlogin, a.rif, a.razsocial, a.movil, a.telefono, a.correo, a.idestatus, b.pais, c.estado FROM aseguradores a, paises b, estado c WHERE a.idpais= b.idpais AND a.idestado=c.idestado ORDER BY a.razsocial ASC");
+                     $sql = ("SELECT A.idaseg, A.idlogin, A.rif, A.razsocial, P.pais, E.estado, ES.estatus
+                            FROM aseguradores A
+                            INNER JOIN paises P ON A.idpais = P.idpais 
+                            INNER JOIN estado E ON A.idestado = E.idestado
+                            INNER JOIN estatus ES ON A.idestatus = ES.idestatus");
                     $result=$mysqli->query($sql);	
   
                     ?>
@@ -35,6 +39,7 @@ require('../conf/conexion.php');
                                     <th>Rif</th>
                                     <th>Pais</th>
                                     <th>Estado</th>
+                                    <th>Estatus</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -47,13 +52,14 @@ require('../conf/conexion.php');
                                 <td><?php echo $row['rif']; ?></td>
                                 <td><?php echo $row['pais']; ?></td>
                                 <td><?php echo $row['estado']; ?></td>
+                                <td><?php echo $row['estatus']; ?></td>
 <td>
 
 <div class="btn-group">
     <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
     <i class="bx bx-dots-vertical-rounded"></i>
     </button>
-    <ul class="dropdown-menu dropdown-menu-end" style="">
+    <ul class="dropdown-menu dropdown-menu-end">
         <li>
             <a class="dropdown-item" href="updseg.php?id=<?php echo $row['idaseg'];?>">
                 <i class="fi fi-rr-edit"></i> Editar Seguro</a>

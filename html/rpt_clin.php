@@ -25,8 +25,11 @@ require('../conf/conexion.php');
                         </div>
                     </div>
                     <?php 
-                     $sql = ("SELECT a.idclinica, a.rif, a.razsocial, a.nombrecentrosalud, a.idestatus, b.estado FROM clinicas a, estado b WHERE a.idestado=b.idestado ORDER BY a.razsocial ASC");
-                    $result=$mysqli->query($sql);	
+                     $sql = "SELECT A.idclinica, A.rif, A.nombrecentrosalud, E.estado, ES.estatus
+                        FROM clinicas A
+                        INNER JOIN estado E ON A.idestado = E.idestado
+                        INNER JOIN estatus ES ON A.idestatus = ES.idestatus";
+                        $result=$mysqli->query($sql);	
   
                     ?>
                     <div class="table-responsive"> <!-- INICIO Tabla Presupuesto -->
@@ -35,9 +38,9 @@ require('../conf/conexion.php');
                                 <tr>
                                     <th>#</th>   
                                     <th>Rif</th>
-                                    <th>Razón Social</th>
                                     <th>Nombre del Centro</th>
                                     <th>Estado</th>
+                                    <th>Estatus</th>
                                     <th>Accion</th>
                                 </tr>
                             </thead>
@@ -49,18 +52,18 @@ require('../conf/conexion.php');
                             <tr>
                                 <td><?php echo $ln; ?></td>
                                 <td><a><?php echo $row['rif']; ?></a></td>
-                                <td><?php echo substr($row['razsocial'],0,25);?>...</td>
                                 <td><?php echo $row['nombrecentrosalud']; ?></td>
                                 <td><?php echo $row['estado']; ?></td>
+                                <td><?php echo $row['estatus']; ?></td>
                     <td>
                         <div class="btn-group">
                           <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bx bx-dots-vertical-rounded"></i>
                           </button>
-                          <ul class="dropdown-menu dropdown-menu-end" style="">
+                          <ul class="dropdown-menu dropdown-menu-end" >
                             <li><a class="dropdown-item" href="updcli.php?id=<?php echo $row['idclinica'];?>"><i class="fi fi-rr-edit"></i> Editar Clínica</a></li>
                             <li><a class="dropdown-item" href="updclicontacto.php?id=<?php echo $row['idclinica'];?>"><i class="fi fi-rr-phone-call"></i> Agregar Contacto</a></li>
-                            <li><a class="dropdown-item" href="src_del_clin.php?id=<?php echo $row['idclinica'];?>"><i class="fi fi-rr-trash"></i> Eliminar Contacto</a></li>
+                            <li><a class="dropdown-item" href="src_del_clin.php?id=<?php echo $row['idclinica'];?>"><i class="fi fi-rr-trash"></i> Desactivar Clinica</a></li>
                             
                           </ul>
                         </div>

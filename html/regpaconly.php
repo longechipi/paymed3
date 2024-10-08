@@ -199,7 +199,7 @@ require('../conf/conexion.php');
                                         $a ="SELECT idlogin, CONCAT(apellido1, ' ',apellido2, ' ',nombre1, ' ',nombre2) from medicos ";
                                         $ares = $mysqli->query($a); ?>
                                         <?php while($row = $ares->fetch_array()){ ?>
-                                            <option value="<?php echo $row[0] ?>"><?php echo $row[1] ?></option>
+                                            <option value="<?php echo $row[0] ?>"><?php echo strtoupper($row[1]) ?></option>
                                         <?php } ?>
                                     </select>
                             </div>

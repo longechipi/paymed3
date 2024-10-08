@@ -44,15 +44,15 @@ require('../conf/conexion.php');
                             <tr>
                                 
                                 <td><?php echo $row['nrodoc']; ?></td>
-                                <td><?php echo $row['nombre1'].' '.$row['apellido1']; ?></td>
+                                <td><?php echo strtoupper($row['nombre1']).' '.strtoupper($row['apellido1']); ?></td>
                                 <td><?php echo $row['operadora'].$row['movil']; ?></td>
-                                <td><?php echo $row['correo']; ?></td>
+                                <td><?php echo strtoupper($row['correo']); ?></td>
                     <td>
                         <div class="btn-group">
                           <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bx bx-dots-vertical-rounded"></i>
                           </button>
-                          <ul class="dropdown-menu dropdown-menu-end" style="">
+                          <ul class="dropdown-menu dropdown-menu-end" >
                             <li>
                                 <a class="dropdown-item" href="updmed.php?id=<?php echo $row['idmed'];?>">
                                     <i class="fi fi-rr-edit"></i> Editar Medico</a>
@@ -62,23 +62,23 @@ require('../conf/conexion.php');
                                 <i class="fi fi-rr-file-invoice-dollar"></i>Cuentas Bancarias</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="medctas.php?id=<?php echo $row['idmed'];?>">
+                                <a class="dropdown-item" href="addesp.php?idmed=<?php echo $row['idmed'];?>">
                                 <i class="fi fi-rs-category"></i> Especialidades</a>
                             </li>
 
                             <li>
-                                <a class="dropdown-item" href="adddoc.php?id=<?php echo $row['idmed'];?>">
+                                <a class="dropdown-item" href="adddoc.php?idmed=<?php echo $row['idmed'];?>">
                                 <i class="fi fi-rs-document-signed"></i> Documentos</a>
                             </li>
 
                             <li>
-                                <a class="dropdown-item" href="adddoc.php?id=<?php echo $row['idmed'];?>">
+                                <a class="dropdown-item" href="conafi.php?idmed=<?php echo $row['idmed'];?>">
                                 <i class="fi fi-rs-membership"></i> Afiliacion</a>
                             </li>
 
                             <li>
                                 <a class="dropdown-item" href="src_del_med.php?id=<?php echo $row['idmed'];?>">
-                                    <i class="fi fi-rr-trash"></i> Eliminar Medico</a>
+                                    <i class="fi fi-rr-trash"></i> Desactivar Medico</a>
                             </li>
                             
                           </ul>

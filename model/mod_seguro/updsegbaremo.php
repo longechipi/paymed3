@@ -45,7 +45,7 @@ if($conexion){
                confirmButtonText: "Aceptar"
            }).then((result) => {
                if (result.isConfirmed) {
-                   window.location.href = "rpt_seg.php";
+                   window.location.href = "../../html/rpt_seg.php";
                     }
             });
             </script>';

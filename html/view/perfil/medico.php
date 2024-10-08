@@ -474,7 +474,7 @@ $parroquia=$arr[0];
 				<div class="col-md-8">
 					<div class="form-group">
 						<label for="dircta">Dirección Cuenta:</label>
-							<?php echo $row_cnt > 0 ? '<input type="text" name="dircta" id="dircta" value="'.$row2['direccion'].'" class="form-control">' : '<input type="text" name="dircta" id="dircta" placeholder="Dirección de la Cuenta" class="form-control">';?>
+							<?php echo $row_cnt > 0 ? '<input type="text" name="dircta" id="dircta" value="'.$row2['dircta'].'" class="form-control">' : '<input type="text" name="dircta" id="dircta" placeholder="Dirección de la Cuenta" class="form-control">';?>
 					</div>
 				</div>
 				<div class="col-md-2">
@@ -727,7 +727,7 @@ $parroquia=$arr[0];
 		<!-- PESTAÑA DE DATOS DE DOCUMENTOS -->
 		<div class="tab-pane fade" id="documentos" role="tabpanel">
 			<div class="divider">
-                    <div class="divider-text">Documentación Médica</div>
+                <div class="divider-text">Documentación Médica</div>
             </div>
 			<form enctype="multipart/form-data" action="../model/perfil/medicos/add_doc.php" method="post">
 				<input type="text" id="idmed" name="idmed" value="<?php echo $idmed; ?>" hidden/> 
@@ -917,7 +917,7 @@ $parroquia=$arr[0];
 						</div>
 					</div>
 
-					<div class="row">
+					<div class="row mt-5">
 						<div class="col-md-6">
 							<h5>Firma:</h5>
 							<div class="custom-file">
@@ -936,10 +936,10 @@ $parroquia=$arr[0];
 						</div>
 						<!-- Imagenes -->
 						<div align="center" class="col-md-6">
-							<img src="<?php echo $firmaimg ? $firmaimg : "../assets/img/elements/sinfoto.jpg"; ?>" alt="Sin Imagen Seleccionada!!!" style="width:200px;height:200px;">
+							<img class="img-fluid" src="<?php echo $firmaimg ? "../upload/documentos_medicos/".$firmaimg : "../assets/img/elements/sinfoto.jpg"; ?>" alt="Sin Imagen Seleccionada!!!" class="img-fluid">
 						</div>
 						<div align="center" class="col-md-6">
-							<img src="<?php echo $selloimg ? $selloimg : "../assets/img/elements/sinfoto.jpg"; ?>" alt="Sin Imagen Seleccionada!!!" style="width:200px;height:200px;">
+							<img class="img-fluid" src="<?php echo $selloimg ? "../upload/documentos_medicos/".$selloimg : "../assets/img/elements/sinfoto.jpg"; ?>" alt="Sin Imagen Seleccionada!!!" class="img-fluid">
 						</div>
 					</div>
 
