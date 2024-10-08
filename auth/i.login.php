@@ -9,12 +9,10 @@ if(empty($usuario) || empty($pass)){
 	//header("Location: index.html"); exit(); 
 	echo "AQUIII";
 }
-
 $sql=("SELECT * from loginn WHERE correo='".strtolower($usuario)."'");
 
 $conexion1=$mysqli->query($sql);
 $datos=$conexion1->fetch_array();
-
 
 if($datos['correo'] == $usuario & $datos['clave'] == $pass){
 	if($datos['cargo'] =='Medico'){ //Verifico Si es medico y si pago
@@ -24,8 +22,6 @@ if($datos['correo'] == $usuario & $datos['clave'] == $pass){
   		if($arractivo[0]!='0'){
   			echo '<script language="javascript">alert("Error: Sin Pago Realizado");window.location.href="../index.html";</script>';exit();	
   		}
-		
-			
   	}
 
 		session_start();

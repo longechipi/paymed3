@@ -5,18 +5,22 @@ require('../../conexion.php');
 if (isset($_GET['id'])) {
    $idmed=$_GET['id'];
    $sql = ("SELECT CONCAT(apellido1,' ', nombre1) AS nombre, nrodoc FROM medicos WHERE idmed='".$idmed."'; ");
-   $obj=$mysqli->query($sql); $arr=$obj->fetch_array();  
-   $nombremed=$arr['nombre'];$nrodoc=$arr['nrodoc'];
+   $obj=$mysqli->query($sql); 
+   $arr=$obj->fetch_array();  
+   $nombremed=$arr['nombre'];
+   $nrodoc=$arr['nrodoc'];
    /* Armo las Opciones */
    $sql = ("SELECT idservaf, servicio, idestatus FROM serviciosafiliados where idestatus='1'; ");
     $result=$mysqli->query($sql);
    // busco imagenes de firma, si tiene 
    $sql = ("SELECT iddocument, idmed, imagen, quees FROM drdocument WHERE idmed='".$idmed."' AND quees='firma'; ");
-   $obj=$mysqli->query($sql); $arr=$obj->fetch_array();  
+   $obj=$mysqli->query($sql); 
+   $arr=$obj->fetch_array();  
    $firmaimg=$arr['imagen'];
    // busco imagenes de sello, si tiene 
    $sql = ("SELECT iddocument, idmed, imagen, quees FROM drdocument WHERE idmed='".$idmed."' AND quees='sello'; ");
-   $obj=$mysqli->query($sql); $arr=$obj->fetch_array();  
+   $obj=$mysqli->query($sql); 
+   $arr=$obj->fetch_array();  
    $selloimg=$arr['imagen'];
 
   } // End isset 
@@ -237,37 +241,30 @@ if (isset($_POST['submit'])) {
                             <div class="m-4 2">
                                 <h3 style="font-family:italic;"> Servicios Afiliados</h3>
                                 <hr>
-                                <!--div class="mb-3">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                        <label class="form-check-label" for="defaultCheck1">
-                                            Marcar todas
-                                        </label>
-                                    </div>
-                                </div-->
+
                                 <div style="text-align: left;">
-                                    <div class="row">
-                                    <?php while($row = mysqli_fetch_array($result)) { 
-                                        $sqlbusca="SELECT COUNT(*) as cant FROM convafixmedico WHERE idmed= '".$idmed."' and   idservaf = '".$row['idservaf']."'; ";
-                                        $obj=$mysqli->query($sqlbusca);
-                                        $arrlast=$obj->fetch_array();
-                                        $cant=$arrlast[0];
-                                    ?>
-                                        <div class="col-md-3">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="<?php echo $row['idservaf'];?>"  onclick="fcheckafilia(this.id)" 
-                                                <?php if ($cant!='0') { ?>
-                                                checked
-                                                <?php } ?>
-                                                >
-                                                <label class="form-check-label" for="<?php echo $row['idservaf'];?>">
-                                                    <?php echo $row['servicio'];?>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    <?php } ?>
-                                        
-                                    </div>
+        <div class="row">
+        <?php while($row = mysqli_fetch_array($result)) { 
+            $sqlbusca="SELECT COUNT(*) as cant FROM convafixmedico WHERE idmed= '".$idmed."' and   idservaf = '".$row['idservaf']."'; ";
+            $obj=$mysqli->query($sqlbusca);
+            $arrlast=$obj->fetch_array();
+            $cant=$arrlast[0];
+        ?>
+            <div class="col-md-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="<?php echo $row['idservaf'];?>"  onclick="fcheckafilia(this.id)" 
+                    <?php if ($cant!='0') { ?>
+                    checked
+                    <?php } ?>
+                    >
+                    <label class="form-check-label" for="<?php echo $row['idservaf'];?>">
+                        <?php echo $row['servicio'];?>
+                    </label>
+                </div>
+            </div>
+        <?php } ?>
+            
+        </div>
                                 </div>
                             </div>
 

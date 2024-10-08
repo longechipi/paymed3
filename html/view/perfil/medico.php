@@ -325,7 +325,7 @@ $parroquia=$arr[0];
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="apellido1">Titular </label>
-							<input type="text" name="titular" id="titular" value="<?php echo $row['apellido1'].' '. $row['apellido2'].' '.  $row['nombre1'].' '. $row['nombre2'];?>" class="form-control" readonly>
+							<input type="text" name="titular" id="titular" value="<?php echo strtoupper($row['apellido1']).' '. strtoupper($row['apellido2']).' '. strtoupper($row['nombre1']).' '. strtoupper($row['nombre2']); ?>" class="form-control" readonly>
 						</div>
 					</div>
 					<div class="col-md-6">
@@ -342,8 +342,11 @@ $parroquia=$arr[0];
 					c.tipocuenta, a.nrocuenta, a.idestatus 
 					FROM datbconac a, bancos b, tipocuenta c
 					WHERE a.idbco=b.idbco AND a.idtipocuenta=c.idtipocuenta AND a.idlogin = $idlogin;");
-					$a1res=$mysqli->query($a1); 
-					$row1=$a1res->fetch_array();
+					$a1res=$mysqli->query($a1);
+					$row_cnt_nac = $a1res->num_rows;
+					if($row_cnt_nac > 0){
+						$row1=$a1res->fetch_array();
+					}
 					//--------- DATA SI TIENE CUENTA INTERNACIONAL --------//
 					$a2 = "SELECT CI.*, P.pais, B.banco
 							FROM datbcoint CI
@@ -356,8 +359,6 @@ $parroquia=$arr[0];
 					$row_cnt = $a2res->num_rows;
 					if($row_cnt > 0){
 						$row2=$a2res->fetch_array();
-					}else{
-						echo "NO";
 					}	
 
 					?>
@@ -368,7 +369,9 @@ $parroquia=$arr[0];
 					<div class="form-group">
 						<label for="idbco">Banco:</label>
 						<select id="idbco" class="form-select mb-3" name="idbco" required>
-							<option value="<?php echo $row1['idbco'];?>"><?php echo $row1['banco'];?></option>
+							<?php
+							echo $row_cnt_nac > 0 ? '<option value="'.$row1['idbco'].'">'.$row1['banco'].'</option>' : '<option value="" selected disabled>Seleccionar</option>';
+							?>
 							<?php
 							$query = $mysqli -> query ("SELECT idbco, banco FROM bancos WHERE tipo='1' AND idestatus='1'");
 							while ($valores = mysqli_fetch_array($query)) {
@@ -382,7 +385,7 @@ $parroquia=$arr[0];
 					<div class="form-group">
 						<label for="idtipocuenta">Tipo Cta:</label>
 						<select id="idtipocuenta" class="form-select" name="idtipocuenta" required>
-							<option value="<?php echo $row1['idtipocuenta'];?>"><?php echo $row1['tipocuenta'];?></option>
+							<?php echo $row_cnt_nac > 0 ? '<option value="'.$row1['idtipocuenta'].'">'.$row1['tipocuenta'].'</option>' : '<option value="" selected disabled>Seleccionar</option>'; ?>
 						<?php
 							$query = $mysqli -> query ("SELECT idtipocuenta, tipocuenta FROM tipocuenta WHERE idestatus='1'; ");
 							while ($valores = mysqli_fetch_array($query)) {
@@ -395,10 +398,7 @@ $parroquia=$arr[0];
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="nrocuenta">Nro. Cuenta: <span><small>(Solo Nùmeros, 20 Digitos)</small></span> </label>
-
-						<input type="text" name="nrocuenta" id="nrocuenta" minlength="20" maxlength="20" value="<?php echo $row1['nrocuenta'];?>" 
-						class="form-control" 
-						onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;"  required>
+							<?php echo $row_cnt_nac > 0 ? '<input type="text" name="nrocuenta" id="nrocuenta" minlength="20" maxlength="20" value="'.$row1['nrocuenta'].'" class="form-control" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" required>' : '<input type="text" name="nrocuenta" id="nrocuenta" minlength="20" maxlength="20" placeholder="0000-0000-00-0000000000" class="form-control" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" required>';?>
 					</div>
 				</div>
 
@@ -421,7 +421,7 @@ $parroquia=$arr[0];
 					<div class="form-group">
 						<label for="idpais" class="control-label">Pais:</label>
 						<select id="idpais" class="form-control" name="idpais" >
-							<option value="<?php echo $row2['idpais'];?>"><?php echo $row2['pais'];?></option>
+							<?php echo $row_cnt > 0 ? '<option value="'.$row2['idpais'].'">'.$row2['pais'].'</option>' : '<option value="" selected disabled>Seleccionar</option>'; ?>
 							<?php
 							$query = $mysqli -> query ("SELECT idpais, pais FROM paises WHERE idestatus='1';");
 							while ($valores = mysqli_fetch_array($query)) {
@@ -435,7 +435,7 @@ $parroquia=$arr[0];
 					<div class="form-group">
 						<label for="idbcoint">Banco:</label>
 						<select id="idbcoint" class="form-select" name="idbcoint" >
-							<option value="<?php echo $row2['idbco'];?>"><?php echo $row2['banco'];?></option>
+						<?php echo $row_cnt > 0 ? '<option value="'.$row2['idbco'].'">'.$row2['banco'].'</option>' : '<option value="" selected disabled>Seleccionar</option>'; ?>
 							<?php
 							$query = $mysqli -> query ("SELECT idbco, banco FROM bancos WHERE tipo='2' AND idestatus='1' ; ");
 							while ($valores = mysqli_fetch_array($query)) {
@@ -448,47 +448,45 @@ $parroquia=$arr[0];
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="nrocuentaint">Nro. Cuenta:</label>
-						<input type="text" name="nrocuentaint" id="nrocuentaint" minlength="8" maxlength="11"  value="<?php echo $row2['nrocuenta'];?>" class="form-control" 
-						onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;">
+							<?php echo $row_cnt > 0 ? '<input type="text" name="nrocuentaint" id="nrocuentaint" minlength="8" maxlength="11" value="'.$row2['nrocuenta'].'" class="form-control" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" required>' : '<input type="text" name="nrocuentaint" id="nrocuentaint" minlength="8" maxlength="11" placeholder="00000000000" class="form-control" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" required>'; ?>
 					</div>
 				</div>
 				<!-- 3ra -->
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="ach">ACH:</label>
-						<input type="text" name="ach" id="ach" value="<?php echo $row2['ach'];?>" class="form-control mb-3">
+							<?php echo $row_cnt > 0 ? '<input type="text" name="ach" id="ach" value="'.$row2['ach'].'" class="form-control">' : '<input type="text" name="ach" id="ach" placeholder="00000000000" class="form-control">';?>
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="swit">SWIT:</label>
-						<input type="text" name="swit" id="swit" value="<?php echo $row2['swit'];?>" class="form-control">
+							<?php echo $row_cnt > 0 ? '<input type="text" name="swit" id="swit" value="'.$row2['swit'].'" class="form-control">' : '<input type="text" name="swit" id="swit" placeholder="00000000000" class="form-control">';?>
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="aba">ABA:</label>
-						<input type="text" name="aba" id="aba" value="<?php echo $row2['aba'];?>" class="form-control">
+							<?php echo $row_cnt > 0 ? '<input type="text" name="aba" id="aba" value="'.$row2['aba'].'" class="form-control">' : '<input type="text" name="aba" id="aba" placeholder="00000000000" class="form-control">';?>
 					</div>
 				</div>
 				<!-- 4ta -->
 				<div class="col-md-8">
 					<div class="form-group">
 						<label for="dircta">Dirección Cuenta:</label>
-						<input type="text" name="dircta" id="dircta" value="<?php echo $row2['dircta'];?>" class="form-control" 
-						minlength="7" style="text-transform:uppercase;">
+							<?php echo $row_cnt > 0 ? '<input type="text" name="dircta" id="dircta" value="'.$row2['direccion'].'" class="form-control">' : '<input type="text" name="dircta" id="dircta" placeholder="Dirección de la Cuenta" class="form-control">';?>
 					</div>
 				</div>
 				<div class="col-md-2">
 					<div class="form-group">
 						<label for="telf_inter">Teléfono:</label>
-						<input type="text" name="telf_inter" id="telf_inter" minlength="11" maxlength="11" value="<?php echo $row2['telefono'];?>" class="form-control" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" >
+							<?php echo $row_cnt > 0 ? '<input type="text" name="telf_inter" id="telf_inter" maxlength="10" minlength="10" value="'.$row2['telefono'].'" class="form-control" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" required>' : '<input type="text" name="telf_inter" id="telf_inter" maxlength="10" minlength="10" placeholder="0000000000" class="form-control" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" required>';?>
 					</div>
 				</div>
 				<div class="col-md-2">
 					<div class="form-group">
 						<label for="codpostalint">Cod.Postal:</label>
-						<input type="text" name="codpostalint" id="codpostalint" maxlength="5" minlength="5" value="<?php echo $row2['codpostal'];?>" class="form-control " onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" >
+							<?php echo $row_cnt > 0 ? '<input type="text" name="codpostalint" id="codpostalint" maxlength="5" minlength="5" value="'.$row2['codpostal'].'" class="form-control" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" required>' : '<input type="text" name="codpostalint" id="codpostalint" maxlength="5" minlength="5" placeholder="00000" class="form-control" onKeypress="if (event.keyCode < 48 || event.keyCode > 57) event.returnValue = false;" required>';?>
 					</div>
 				</div>
 				</div>
@@ -873,17 +871,23 @@ $parroquia=$arr[0];
 			 $sql = "SELECT idservaf, servicio, idestatus FROM serviciosafiliados where idestatus='1'";
 			 $result=$mysqli->query($sql);
 			// busco imagenes de firma, si tiene 
-			$sql = ("SELECT iddocument, idmed, imagen, quees RFOM drdocument WHERE idmed='".$idmed."' AND quees='firma'; ");
+			$sql = ("SELECT iddocument, idmed, imagen, quees FROM drdocument WHERE idmed='$idmed' AND quees='firma'; ");
 			$obj=$mysqli->query($sql); 
-			$arr=$obj->fetch_array();  
-			$firmaimg=$arr['imagen'];
+			if($obj->num_rows > 0){
+				$arr=$obj->fetch_array();
+				$firmaimg=$arr['imagen'];
+			}else{
+				$firmaimg='';
+			}
 			// busco imagenes de sello, si tiene 
-			$sql = ("SELECT iddocument, idmed, imagen, quees FROM drdocument WHERE idmed='".$idmed."' AND quees='sello'; ");
+			$sql = ("SELECT iddocument, idmed, imagen, quees FROM drdocument WHERE idmed='$idmed' AND quees='sello'; ");
 			$obj=$mysqli->query($sql); 
-			$arr=$obj->fetch_array();  
-			$selloimg=$arr['imagen'];
-			
-			
+				if($obj->num_rows > 0){
+				$arr=$obj->fetch_array();
+				$selloimg=$arr['imagen'];
+			}else{
+				$selloimg='';
+			}
 			?>
 			<div class="row">
 				<form enctype="multipart/form-data" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
@@ -918,7 +922,7 @@ $parroquia=$arr[0];
 							<h5>Firma:</h5>
 							<div class="custom-file">
 								<input type="file" id="firma" name="imagen" class="form-control" accept="image/png, image/jpeg" >  
-								<label id="firma"  class="custom-file-label" for="firma"></label> 
+								<label id="firma" class="custom-file-label" for="firma"></label> 
 								<small style="color: red" >Formato permitido: Png/Jpg</small>
 							</div>
 						</div>
@@ -932,19 +936,30 @@ $parroquia=$arr[0];
 						</div>
 						<!-- Imagenes -->
 						<div align="center" class="col-md-6">
-							<img src="<?php echo $firmaimg ?>" alt="Sin Imagen Seleccionada!!!" style="width:200px;height:200px;">
+							<img src="<?php echo $firmaimg ? $firmaimg : "../assets/img/elements/sinfoto.jpg"; ?>" alt="Sin Imagen Seleccionada!!!" style="width:200px;height:200px;">
 						</div>
 						<div align="center" class="col-md-6">
-							<img src="<?php echo $selloimg ?>" alt="Sin Imagen Seleccionada!!!" style="width:200px;height:200px;">
-						</div>
-
-						<div align="right" class="col-md-12"><br>
-							<input style="background: #F89921;border-color: #F89921" type="submit" name="submit" value="Actualizar" class="btn btn-main btn-primary btn-lg uppercase">
+							<img src="<?php echo $selloimg ? $selloimg : "../assets/img/elements/sinfoto.jpg"; ?>" alt="Sin Imagen Seleccionada!!!" style="width:200px;height:200px;">
 						</div>
 					</div>
 
 				</form>
 			</div>
 		</div>
+		<script>
+			function fcheckafilia(id){
+				const idmed = $("#idmed").val();
+            jQuery.ajax({
+                type: "POST",   
+                url: "../model/perfil/medicos/serv_afiliados_med.php",
+                data: {id: id, idmed: idmed},
+                success:function(data){ 
+                  console.log(data);
+                  if (data!='1') {
+                  }
+                }
+            });
+        }
+		</script>
 	</div>
 </div>

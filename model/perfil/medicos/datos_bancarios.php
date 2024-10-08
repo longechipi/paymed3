@@ -9,7 +9,6 @@ $idtipocuenta = $_POST['idtipocuenta'];
 $nrocuenta = $_POST['nrocuenta'];
 $bank_inter = $_POST['bank_inter']; //Verifica si tiene cuenta Inter
 
-
 if($bank_inter == 1){
 //------ Datos Internacionales -------//
 $idpais = $_POST['idpais'];
