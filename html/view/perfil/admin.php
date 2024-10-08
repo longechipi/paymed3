@@ -5,7 +5,7 @@ $row = $ares->fetch_array();
 ?>
 <div class="row">
 <form id="upd_datos">
-    <input type="text" name="idlogin" value="<?php echo $idlogin; ?>" hidden>
+    <input type="text" name="idlogin" id="idlogin" value="<?php echo $idlogin; ?>" hidden>
     <div class="row"> <!--INICIO ROW 1 -->
         <div class="divider">
             <div class="divider-text">Datos de Principales</div>
@@ -37,6 +37,13 @@ $row = $ares->fetch_array();
             </div>
         </div>
 
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="correo">Correo</label>
+                <input type="email" name="correo" id="correo" class="form-control" value="<?php echo $row['correo']; ?>">
+            </div>
+        </div>
+
         <div class="col-md-2">
             <div class="form-group">
                 <label for="rif">Contraseña</label>
@@ -57,3 +64,37 @@ $row = $ares->fetch_array();
     </div>
 </form>
 </div>
+<script>
+    $("#upd_datos").submit(function(e) {
+        e.preventDefault();
+        const idlogin = $("#idlogin").val();
+        console.log(idlogin)
+        //var formData = new FormData($("#upd_datos")[0]);
+        // $.ajax({
+        //     url: "php/update/update_datos.php",
+        //     type: "POST",
+        //     data: formData,
+        //     contentType: false,
+        //     processData: false,
+        //     success: function(data) {
+        //         if (data == 1) {
+        //             Swal.fire({
+        //                 icon: 'success',
+        //                 title: 'Datos Actualizados',
+        //                 showConfirmButton: false,
+        //                 timer: 1500
+        //             });
+        //             setTimeout(function() {
+        //                 window.location.href = "?pag=perfil";
+        //             }, 1500);
+        //         } else {
+        //             Swal.fire({
+        //                 icon: 'error',
+        //                 title: 'Oops...',
+        //                 text: 'Error al actualizar los datos'
+        //             });
+        //         }
+        //     }
+        // });
+    });
+</script>
