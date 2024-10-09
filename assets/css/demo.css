@@ -266,3 +266,31 @@ input:read-only {
 input:read-only:focus {
   cursor: auto;
 }
+
+.card-body.admin {
+  background-color: #007dba47;
+  border-radius: 8px;
+}
+
+.card-body.admin:hover {
+  background-color: #007dba7a;
+  border-radius: 8px;
+}
+
+h4.icono {
+  position: absolute;
+  right: 3%;
+  bottom: -11px;
+  font-size: 23px;
+  background-color: #222a55;
+  border-radius: 11px;
+  color: white;
+  padding: 6px 6px 0px 6px;
+}
+
+
+img.img-fluid.img-thumbnail {
+  border-radius: 100%;
+  border: 5px solid #fff;
+  width: 109px;
+}

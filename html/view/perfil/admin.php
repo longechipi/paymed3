@@ -3,6 +3,12 @@ $a ="SELECT * FROM loginn WHERE idlogin = $idlogin";
 $ares = $mysqli->query($a);
 $row = $ares->fetch_array();
 ?>
+<style>
+    /* Puedes personalizar los estilos según tus preferencias */
+.fa-eye {
+    cursor: pointer;
+}
+</style>
 <div class="row">
 <form id="upd_datos">
     <input type="text" name="idlogin" id="idlogin" value="<?php echo $idlogin; ?>" hidden>
@@ -40,23 +46,39 @@ $row = $ares->fetch_array();
         <div class="col-md-3">
             <div class="form-group">
                 <label for="correo">Correo</label>
-                <input type="email" name="correo" id="correo" class="form-control" value="<?php echo $row['correo']; ?>">
+                <input type="email" name="correo" id="correo" class="form-control" value="<?php echo $row['correo']; ?>" readonly>
+                <small>Por razones de seguridad el correo no puede cambiarse</small>
             </div>
         </div>
 
         <div class="col-md-2">
-            <div class="form-group">
-                <label for="rif">Contraseña</label>
-                <input type="password" name="clave" id="clave" class="form-control" value="<?php echo $row['clave']; ?>">
+    <div class="form-group">
+        <label for="rif">Contraseña</label>
+        <div class="input-group">
+            <input type="password" name="clave" id="clave" class="form-control" value="<?php echo $row['clave']; ?>">
+            <div class="input-group-append">
+                <span class="input-group-text" id="togglePassword">
+                    <i class="fi fi-rr-eye"></i>
+                </span>
             </div>
         </div>
 
-        <div class="col-md-3 mb-3">
-            <div class="form-group">
-                <label for="rif">Repetir Contraseña</label>
-                <input type="password" name="clave2" id="clave2" class="form-control" value="<?php echo $row['clave']; ?>">
+    </div>
+</div>
+
+<div class="col-md-3 mb-3">
+    <div class="form-group">
+        <label for="rif">Repetir Contraseña</label>
+        <div class="input-group">
+            <input type="password" name="clave2" id="clave2" class="form-control" value="<?php echo $row['clave']; ?>">
+            <div class="input-group-append">
+                <span class="input-group-text" id="togglePassword2">
+                    <i class="fi fi-rr-eye"></i>
+                </span>
             </div>
         </div>
+    </div>
+</div>
     </div> <!--FIN ROW 1 -->
     <div class="text-center mt-6">
         <button type="submit" class="btn btn-primary"><i class="fi fi-rs-disk"></i> GUARDAR</button>
@@ -65,36 +87,71 @@ $row = $ares->fetch_array();
 </form>
 </div>
 <script>
+
+
+$(document).ready(function() {
+    $("#togglePassword").click(function() {
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        var input = $($(this).parent().prev()[0]);
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+    });
+
+    $("#togglePassword2").click(function() {
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        var input = $($(this).parent().prev()[0]);   
+
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+    });
     $("#upd_datos").submit(function(e) {
         e.preventDefault();
         const idlogin = $("#idlogin").val();
-        console.log(idlogin)
-        //var formData = new FormData($("#upd_datos")[0]);
-        // $.ajax({
-        //     url: "php/update/update_datos.php",
-        //     type: "POST",
-        //     data: formData,
-        //     contentType: false,
-        //     processData: false,
-        //     success: function(data) {
-        //         if (data == 1) {
-        //             Swal.fire({
-        //                 icon: 'success',
-        //                 title: 'Datos Actualizados',
-        //                 showConfirmButton: false,
-        //                 timer: 1500
-        //             });
-        //             setTimeout(function() {
-        //                 window.location.href = "?pag=perfil";
-        //             }, 1500);
-        //         } else {
-        //             Swal.fire({
-        //                 icon: 'error',
-        //                 title: 'Oops...',
-        //                 text: 'Error al actualizar los datos'
-        //             });
-        //         }
-        //     }
-        // });
+        const clave = $("#clave").val();
+        const clave2 = $("#clave2").val();
+        if(clave != clave2){
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Las contraseñas no coinciden',
+                confirmButtonColor: "#007ebc",
+                confirmButtonText: "Aceptar"
+            });
+            return false;
+        }
+        $.ajax({
+            url: "../model/perfil/admin/act_datos.php",
+            type: "POST",
+            data: $(this).serialize(),
+            success: function(data) {
+                console.log(data)
+                if (data == 1) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Datos Actualizados',
+                        confirmButtonColor: "#007ebc",
+                        confirmButtonText: "Aceptar"
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Ocurrio un Error al actualizar su Contraseña',
+                        confirmButtonColor: "#007ebc",
+                        confirmButtonText: "Aceptar"
+                    });
+                }
+            }
+        });
     });
+});
+
+
+    
 </script>

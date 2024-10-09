@@ -36,7 +36,7 @@ if($datos['correo'] == $usuario & $datos['clave'] == $pass){
 		$permisos=$datos['privilegios'];
 
 		if($permisos == 1){ 
-			echo '<script language="javascript">window.location.href="../html/index2.php?usr=1";</script>';
+			echo '<script language="javascript">window.location.href="../html/index2.php";</script>';
         }
 			
 		elseif($permisos != 1 ){ 
@@ -46,7 +46,7 @@ if($datos['correo'] == $usuario & $datos['clave'] == $pass){
 				if ( $permisos == 7) {// Es Asistente
 					require('selemedico.php');
 				}
-				echo '<script language="javascript">window.location.href="../html/index2.php?usr=1";</script>';}
+				echo '<script language="javascript">window.location.href="../html/index2.php";</script>';}
 
 		} elseif($datos['estatus'] == 'I'){
 			echo '<script>

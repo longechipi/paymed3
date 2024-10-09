@@ -13216,7 +13216,7 @@
  
  .input-group:focus-within .input-group-text {
      border-width: 2px;
-     padding: calc(.543rem - (2px+ var(--bs-border-width))) calc(.9375rem - 2px)
+     padding: 4px;
  }
  
  .was-validated .input-group:focus-within .input-group-text,

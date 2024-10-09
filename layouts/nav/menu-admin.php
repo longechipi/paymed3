@@ -10,7 +10,7 @@ $host = basename($_SERVER['PHP_SELF']);
     <!-- INICIO -->
     <li class="menu-item 
         <?php if ($host === "index.php") { echo 'active'; } ?>">
-            <a href="../html/index2.php?usr=1" class="menu-link">
+            <a href="../html/index2.php" class="menu-link">
                 <i class="menu-icon tf-icons fi fi-rr-house-chimney"></i>
                 <div data-i18n="Analytics">INICIO</div>
             </a>
@@ -34,35 +34,15 @@ $host = basename($_SERVER['PHP_SELF']);
                 } ?>">
                 <!-- <a href="pages/forms/rpt_uclin.php" id="sidebar-hono" class="menu-link empty"> -->
                 <a href="../html/rpt_team.php" id="sidebar-hono" class="menu-link empty">
-                    <div data-i18n="Accordion">Usr Clinicas</div>
+                    <div data-i18n="Accordion">Usuarios</div>
                 </a>
             </li>
-            <!-- Usr Aseguradoras -->
-            <li class="menu-item">
-                <!-- <a href="../html/rpt_team.php" id="sidebar-hono" class="menu-link empty"> -->
-                <a href="../html/rpt_team.php" id="sidebar-hono" class="menu-link empty">
-                    <div data-i18n="Accordion">Usr Aseguradoras</div>
-                </a>
-            </li>
+           
             <!-- Usr Medicos -->
             <li class="menu-item">
                 <!-- <a href="pages/forms/rpt_team.php" id="sidebar-hono" class="menu-link empty"> -->
                 <a href="../html/rpt_team.php" id="sidebar-hono" class="menu-link empty">
-                    <div data-i18n="Accordion">Usr Medicos</div>
-                </a>
-            </li>
-            <!-- Usr Pacientes -->
-            <li class="menu-item">
-                <!-- <a href="pages/forms/rpt_upac.php" id="sidebar-hono" class="menu-link empty"> -->
-                <a href="../html/rpt_team.php" id="sidebar-hono" class="menu-link empty">
-                    <div data-i18n="Accordion">Usr Pacientes</div>
-                </a>
-            </li>
-            <!-- Usr Usuarios -->
-            <li class="menu-item">
-                <!-- <a href="pages/forms/rpt_user.php" id="sidebar-hono" class="menu-link empty"> -->
-                <a href="../html/rpt_team.php" id="sidebar-hono" class="menu-link empty">
-                    <div data-i18n="Accordion">Usuarios Web</div>
+                    <div data-i18n="Accordion">Perfiles</div>
                 </a>
             </li>
         </ul>
@@ -144,7 +124,7 @@ $host = basename($_SERVER['PHP_SELF']);
     <!-- TERCER NIVEL -->
     <li class="menu-item 
         <?php
-            if (($host === "rpt_citas.php")) {
+            if (($host === "rpt_citas.php") || ($host === "prefilterpac.php")) {
                 echo 'active' . ' ' . 'open';
             } ?>">
         <a href="javascript:void(0)" class="menu-link menu-toggle">
@@ -161,6 +141,16 @@ $host = basename($_SERVER['PHP_SELF']);
                     <div data-i18n="Accordion">Ver Citas</div>
                 </a>
             </li>
+
+            <li class="menu-item 
+                <?php if ($host === "prefilterpac.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/prefilterpac.php" id="sidebar-hono" class="menu-link empty">
+                    <div data-i18n="Accordion">Crear Citas</div>
+                </a>
+            </li>
+
         </ul>
     </li>
     <!-- FIN TERCER NIVEL -->
@@ -374,30 +364,6 @@ $host = basename($_SERVER['PHP_SELF']);
         </ul>
     </li>
     <!-- FIN QUINTO NIVEL -->
-
-    <!-- SEXTO NIVEL -->
-    <li class="menu-item 
-        <?php
-        if (($host === "rpt_agenda.php")) {
-            echo 'active' . ' ' . 'open';
-        } ?>">
-        <a href="javascript:void(0)" class="menu-link menu-toggle">
-            <i class="menu-icon tf-icons fi fi-rr-notebook-alt"></i>
-            <div id="menu-hono" data-i18n="User interface">AGENDA</div>
-        </a>
-        <ul class="menu-sub">
-            <!-- Agenda -->
-            <li class="menu-item 
-                <?php if ($host === "rpt_agenda.php") {
-                    echo 'active';
-                } ?>">
-                <a href="../html/rpt_agenda.php" id="sidebar-hono" class="menu-link empty">
-                    <div data-i18n="Accordion">Ver Actividades</div>
-                </a>
-            </li>
-        </ul>
-    </li>
-    <!-- FIN SEXTO NIVEL -->
 
     <li class="menu-item 
         <?php if ($host === "index.php") { echo 'active'; } ?>">
