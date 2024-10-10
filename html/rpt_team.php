@@ -16,7 +16,7 @@ require('../conf/conexion.php');
         <div class="d-flex align-items-end row">
             <div class="col-12">
                 <div class="card-body">
-                    <h5 class="card-title text-primary">Listado del Equipo HI</h5>
+                    <h5 class="card-title text-primary">Usuarios Registrados</h5>
                     <div class="row">
                         <div class="text-center">
                             <a name="" id="" class="btn btn-primary mb-4" href="#" role="button"><i class="fi fi-rr-user-add"></i> AÑADIR USUARIO</a>
@@ -24,29 +24,33 @@ require('../conf/conexion.php');
                     </div>
                     <?php 
                     $sql = ("SELECT * FROM loginn");
-                    $result=$mysqli->query($sql);	
-  
+                    $result=$mysqli->query($sql);
                     ?>
-                    <div class="table-responsive"> <!-- INICIO Tabla Presupuesto -->
+                    <div class="table-responsive"> 
                         <table class="table table-hover" id="user" cellspacing="0" style="width: 100%;">
                             <thead>
                                 <tr>
                                     <th>Nombre</th>   
                                     <th>Correo</th>
                                     <th>Usuario</th>
-                                    <th>Clave</th>
                                     <th>Nivel</th>
+                                    <th>Estatus</th>
+                                    <th>Registro</th>
                                     <th>Accion</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php while($row = mysqli_fetch_array($result)) { ?>
+                                <?php while($row = mysqli_fetch_array($result)) { 
+                                    $fecha = strtotime($row['fecha']);
+                                    $estatus = (($row['estatus'] == 'A') || ($row['estatus'] )== '1') ? 'Activo' : 'Inactivo';
+                                    ?>
                                 <tr>
-                                    <td><a><?php echo $row['fullname']; ?></a></td>                      
+                                    <td><?php echo $row['fullname']; ?></td>                      
                                     <td><?php echo $row['correo'] ?></td>
                                     <td><?php echo $row['usuario'] ?></td>
-                                    <td><a href="src_clave_team.php?idu=<?php echo $row['idlogin'];?>"><i class="fa fa-eye"></i></a></td>
                                     <td><?php echo $row['cargo'] ?></td>
+                                    <td><?php echo $estatus ?></td>
+                                    <td><?php echo date('d-m-Y', $fecha) ?></td>
                                     <td class="project-actions text-right">
                                         <a title="Editar Usuario" class="btn btn-warning" href="moduser.php?idlogin=<?php echo $row['idlogin'];?>"><i class="fi fi-rr-edit"></i> </a>
                                         <a title="Eliminar Usuario" class="btn btn-danger" href="src_del_team.php?idlogin=<?php echo $row['idlogin'];?>"><i class="fi fi-rr-delete-user"></i></a>

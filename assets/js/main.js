@@ -116,3 +116,27 @@ let menu, animate;
   // Auto update menu collapsed/expanded based on the themeConfig
   window.Helpers.setCollapsed(true, false);
 })();
+
+//---------- GUARDA EL USUARIO EN EL LOCALSTORAGE --------//
+var usuarioGuardado = localStorage.getItem('usuario');
+if (usuarioGuardado) {
+    $('#usuario').val(usuarioGuardado);
+    $('#recordar').prop('checked', true);
+}
+$('#recordar').change(function() {
+    if ($(this).is(':checked')) {
+        localStorage.setItem('usuario', $('#usuario').val());
+    } else {
+        localStorage.removeItem('usuario');
+    }
+});
+
+
+$('.show-password').on('click', function() {
+  var passwordField = $('#clave');
+  if (passwordField.attr('type') === 'password') {
+      passwordField.attr('type', 'text');
+  } else {
+      passwordField.attr('type', 'password');
+  }
+});

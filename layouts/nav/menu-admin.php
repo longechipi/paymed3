@@ -24,7 +24,7 @@ $host = basename($_SERVER['PHP_SELF']);
         
     <a href="javascript:void(0)" class="menu-link menu-toggle">
         <i class="menu-icon tf-icons fi fi-rr-user-pen"></i>
-        <div id="menu-hono" data-i18n="User interface">ACCESOS</div>
+        <div id="menu-hono" data-i18n="User interface">USUARIOS</div>
     </a>
         <ul class="menu-sub">
             <!-- Usr Clinicas -->
@@ -361,6 +361,17 @@ $host = basename($_SERVER['PHP_SELF']);
                     <div data-i18n="Accordion">Paises</div>
                 </a>
             </li>
+
+            <!-- Auditoria -->
+            <li class="menu-item 
+                <?php if ($host === "rpt_paises.php") {
+                    echo 'active';
+                } ?>">
+                <a href="../html/rpt_paises.php" id="sidebar-hono" class="menu-link empty">
+                    <div data-i18n="Accordion">Auditoria</div>
+                </a>
+            </li>
+
         </ul>
     </li>
     <!-- FIN QUINTO NIVEL -->

@@ -7,38 +7,22 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
     <title>PayMed Global</title>
-
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href="assets/img/favicon/favicon.ico"
-    />
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon/favicon.ico" />
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
 
     <!-- Fonts -->
-
     <link rel="stylesheet" href="assets/vendor/fonts/boxicons.css" />
 
     <!-- Core CSS -->
-    <link
-      rel="stylesheet"
-      href="assets/vendor/css/core.css"
-      class="template-customizer-core-css"
-    />
-    <link
-      rel="stylesheet"
-      href="assets/vendor/css/theme-default.css"
-      class="template-customizer-theme-css"
-    />
+    <link rel="stylesheet" href="assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="assets/vendor/css/theme-default.css" class="template-customizer-theme-css"/>
     <link rel="stylesheet" href="assets/css/demo.css" />
 
     <!-- Vendors CSS -->
-    <link
-      rel="stylesheet"
-      href="assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css"
-    />
+    <link rel="stylesheet" href="assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css"/>
     <link rel="stylesheet" href="assets/vendor/css/pages/page-auth.css" />
 
     <!-- Helpers -->
@@ -58,7 +42,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="admin/pages/forms/recpass.php" method="post" onsubmit="return validacion()">
+        <form action="controller/recupera_pass/recuperar.php" method="post">
           <div class="modal-body">
             <div class="row">
                 <div class="col-12">
@@ -81,7 +65,6 @@
   <!-- FIN VENTANA MODAL -->
 <div class="container-xxl">
 <div class="authentication-wrapper authentication-basic container-p-y">
-
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-12 col-xxl-11">
@@ -109,26 +92,30 @@
                   
                   <form action="auth/i.login.php" method="POST">
                     <div class="row gy-3 overflow-hidden">
-                      <div class="col-12">
-                        <div class="form-floating mb-3">
-                          <input type="email" class="form-control" id="usuario" name="usuario" placeholder="Ingrese Su Usuario" autofocus required/>
-                          <label for="email" class="form-label">Usuario</label>
+                     <div class="mb-3">
+                        <label for="usuario" class="form-label">Email o Usuario</label>
+                        <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Ingresa tu Usuario" autofocus required  />
+                      </div>
+
+                      <div class="mb-3 form-password-toggle">
+                        <div class="d-flex justify-content-between">
+                          <label class="form-label" for="clave">Contraseña</label>
+                        </div>
+                        <div class="input-group input-group-merge">
+                          <input type="password" id="clave" class="form-control" name="clave" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="clave" required/>
+                          <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                         </div>
                       </div>
-                      <div class="col-12">
-                        <div class="form-floating mb-3">
-                          <input type="password" id="clave" class="form-control" name="clave" placeholder="Ingrese Su Contraseña" aria-describedby="password" required/>
-                          <label for="password" class="form-label">Password</label>
-                        </div>
-                      </div>
-                      <div class="col-12">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" value="" name="remember_me" id="remember_me">
-                          <label class="form-check-label text-secondary" for="remember_me">
+
+                      <div class="col-12 d-flex justify-content-between align-items-center">
+                        <div class="form-check ">
+                          <input class="form-check-input" type="checkbox" name="recordar" id="recordar">
+                          <label class="form-check-label text-secondary" for="recordar">
                             Recordar Usuario
                           </label>
                         </div>
                       </div>
+
                       <div class="col-12">
                         <div class="d-grid">
                           <button class="btn btn-primary btn-lg" type="submit" id="enviar">INGRESAR</button>
@@ -167,6 +154,7 @@
     <script src="assets/vendor/js/menu.js"></script>
     <script src="libs/sweetalert/sweetalert.js"></script>
     <script src="assets/js/main.js"></script>
+
   </body>
 
 </html>
