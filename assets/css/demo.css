@@ -268,13 +268,15 @@ input:read-only:focus {
 }
 
 .card-body.admin {
-  background-color: #007dba47;
   border-radius: 8px;
+  cursor: pointer;
 }
 
 .card-body.admin:hover {
-  background-color: #007dba7a;
+  background-color: #5cbdb4;
   border-radius: 8px;
+  color: white;
+  cursor: pointer;
 }
 
 h4.icono {
@@ -293,4 +295,55 @@ img.img-fluid.img-thumbnail {
   border-radius: 100%;
   border: 5px solid #fff;
   width: 109px;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+}
+
+.text-content {
+  flex-grow: 1;   
+  padding: 5%; 
+}
+.horario-front {
+  background-color: rgba(105, 108, 255, .16);
+ 
+  border-radius: 14px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.horario-front:hover {
+  background-color: #a9d7e8;
+}
+
+.hora {
+
+  padding: 49px 10px;
+  border-radius: 0px 14px 14px 0px;
+
+}
+
+.hora:hover {
+  background-color: #5cbdb4;
+  padding: 49px 10px;
+  border-radius: 0px 14px 14px 0px;
+  color: #fff;
+}
+
+i.fi.fi-rs-pending {
+  font-size: 26px;
+}
+
+i.fi.fi-rs-file-invoice-dollar {
+  font-size: 26px;
+}
+i.fi.fi-rr-newspaper {
+  font-size: 26px;
+}
+
+i.fi.fi-rs-membership {
+  font-size: 26px;
 }

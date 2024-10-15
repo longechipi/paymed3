@@ -945,8 +945,7 @@ html:not(.layout-menu-collapsed) .bg-menu-theme .menu-inner .menu-item .menu-lin
 }
 
 div#medico {
-  border-right: 1px solid #007dba38;
-  background: linear-gradient(to right, transparent, #007dba38);
+  background-color: #e6e8f0;
 }
 
 button.btn.btn-primary.btn-icon.rounded-pill.dropdown-toggle.hide-arrow {
