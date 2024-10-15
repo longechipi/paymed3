@@ -1,18 +1,7 @@
 <?php 
 include('../layouts/header.php');
 require('../conf/conexion.php');
-$idcita = $_GET['idcita'];
-$a = "SELECT CM.*, CONCAT(P.apellido1,' ', P.nombre1) AS nom_paci, SUBSTRING(P.cedula, 2) AS Cedula, P.edad, 
-RX.*
-FROM consultas_med CM
-INNER JOIN pacientes P ON CM.idpaci = P.idpaci
-INNER JOIN servimage RX ON CM.codserv = RX.codserv
-WHERE CM.idcita = $idcita
-AND CM.codserv = RX.codserv
-AND CM.codzona = RX.codzona
-AND CM.codestudio = RX.codestudio";
-$ares=$mysqli->query($a);
-$row = $ares->fetch_assoc();
+
 ?>
 
 <div class="layout-wrapper layout-content-navbar">
@@ -28,7 +17,20 @@ $row = $ares->fetch_assoc();
         <div class="d-flex align-items-end row">
             <div class="col-12">
                 <div class="card-body">
-                    <h5 class="card-title text-primary">Consulta Previa del <?php echo $row['fechadia']; ?></h5>
+                    <h5 class="card-title text-primary">Consulta Previa del <?php 
+                    $idcita = $_GET['idcita'];
+                    $a = "SELECT CM.*, CONCAT(P.apellido1,' ', P.nombre1) AS nom_paci, SUBSTRING(P.cedula, 2) AS Cedula, P.edad, 
+                    RX.*
+                    FROM consultas_med CM
+                    INNER JOIN pacientes P ON CM.idpaci = P.idpaci
+                    INNER JOIN servimage RX ON CM.codserv = RX.codserv
+                    WHERE CM.idcita = $idcita
+                    AND CM.codserv = RX.codserv
+                    AND CM.codzona = RX.codzona
+                    AND CM.codestudio = RX.codestudio";
+                    $ares=$mysqli->query($a);
+                    $row = $ares->fetch_assoc();
+                    echo $row['fechadia']; ?></h5>
                     <div class="row">
                         <div class="divider">
                             <div class="divider-text">Datos de Previos</div>
@@ -122,7 +124,9 @@ $row = $ares->fetch_assoc();
 
 
                     </div>
-                    
+                    <div class="text-center mt-5">
+                    <a href="javascript:history.back()" class="btn btn-outline-warning" rel="noopener noreferrer"><i class="fi fi-rr-undo"></i> VOLVER </a>
+                    </div>
 
                 </div>
             </div>
