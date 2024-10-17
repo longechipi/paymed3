@@ -60,8 +60,8 @@ CREATE TABLE `medicos` (
   `edad` INT NOT NULL,
   `idsex` INT NULL,
   `idcivil` INT NULL,
-  `celular` INT NOT NULL,
-  `telf` INT NULL,
+  `celular` varchar(15) NOT NULL,
+  `telf` varchar(15) NULL,
   `correo_pri` varchar(100) NOT NULL UNIQUE,
   `correo2` varchar(100) NULL UNIQUE,
   `idpais` INT NULL,
@@ -73,12 +73,17 @@ CREATE TABLE `medicos` (
   `fecha_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP(),
 
   FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`),
-  FOREIGN KEY (`id_sta`) REFERENCES `estatus` (`id_sta`)
+  FOREIGN KEY (`id_sta`) REFERENCES `estatus` (`id_sta`),
+  FOREIGN KEY (`id_espe`) REFERENCES `especialidades_med` (`id_espe`),
+  FOREIGN KEY (`idpais`) REFERENCES `pais` (`id`),
+  FOREIGN KEY (`idestado`) REFERENCES `estados` (`id_estado`),
+  FOREIGN KEY (`idmunicipio`) REFERENCES `municipios` (`id_municipio`),
+  FOREIGN KEY (`idparroquia`) REFERENCES `parroquias` (`id_parroquias`)
 );
 INSERT INTO medicos(id_user, nac, cedula, nombre1, nombre2, apellido1, apellido2, rif, cod_col_med,id_espe,
 mpss, fec_nac, edad,idsex,idcivil,celular, telf, correo_pri,correo2,idpais,
 idestado,idmunicipio,idparroquia,direccion,id_sta)VALUES(2, 'V', 11197801, 'KATRINS', 'HAIDY', 'ARVELO', 'CRESPO', 'J111978014', 987877000, 3,
-98987, '1981-05-24', 41, 1, 1, 04242483900, 02126834798, 'harvelo@armisglobal.com', 'harvelo@armisglobal.com', 232, 
+98987, '1981-05-24', 41, 1, 1, '04242974834', '02126834798', 'harvelo@armisglobal.com', 'harvelo@armisglobal.com', 232, 
 24, 462, 112, 'EL PARAISO', 1)
 
 ------------------------------------------------------------------------------------
@@ -100,4 +105,48 @@ CREATE TABLE `pais` (
 );
 
 INSERT INTO pais(pais, id_sta) VALUES('VENEZUELA', 1 )
+-------------------------------------------------------------------------------------
+CREATE TABLE `especialidades_med` (
+  `id_espe` int PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  `especialidad` varchar(50) NOT NULL,
+  `id_sta` INT NOT NULL,
+  FOREIGN KEY (`id_sta`) REFERENCES `estatus` (`id_sta`)
+);
+INSERT INTO especialidades_med(especialidad, id_sta)VALUES('GINECOLOGIA', 1)
+-------------------------------------------------------------------------------------
+CREATE TABLE `bancos` (
+  `id_ban` int PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  `cod_ban` varchar(100) NOT NULL,
+  `banco` varchar(100) NOT NULL,
+  `nacional` INT NOT NULL,
+  `id_sta` INT NOT NULL,
+  FOREIGN KEY (`id_sta`) REFERENCES `estatus` (`id_sta`)
+);
+INSERT INTO bancos(cod_ban, banco, nacional, id_sta)VALUES('0108', 'PROVINCIAL', 1, 1)
+-------------------------------------------------------------------------------------
+CREATE TABLE `tipo_cuenta_banco` (
+  `id` int PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  `tipo_cuenta` varchar(100) NOT NULL,
+  `id_sta` INT NOT NULL,
+  FOREIGN KEY (`id_sta`) REFERENCES `estatus` (`id_sta`)
+);
+INSERT INTO tipo_cuenta_banco(tipo_cuenta, id_sta)VALUES('AHORRO', 1)
+-------------------------------------------------------------------------------------
+CREATE TABLE `datos_bancarios_med` (
+  `id` int PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  `id_user` INT NOT NULL,
+  `id_ban` INT NOT NULL,
+  `id_tip` INT NOT NULL,
+  `nro_cuenta` varchar(100) NOT NULL,
+  `ach` varchar(100) NULL,
+  `swit` varchar(100) NULL,
+  `aba` varchar(100) NULL,
+  `id_sta` INT NOT NULL,
+  FOREIGN KEY (`id_sta`) REFERENCES `estatus` (`id_sta`),
+  FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`),
+  FOREIGN KEY (`id_ban`) REFERENCES `bancos` (`id_ban`),
+  FOREIGN KEY (`id_tip`) REFERENCES `tipo_cuenta_banco` (`id`)
+  
+)
+INSERT INTO datos_bancarios_med(id_user, id_ban, id_tip, nro_cuenta, ach, swit, aba, id_sta)VALUES(2, 1, 2, '01021478963210254789', '0', '0', '0', 1)
 -------------------------------------------------------------------------------------
