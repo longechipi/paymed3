@@ -46,7 +46,7 @@ require('../conf/conexion.php');
                           <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bx bx-dots-vertical-rounded"></i>
                           </button>
-                          <ul class="dropdown-menu dropdown-menu-end" style="">
+                          <ul class="dropdown-menu dropdown-menu-end">
                           <?php if ($row['idestatus']=='2') { ?>
                             <li><a class="dropdown-item" href="onoffpais.php?id=<?php echo $row['idpais'];?>&onoff=x1">
                             <i class="fi fi-rr-toggle-on"></i> Activar</a>

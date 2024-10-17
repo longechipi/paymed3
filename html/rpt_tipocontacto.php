@@ -49,7 +49,7 @@ require('../conf/conexion.php');
                           <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bx bx-dots-vertical-rounded"></i>
                           </button>
-                          <ul class="dropdown-menu dropdown-menu-end" style="">
+                          <ul class="dropdown-menu dropdown-menu-end" >
                             <li><a class="dropdown-item" href="upd_tipocontacto.php?idcontacto=<?php echo $row['idtipocontacto']; ?>"><i class="fi fi-rr-edit"></i> Editar Contacto</a></li>
                            
                             <li><a class="dropdown-item" href="src_del_tipocontacto.php?idcontacto=<?php echo $row['idtipocontacto']; ?>"><i class="fi fi-rr-trash"></i> Eliminar Contacto</a></li>

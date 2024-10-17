@@ -51,7 +51,7 @@ require('../conf/conexion.php');
                           <button type="button" class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bx bx-dots-vertical-rounded"></i>
                           </button>
-                          <ul class="dropdown-menu dropdown-menu-end" style="">
+                          <ul class="dropdown-menu dropdown-menu-end">
                          
                             <li><a class="dropdown-item" href="upd_servafafiliados.php?idservi=<?php echo $row['idservaf'];?>"><i class="fi fi-rr-edit"></i> Editar Servicio</a></li>
                              
