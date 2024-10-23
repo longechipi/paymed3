@@ -11551,9 +11551,9 @@
  }
  
  .alert-danger {
-     background-color: #ffe0db;
-     border-color: #ffe0db;
-     color: #ff3e1d
+    background-color: #26ab9a75;
+    border-color: #007dba;
+    color: #222a55;
  }
  
  .alert-danger .btn-close {
