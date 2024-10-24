@@ -17,8 +17,22 @@ require('../conf/conexion.php');
             <div class="col-12">
                 <div class="card-body">
                     <h5 class="card-title text-primary">Citas Médicas</h5>
-
-                    <div id="calendar"></div>
+                    <?php include('../controller/citas/data_citas.php'); ?>
+                    <div id="calendario"></div>
+                  
+                    <script>
+                        $(document).ready(function() {
+                            $('#calendario').evoCalendar({
+                              theme: "Default",
+                              language: "es",
+                              eventHeaderFormat: 'd MM yyyy',
+                              calendarEvents: <?php echo $json_string; ?>
+                             
+             
+                              
+                            })
+                          })
+                    </script>
                     
 
                 </div>

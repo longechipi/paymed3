@@ -304,28 +304,37 @@ $(document).ready(function() {
             processData: false,
             success: function(data) {
                 console.log(data)
-                // if (data == 1) {
-                //     Swal.fire({
-                //         icon: 'success',
-                //         title: 'Cita Agregada',
-                //         showConfirmButton: false,
-                //         timer: 1500
-                //     })
-                //     setTimeout(function() {
-                //         window.location.href = "rpt_citpac.php";
-                //     }, 1500);
-                // } else {
-                //     Swal.fire({
-                //         icon: 'error',
-                //         title: 'Oops...',
-                //         text: 'Algo salio mal!'
-                //     })
-                // }
+                if (data == 1) {
+                    Swal.fire({
+                        title: 'Cita Agregada',
+                        text: 'Felicidades Agrego la Cita Exitosamente',
+                        icon: 'success',
+                        confirmButtonColor: "#007ebc",
+                        confirmButtonText: 'Aceptar'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = "rpt_citpac.php";
+                            }
+                });
+                   
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Ocurrio un Error al Registrar la Cita',
+                        icon: 'error',
+                        confirmButtonColor: "#007ebc",
+                        confirmButtonText: 'Aceptar'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = "rpt_citpac.php";
+                        }
+                    })
+                    
+                }
             }
         });
     });
 
-   
 
   });
 </script>
