@@ -35,16 +35,14 @@ require('../conf/conexion.php');
 
                             $(document).on('click', '.btn-primary', function() {
                                 var citaId = $(this).data('cita-id');
-                                $.ajax({
-                                url: '../layouts/modals/cita_opciones.php',
-                                data: {
-                                    cita_id: citaId
-                                },
-                                method: 'POST',
-                                success: function(resp) {
-                                    $('#miModal').modal('show');
-                                    $('.modal-body').html(resp);
-                                }
+                                    $.ajax({
+                                    url: '../layouts/modals/cita_opciones.php',
+                                    data: {cita_id: citaId },
+                                    method: 'POST',
+                                    success: function(resp) {
+                                        $('#miModal').modal('show');
+                                        $('.modal-body').html(resp);
+                                    }
                                 });
                             });
                           })

@@ -1,20 +1,19 @@
 <?php 
 require('../../conf/conexion.php');
-$cita_id = $_POST['cita_id']; 
+ 
 
 $a="SELECT C.*, E.estatus
 FROM citas C 
 LEFT JOIN estatus E ON C.idestatus = E.idestatus
-WHERE idcita = $cita_id";
+WHERE idcita = ".$_POST['cita_id']."";
 $ares=$mysqli->query($a);
 $row=$ares->fetch_assoc();
 ?>
 
 <div class="divider">
-    <div class="divider-text">Datos del Paciente </div>
+    <div class="divider-text">Datos del Paciente</div>
 </div>
 <div class="row">
-
     <div class="col-md-2">
         <div class="form-group">
             <label for="inputName">Historia #:</label>
@@ -42,10 +41,8 @@ $row=$ares->fetch_assoc();
             <input type="text" class="form-control" name="correo" id="correo" value="<?php echo $row['correo']; ?>" readonly/>
         </div>
     </div>
-   
+
 </div>
-
-
 
 <div class="divider">
     <div class="divider-text">Reagendamiento </div>
@@ -71,7 +68,7 @@ $row=$ares->fetch_assoc();
 
             <div class="col-md-4">
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary mt-5"><i class="fi fi-rs-disk"></i> ACTUALIZAR</button>
+                    <!-- <button type="submit" class="btn btn-primary mt-5"><i class="fi fi-rs-disk"></i> ACTUALIZAR</button> -->
                 </div>
             </div>
 
@@ -82,8 +79,9 @@ $row=$ares->fetch_assoc();
     <div class="divider-text">Estatus </div>
 </div>
 <div class="row">
-    <form id="estatus">
+    <form id="change">
     <div class="row">
+        <input type="text" name="id_cita" id="id_cita" value="<?php echo $_POST['cita_id'] ?>">
         <div class="col-md-5">
             <label for="rif">Estatus:</label>
                 <div class="input-group">
@@ -107,4 +105,40 @@ $row=$ares->fetch_assoc();
         </div>
     </div>
     </form>
-</div>  
+</div> 
+
+<script>
+    $(document).ready(function() {
+        $('#change').submit(function(e) {
+            e.preventDefault();
+            var datos = $('#change').serialize();
+            $.ajax({
+                type: "POST",
+                url: "../model/reg_cita/re-agendar.php",
+                data: datos,
+                success: function(res) {
+                    if(res == 1){
+                        Swal.fire({
+                            title: 'Exito',
+                            text: 'Cambio de Estatus Exitoso',
+                            icon: 'success',
+                            confirmButtonColor: "#007ebc",
+                            confirmButtonText: 'Aceptar'
+                        })
+                        const modal = new bootstrap.Modal(document.getElementById('miModal'));
+                        modal.hide();
+
+                   }else{
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "error",
+                        title: "Error al Actualizar",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                   }
+                }
+            });
+        });
+    });
+</script>

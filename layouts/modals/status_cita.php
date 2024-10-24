@@ -14,3 +14,38 @@
     </div>
 </div>
 <!-- FIN MODAL -->
+<!-- <script>
+    $(document).ready(function() {
+        $('#change').submit(function(e) {
+            e.preventDefault();
+            var datos = $('#change').serialize();
+            $.ajax({
+                type: "POST",
+                url: "../model/reg_cita/re-agendar.php",
+                data: datos,
+                success: function(res) {
+                    if(res == 1){
+                        Swal.fire({
+                            title: 'Exito',
+                            text: 'Cambio de Estatus Exitoso',
+                            icon: 'success',
+                            confirmButtonColor: "#007ebc",
+                            confirmButtonText: 'Aceptar'
+                        })
+                        const modal = new bootstrap.Modal(document.getElementById('miModal'));
+                        modal.hide();
+
+                   }else{
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "error",
+                        title: "Error al Actualizar",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                   }
+                }
+            });
+        });
+    });
+</script> -->
