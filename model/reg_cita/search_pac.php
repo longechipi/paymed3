@@ -35,7 +35,7 @@ if ($ares->num_rows > 0) {
     <div class="mt-3">
         <div class="alert alert-danger " role="alert">
             <strong>¡Error!</strong> No Existe el Paciente en el Sistema.
-        <a href="#" rel="noopener noreferrer">&nbsp;¿Desea Crear el Paciente?</a>
+        <a href="../html/regpaconly.php" rel="noopener noreferrer">&nbsp;¿Desea Crear el Paciente?</a>
         </div> 
     </div> 
     ';

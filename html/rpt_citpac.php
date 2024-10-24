@@ -51,28 +51,28 @@ require('../conf/conexion.php');
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="inputName">Cedula:</label>
-                                    <input type="text" id="cedula" name="cedula" class="form-control" readonly/>
+                                    <input type="text" id="cedula" name="cedula" class="form-control" readonly required/>
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="inputName">Nombre y Apellido:</label>
-                                    <input type="text" id="nom_paci" name="nom_paci" class="form-control" readonly/>
+                                    <input type="text" id="nom_paci" name="nom_paci" class="form-control" readonly required/>
                                 </div>
                             </div>
 
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="inputName">Telefono:</label>
-                                    <input type="text" id="telf" name="telf" class="form-control" readonly/>
+                                    <input type="text" id="telf" name="telf" class="form-control" readonly />
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="inputName">Correo:</label>
-                                    <input type="text" id="correo" name="correo" class="form-control" readonly/>
+                                    <input type="text" id="correo" name="correo" class="form-control" readonly required/>
                                 </div>
                             </div>
 
@@ -102,34 +102,43 @@ require('../conf/conexion.php');
                             </div>
                         <?php } ?>
 
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="inputName">Dia de la Consulta:</label>
-                                <input type="date" class="form-control" name="dia_cita" id="dia_cita" min="<?php echo date('Y-m-d'); ?>">
+                                <input type="date" class="form-control" name="dia_cita" id="dia_cita" min="<?php echo date('Y-m-d'); ?>" required/>
                             </div>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="clinica">Clinica:</label>
-                                <select class="form-select" name="clinica" id="clinica"> </select>
+                                <select class="form-select" name="clinica" id="clinica" required> </select>
                             </div>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-4 mb-4">
                             <div class="form-group">
                                 <label for="inputName">Hora de la Consulta:</label>
-                                <select class="form-select" name="hora_cita" id="hora_cita">
+                                <select class="form-select" name="hora_cita" id="hora_cita" required>
                                     <option selected disabled value="">Seleccione</option>
                                 </select>
                                
                             </div>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="inputName">Motivo:</label>
+                                <input type="text" class="form-control" name="motivo" id="motivo" required/>
+                               
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="inputName">Paciente Asegurado</label>
-                                <select class="form-select mb-4" name="pac_seg" id="pac_seg">
+                                <select class="form-select mb-4" name="pac_seg" id="pac_seg" required>
                                     <option selected disabled value="">Seleccione</option>
                                     <option value="1">Si</option>
                                     <option value="0">No</option>
@@ -138,8 +147,8 @@ require('../conf/conexion.php');
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-4" id="dat_seg" hidden>
-                        <div class="col-md-3">
+                    <div class="row mb-5" id="dat_seg" hidden>
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="inputName">Seguro:</label>
                                 <?php 
@@ -157,7 +166,7 @@ require('../conf/conexion.php');
                             </div>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="inputName">Tipo de Consulta:</label>
                                 <?php 
@@ -175,13 +184,7 @@ require('../conf/conexion.php');
                             </div>
                         </div>
 
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="inputName">Motivo:</label>
-                                <input type="text" class="form-control" name="motivo" id="motivo">
-                               
-                            </div>
-                        </div>
+                        
 
                     </div>
 
@@ -219,8 +222,6 @@ function busq(val) {
     $('#id_med').val(val.split('--')[5]);
     $('#display').hide();
     $('#sear_pac').val("");
-
-    
 }
 $(document).ready(function() {
     $("#sear_pac").keyup(function() {
@@ -250,49 +251,65 @@ $(document).ready(function() {
             url: "../model/reg_cita/search_clinica.php",
             data: { dia_cita: dia_cita, id_med: id_med, id_paci: id_paci },
             success: function(data) {
-                var clinic = JSON.parse(data);
-                var option = '<option value="" selected disabled> SELECCIONAR</option>';
-                for (var i = 0; i < clinic.length; i++) {
-                   
-                    option += '<option value="' + clinic[i].idclinica + '">' + clinic[i].nombrecentrosalud + '</option>';
+                if(data == 2){
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Disculpe, usted no da consultas ese dia seleccionado',
+                        icon: 'error',
+                        confirmButtonColor: "#007ebc",
+                        confirmButtonText: 'Aceptar'
+                        })
+                        $('#dia_cita').val('');
+                        return
+                        
+                }else{
+                    var clinic = JSON.parse(data);
+                    var option = '<option value="" selected disabled> SELECCIONAR</option>';
+                    for (var i = 0; i < clinic.length; i++) {
+                    
+                        option += '<option value="' + clinic[i].idclinica + '">' + clinic[i].nombrecentrosalud + '</option>';
+                    }
+                    $('#clinica').html(option);
+                    $('#clinica').change(function() {
+                        const clinica = $('#clinica').val()
+                        const dia_cita = $('#dia_cita').val();
+                        $.ajax({
+                            type: "POST",
+                            url: "../model/reg_cita/search_horas.php",
+                            data: { clinica: clinica, id_med: id_med, id_paci: id_paci, dia_cita: dia_cita },
+                            success: function(data) {
+                                var horas = JSON.parse(data);
+                                var option = '<option value="" selected disabled> SELECCIONAR</option>';
+                                    for (var i = 0; i < horas.length; i++) {
+                                        option += '<option value="' + horas[i] + '">' + horas[i] + '</option>';
+                                    }
+                                $('#hora_cita').html(option);
+                            }
+
+                        })
+                    });
                 }
-                $('#clinica').html(option);
-
-                // var horaInicio = new Date("1970-01-01 " + clinic[i].desde);
-                // var horaFin = new Date("1970-01-01 " + clinic[i].hasta);
-
-                $('#clinica').change(function() {
-                    const clinica = $('#clinica').val()
-                    const dia_cita = $('#dia_cita').val();
-                    $.ajax({
-                        type: "POST",
-                        url: "../model/reg_cita/search_horas.php",
-                        data: { clinica: clinica, id_med: id_med, id_paci: id_paci, dia_cita: dia_cita },
-                        success: function(data) {
-                            console.log(data)
-                            var horas = JSON.parse(data);
-                            var option = '<option value="" selected disabled> SELECCIONAR</option>';
-                                for (var i = 0; i < horas.length; i++) {
-                                    option += '<option value="' + horas[i] + '">' + horas[i] + '</option>';
-                                }
-                            $('#hora_cita').html(option);
-                        }
-
-                    })
-                });
-
             }
         });
     });
 
     $('#pac_seg').change(function() {
         var pac_seg = $('#pac_seg').val();
+        const selectedOption = $(this).val();
+        const requiredElements = ["seguro", "tip_serv"];
         if (pac_seg == 1) {
             $('#dat_seg').removeAttr('hidden');
+            requiredElements.forEach(elementId => {
+                $("#" + elementId).attr("required", true);
+            });
         } else {
             $('#dat_seg').attr('hidden', true);
+            requiredElements.forEach(elementId => {
+                $("#" + elementId).removeAttr("required");
+            });
         }
     });
+
     $('#add_citas').submit(function(e) {
         e.preventDefault();
         var formData = new FormData(this);
@@ -315,9 +332,23 @@ $(document).ready(function() {
                             if (result.isConfirmed) {
                                 window.location.href = "rpt_citpac.php";
                             }
-                });
-                   
-                } else {
+                    });
+                } 
+
+                if (data == 2) {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'El Paciente ya tiene una Cita Agendada con el Doctor',
+                        icon: 'error',
+                        confirmButtonColor: "#007ebc",
+                        confirmButtonText: 'Aceptar'
+                    })
+                    $('#dia_cita').val('');
+                    $('#clinica').val(''); 
+                    $('#hora_cita').val('');
+                    return
+                }
+                if (data == 3){
                     Swal.fire({
                         title: 'Error!',
                         text: 'Ocurrio un Error al Registrar la Cita',
@@ -329,11 +360,12 @@ $(document).ready(function() {
                                 window.location.href = "rpt_citpac.php";
                         }
                     })
-                    
                 }
-            }
-        });
+                   
+            
+        }
     });
+});
 
 
   });

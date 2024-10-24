@@ -54,7 +54,7 @@ if ($count > 0) {
 
 
 } else {
-    echo "No se encontraron resultados.";
+    echo 2;
 }
 // $row = $ares->fetch_assoc();
 // $idclinica = $row['idclinica'];
