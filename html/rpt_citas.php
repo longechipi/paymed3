@@ -19,18 +19,34 @@ require('../conf/conexion.php');
                     <h5 class="card-title text-primary">Citas Médicas</h5>
                     <?php include('../controller/citas/data_citas.php'); ?>
                     <div id="calendario"></div>
-                  
+                  <?php include('../layouts/modals/status_cita.php'); ?>
                     <script>
                         $(document).ready(function() {
                             $('#calendario').evoCalendar({
-                              theme: "Default",
-                              language: "es",
-                              eventHeaderFormat: 'd MM yyyy',
+                            'theme': "Default",
+                            'language': "es",
+                            'eventHeaderFormat': 'd MM yyyy',
+                            'language': 'es',
+                            'todayHighlight': true, //Fecha de Hoy Resaltada
+                            'sidebarDisplayDefault': false, //Barra de los Meses
+                            'eventDisplayDefault': true, //Eventos Resaltados
                               calendarEvents: <?php echo $json_string; ?>
-                             
-             
-                              
                             })
+
+                            $(document).on('click', '.btn-primary', function() {
+                                var citaId = $(this).data('cita-id');
+                                $.ajax({
+                                url: '../layouts/modals/cita_opciones.php',
+                                data: {
+                                    cita_id: citaId
+                                },
+                                method: 'POST',
+                                success: function(resp) {
+                                    $('#miModal').modal('show');
+                                    $('.modal-body').html(resp);
+                                }
+                                });
+                            });
                           })
                     </script>
                     

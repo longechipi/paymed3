@@ -16,23 +16,25 @@ $d = "SELECT COUNT(*) as total_citas FROM citas";
 $dres=$mysqli->query($d);
 $totalCitas=$dres->fetch_array();
 ?>
-<div class="row"> <!--  FILA PRINCIPAL DE ARRIBA -->
+<div class="row"> <!--  FILA PRINCIPAL DE ARRIBA  --> 
 <div class="col-lg-3 mb-4 order-0">
-  <div class="card">
-    <div class="d-flex align-items-end row">
-        <div class="col-12">
-            <div class="card-body admin text-center">
-               <br>
-                <h2 class="fw-bold"><i class="fi fi-rs-plus"></i></h2>
-                <h5>Añadir Paciente</h5>
-                
+  <a href="regpaconly.php" rel="noopener noreferrer">
+    <div class="card">
+        <div class="d-flex align-items-end row">
+            <div class="col-12">
+                <div class="card-body admin text-center">
+                <br>
+                    <h2 class="fw-bold"><i class="fi fi-rs-plus"></i></h2>
+                    <h5>Añadir Paciente</h5>
+                </div>
             </div>
         </div>
     </div>
-  </div>
+  </a>
 </div>
 
 <div class="col-lg-3 mb-4 order-1">
+<a href="rpt_citpac.php" rel="noopener noreferrer">
   <div class="card">
     <div class="d-flex align-items-end row">
         <div class="col-12">
@@ -44,6 +46,7 @@ $totalCitas=$dres->fetch_array();
         </div>
     </div>
   </div>
+  </a>
 </div>
 
 <div class="col-lg-3 mb-4 order-2">

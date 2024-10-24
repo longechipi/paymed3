@@ -193,7 +193,7 @@ th[colspan="7"]::after {
 	-webkit-transform:translateX(-50%);
 	-ms-transform:translateX(-50%);
 	transform:translateX(-50%);
-	background-color:rgba(135,115,193,.15)
+	background-color:#5cbdb4
 }
 tr.calendar-header .calendar-header-day {
 	padding:10px;
@@ -234,11 +234,11 @@ tr.calendar-body .calendar-day .day.calendar-active,tr.calendar-body .calendar-d
 }
 tr.calendar-body .calendar-day .day.calendar-today {
 	color:#fff;
-	background-color:#8773c1
+	background-color:#222a55
 }
 tr.calendar-body .calendar-day .day.calendar-today:hover {
 	color:#fff;
-	background-color:#755eb5
+	background-color:#222a55
 }
 tr.calendar-body .calendar-day .day[disabled] {
 	pointer-events:none;
@@ -362,21 +362,20 @@ tr.calendar-body .calendar-day .day[disabled] {
 }
 .event-container>.event-info>p.event-title {
 	position:relative;
-	font-size:22px;
-	font-weight:600
+	font-size: 21px;
+    font-weight: 400;
 }
 .event-container>.event-info>p.event-title>span {
-	position:absolute;
-	top:50%;
-	right:0;
-	font-size:12px;
-	font-weight:400;
-	color:#755eb5;
-	border:1px solid #755eb5;
-	border-radius:3px;
-	background-color:rgb(237 234 246);
-	padding:3px 6px;
-	transform:translateY(-50%)
+	position: absolute;
+    top: 50%;
+    right: 0;
+    font-size: 13px;
+    font-weight: 400;
+    color: #fff;
+    border-radius: 3px;
+    background-color: #007dba;
+    padding: 2px 4px;
+    transform: translateY(-50%);
 }
 .event-container>.event-info>p.event-desc {
 	font-size:14px;
@@ -409,7 +408,7 @@ tr.calendar-body .calendar-day .day[disabled] {
 	border-radius:50%
 }
 .event-container>.event-icon>div.event-bullet-event,.event-indicator>.type-bullet>div.type-event {
-	background-color:#ff7575
+	background-color:#5cbdb4
 }
 .event-container>.event-icon>div.event-bullet-holiday,.event-indicator>.type-bullet>div.type-holiday {
 	background-color:#ffc107

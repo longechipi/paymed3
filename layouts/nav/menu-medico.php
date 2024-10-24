@@ -21,7 +21,7 @@ $sqlestatus = "SELECT estatus FROM loginn WHERE idlogin ='$idlogin'";
         <!-- Perfil -->
         <li class="menu-item">
             <a href="javascript:void(0)" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-wrench"></i>
+                <i class="menu-icon tf-icons bx bx-user"></i>
                 <div id="menu-hono" data-i18n="User interface">PERFIL</div>
             </a>
             <ul class="menu-sub">
@@ -37,7 +37,7 @@ $sqlestatus = "SELECT estatus FROM loginn WHERE idlogin ='$idlogin'";
         <li class="menu-item 
         <?php if ($host === "index.php") { echo 'active'; } ?>">
             <a href="../auth/salir.php" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-clinic"></i>
+                <i class="menu-icon tf-icons bx bx-exit"></i>
                 <div data-i18n="Analytics">SALIR</div>
             </a>
         </li>
@@ -49,7 +49,7 @@ $sqlestatus = "SELECT estatus FROM loginn WHERE idlogin ='$idlogin'";
             echo 'active' . ' ' . 'open';
         } ?>">
             <a href="javascript:void(0)" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-wrench"></i>
+                <i class="menu-icon tf-icons bx bx-user"></i>
                 <div id="menu-hono" data-i18n="User interface">PERFIL</div>
             </a>
             <ul class="menu-sub">
@@ -57,13 +57,30 @@ $sqlestatus = "SELECT estatus FROM loginn WHERE idlogin ='$idlogin'";
                 <li class="menu-item 
                 <?php if ($host === "perfil.php") { echo 'active'; } ?>">
                     <a href="../html/perfil.php" id="sidebar-hono" class="menu-link empty">
-                        <div data-i18n="Accordion">Actualizar</div>
+                        <div data-i18n="Accordion">Datos Basicos</div>
                     </a>
                 </li>
+               
+            </ul>
+        </li>
+        <!-- FIN PRIMER NIVEL -->
+
+        <!-- PRIMER NIVEL -->
+        <li class="menu-item 
+        <?php
+        if (($host === "rpt_prov.php") || ($host === "rpt_pacxmed.php")|| ($host === "rpt_asixmed.php") ) {
+            echo 'active' . ' ' . 'open';
+        } ?>">
+            <a href="javascript:void(0)" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-donate-heart"></i>
+                <div id="menu-hono" data-i18n="User interface">GESTIÓN</div>
+            </a>
+            <ul class="menu-sub">
+            
                 <!-- Proveedores -->
                 <li class="menu-item">
                     <a href="pages/forms/rpt_prov.php" id="sidebar-hono" class="menu-link empty">
-                        <div data-i18n="Accordion">Proveedores</div>
+                        <div data-i18n="Accordion">Materiales / Insumos</div>
                     </a>
                 </li>
                 <!-- Pacientes -->
@@ -80,35 +97,23 @@ $sqlestatus = "SELECT estatus FROM loginn WHERE idlogin ='$idlogin'";
                         <div data-i18n="Accordion">Asistente</div>
                     </a>
                 </li>
-                <!-- Horarios -->
-                <li class="menu-item 
-                <?php if ($host === "rpt_horar.php") { echo 'active'; } ?>">
-                    <a href="../html/rpt_horar.php" id="sidebar-hono" class="menu-link empty">
-                        <div data-i18n="Accordion">Horarios</div>
-                    </a>
-                </li>
+                
             </ul>
         </li>
         <!-- FIN PRIMER NIVEL -->
 
+
         <!-- SEGUNDO NIVEL -->
         <li class="menu-item 
         <?php
-        if (($host === "rpt_citpac.php") ||($host === "rpt_citas.php") ) {
+        if (($host === "rpt_citpac.php") ||($host === "rpt_citas.php") ||($host === "estad_citas.php")) {
             echo 'active' . ' ' . 'open';
         } ?>">
             <a href="javascript:void(0)" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-wrench"></i>
-                <div id="menu-hono" data-i18n="User interface">AGENDA</div>
+                <i class="menu-icon tf-icons bx bx-calendar"></i>
+                <div id="menu-hono" data-i18n="User interface">CITAS MÉDICAS</div>
             </a>
             <ul class="menu-sub">
-                <!-- Ver Citas -->
-                <li class="menu-item 
-                <?php if ($host === "rpt_citas.php") { echo 'active'; } ?>">
-                    <a href="../html/rpt_citas.php" id="sidebar-hono" class="menu-link empty">
-                        <div data-i18n="Accordion">Ver Citas</div>
-                    </a>
-                </li>
                 <!-- Crear Citas -->
                 <li class="menu-item 
                 <?php if ($host === "rpt_citpac.php") { echo 'active'; } ?>">
@@ -116,6 +121,23 @@ $sqlestatus = "SELECT estatus FROM loginn WHERE idlogin ='$idlogin'";
                         <div data-i18n="Accordion">Crear Citas</div>
                     </a>
                 </li>
+
+                <!-- Ver Citas -->
+                <li class="menu-item 
+                <?php if ($host === "rpt_citas.php") { echo 'active'; } ?>">
+                    <a href="../html/rpt_citas.php" id="sidebar-hono" class="menu-link empty">
+                        <div data-i18n="Accordion">Calendario</div>
+                    </a>
+                </li>
+
+                <!-- Crear Citas -->
+                <li class="menu-item 
+                <?php if ($host === "estad_citas.php") { echo 'active'; } ?>">
+                    <a href="../html/estad_citas.php" id="sidebar-hono" class="menu-link empty">
+                        <div data-i18n="Accordion">Estadisticas</div>
+                    </a>
+                </li>
+                
             </ul>
         </li>
         <!-- FIN SEGUNDO NIVEL -->
@@ -127,7 +149,7 @@ $sqlestatus = "SELECT estatus FROM loginn WHERE idlogin ='$idlogin'";
                 echo 'active' . ' ' . 'open';
             } ?>">
             <a href="javascript:void(0)" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-wrench"></i>
+                <i class="menu-icon tf-icons bx bx-edit"></i>
                 <div id="menu-hono" data-i18n="User interface">HISTORIA MEDICA</div>
             </a>
             <ul class="menu-sub">
@@ -145,7 +167,7 @@ $sqlestatus = "SELECT estatus FROM loginn WHERE idlogin ='$idlogin'";
         <!-- CUARTO NIVEL -->
         <li class="menu-item">
             <a href="javascript:void(0)" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-wrench"></i>
+                <i class="menu-icon tf-icons bx bx-dollar-circle"></i>
                 <div id="menu-hono" data-i18n="User interface">PRESUPUESTO</div>
             </a>
             <ul class="menu-sub">
@@ -162,7 +184,7 @@ $sqlestatus = "SELECT estatus FROM loginn WHERE idlogin ='$idlogin'";
         <li class="menu-item 
         <?php if ($host === "index.php") { echo 'active'; } ?>">
             <a href="../auth/salir.php" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-clinic"></i>
+                <i class="menu-icon tf-icons bx bx-exit"></i> 
                 <div data-i18n="Analytics">SALIR</div>
             </a>
         </li>

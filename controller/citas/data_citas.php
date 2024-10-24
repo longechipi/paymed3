@@ -1,12 +1,14 @@
 <?php 
 //---------- CONSULTA GENERAL PARA TODAS LAS CONSULTAS DEL MEDICO
-$a="SELECT C.idcita, C.idpaci, C.historia, DATE_FORMAT(C.fechacita, '%m/%d/%Y') AS fechacita, C.horacita, CONCAT(C.apellido, ' ', C.nombre) AS nom_paci,
-C.telefono, C.correo, motivo, A.razsocial, CL.nombrecentrosalud, C.idmed, SA.servicio, C.idestatus, E.estatus
+$a="SELECT C.idcita, C.idpaci, C.historia, DATE_FORMAT(C.fechacita, '%m/%d/%Y') AS fechacita, 
+TIME_FORMAT(C.horacita, '%h:%i %p') AS horacita, P.cedula, CONCAT(C.apellido, ' ', C.nombre) AS nom_paci,
+C.telefono, C.correo, C.motivo, A.razsocial, CL.nombrecentrosalud, C.idmed, SA.servicio, C.idestatus, E.estatus
 FROM citas C
 LEFT JOIN aseguradores A ON C.idaseg = A.idaseg
 LEFT JOIN clinicas CL ON C.idclinica = CL.idclinica
 LEFT JOIN serviciosafiliados SA ON C.idservaf = SA.idservaf
 LEFT JOIN estatus E ON C.idestatus = E.idestatus
+LEFT JOIN pacientes P ON C.idpaci = P.idpaci
 WHERE YEAR(C.fechacita) = YEAR(NOW())
 AND C.idmed = $idmedico ";
 $ares=$mysqli->query($a);
@@ -20,9 +22,16 @@ while ($row = mysqli_fetch_assoc($ares)) {
             $clientes[] = array(
                 'id' => $row['idcita'], //ID unico de la Cita
                 'name' => 'Cita Medica', //Nombre del Titulo
-                // 'badge' => '<button type="button" class="hora" data-bs-toggle="modal" data-bs-target="#modaldatehora-' . $row['idcita'] . '">' .$row['horacita']. '</button>', //Hora formato 12 am/pm
+                'badge' => $row['horacita'] .'<hr>',
                 'date' => $row['fechacita'],
-                'description' => $row['motivo'],
+                'description' => "<strong>Paciente: </strong>" . $row['nom_paci'] . "<br>
+                                  <strong>Cédula: </strong>" . $row['cedula'] . "<br>
+                                  <strong>Historia: </strong>" . $row['historia'] . "<br>
+                                  <strong>Telf: </strong>" . $row['telefono'] . "<br>
+                                  <strong>Motivo: </strong>" . $row['motivo'] . "<br>
+                                  <div class='alert alert-warning mt-3' role='alert'>" . $row['estatus'] . "</div>".
+                                  "<div class='text-center'><a class='btn btn-primary' data-cita-id='" . $row['idcita'] . "'href='#' rel='noopener noreferrer'>Opciones</a> </div>",
+                                  
                 'type' => 'event'
             );
             break;
