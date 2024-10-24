@@ -68,7 +68,7 @@ $row=$ares->fetch_assoc();
 
             <div class="col-md-4">
                 <div class="form-group">
-                    <!-- <button type="submit" class="btn btn-primary mt-5"><i class="fi fi-rs-disk"></i> ACTUALIZAR</button> -->
+                    <button type="submit" class="btn btn-primary mt-5"><i class="fi fi-rs-disk"></i> ACTUALIZAR</button>
                 </div>
             </div>
 
@@ -79,9 +79,9 @@ $row=$ares->fetch_assoc();
     <div class="divider-text">Estatus </div>
 </div>
 <div class="row">
-    <form id="change">
+    <form id="change" action="../model/reg_cita/re-agendar.php"  method="post">
     <div class="row">
-        <input type="text" name="id_cita" id="id_cita" value="<?php echo $_POST['cita_id'] ?>">
+        <input type="text" name="id_cita" id="id_cita" value="<?php echo $_POST['cita_id'] ?>" hidden />
         <div class="col-md-5">
             <label for="rif">Estatus:</label>
                 <div class="input-group">
@@ -106,39 +106,3 @@ $row=$ares->fetch_assoc();
     </div>
     </form>
 </div> 
-
-<script>
-    $(document).ready(function() {
-        $('#change').submit(function(e) {
-            e.preventDefault();
-            var datos = $('#change').serialize();
-            $.ajax({
-                type: "POST",
-                url: "../model/reg_cita/re-agendar.php",
-                data: datos,
-                success: function(res) {
-                    if(res == 1){
-                        Swal.fire({
-                            title: 'Exito',
-                            text: 'Cambio de Estatus Exitoso',
-                            icon: 'success',
-                            confirmButtonColor: "#007ebc",
-                            confirmButtonText: 'Aceptar'
-                        })
-                        const modal = new bootstrap.Modal(document.getElementById('miModal'));
-                        modal.hide();
-
-                   }else{
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "error",
-                        title: "Error al Actualizar",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                   }
-                }
-            });
-        });
-    });
-</script>

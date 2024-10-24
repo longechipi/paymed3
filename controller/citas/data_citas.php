@@ -36,10 +36,38 @@ while ($row = mysqli_fetch_assoc($ares)) {
             );
             break;
         case 6:
-            echo "ESTOY EN CITA CONFIRMADA";
+            $clientes[] = array(
+                'id' => $row['idcita'], //ID unico de la Cita
+                'name' => 'Cita Medica', //Nombre del Titulo
+                'badge' => $row['horacita'] .'<hr>',
+                'date' => $row['fechacita'],
+                'description' => "<strong>Paciente: </strong>" . $row['nom_paci'] . "<br>
+                                  <strong>Cédula: </strong>" . $row['cedula'] . "<br>
+                                  <strong>Historia: </strong>" . $row['historia'] . "<br>
+                                  <strong>Telf: </strong>" . $row['telefono'] . "<br>
+                                  <strong>Motivo: </strong>" . $row['motivo'] . "<br>
+                                  <div class='alert alert-success mt-3' role='alert'>" . $row['estatus'] . "</div>".
+                                  "<div class='text-center'><a class='btn btn-primary' data-cita-id='" . $row['idcita'] . "'href='#' rel='noopener noreferrer'>Opciones</a> </div>",
+                                  
+                'type' => 'event'
+            );
             break;
         case 7:
-            echo "ESTOY EN CITA REALIZADA";
+            $clientes[] = array(
+                'id' => $row['idcita'], //ID unico de la Cita
+                'name' => 'Cita Medica', //Nombre del Titulo
+                'badge' => $row['horacita'] .'<hr>',
+                'date' => $row['fechacita'],
+                'description' => "<strong>Paciente: </strong>" . $row['nom_paci'] . "<br>
+                                  <strong>Cédula: </strong>" . $row['cedula'] . "<br>
+                                  <strong>Historia: </strong>" . $row['historia'] . "<br>
+                                  <strong>Telf: </strong>" . $row['telefono'] . "<br>
+                                  <strong>Motivo: </strong>" . $row['motivo'] . "<br>
+                                  <div class='alert alert-danger mt-3' role='alert'>" . $row['estatus'] . "</div>".
+                                  "<div class='text-center'><a class='btn btn-primary' data-cita-id='" . $row['idcita'] . "'href='#' rel='noopener noreferrer'>Opciones</a> </div>",
+                                  
+                'type' => 'event'
+            );
             break;
     }
 }
